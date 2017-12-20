@@ -1,19 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%
-    String name = request.getParameter("name");
-
-    String message = "Hello, ";
-    message += name == null ? "World" : name;
-    message += "!";
-
-%>
 <html>
 <jsp:include page="partials/head.jsp" />
 <body>
 
 <form class="col-md-8 col-md-offset-2">
 
-    <h1 class="text-center"><%= message %></h1>
+    <h1 class="text-center">${greeting.message}</h1>
 
     <div class="form-group">
         <label for="name">Enter your name:</label>
