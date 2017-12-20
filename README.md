@@ -1,0 +1,27 @@
+# MVC
+
+- A *design pattern*: a pattern prescription for solving common problems
+    - a way to *architect* our code
+- Seperates our code into three distinct pieces
+    - data
+    - presentation
+    - logic
+- Most popular way to organize/build the backend for web applications
+- How to communicate between servlets + jsps? `.getRequestDispatcher` `.forward`
+    - we should do this from now on
+    - side effect: prettier urls
+- hello.jsp
+- move logic to a servlet
+- JavaBean: a class that represents a thing
+    - data container
+    - private properties, getters and setters
+    - usually maps to a row in a database table
+    - many Java libraries work with beans
+- Create a Greeting class
+- DAO: design pattern for obtaining/manipulating data
+    - object that abstracts the specifics of data access
+    - usually behind an interface (for easy swappability + good architecture)
+- Factory: a class that creates objects
+    - creates/gives access to objects in a certain way
+        - enforce some constraints, pass certain arguments to the constructors
+    - alternative to "directly" creating objects (w/ the objects constructor)
