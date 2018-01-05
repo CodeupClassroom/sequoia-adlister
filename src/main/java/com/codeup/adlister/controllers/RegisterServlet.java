@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static javax.swing.JOptionPane.showMessageDialog;
+
 @WebServlet(name = "controllers.RegisterServlet", urlPatterns = "/register")
 public class RegisterServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -22,20 +24,34 @@ public class RegisterServlet extends HttpServlet {
         String password = request.getParameter("password");
         String passwordConfirmation = request.getParameter("confirm_password");
 
+
         // validate input
         boolean inputHasErrors = username.isEmpty()
             || email.isEmpty()
             || password.isEmpty()
             || (! password.equals(passwordConfirmation));
 
+
         if (inputHasErrors) {
             response.sendRedirect("/register");
             return;
         }
 
-        // create and save a new user
-        User user = new User(username, email, password);
-        DaoFactory.getUsersDao().insert(user);
-        response.sendRedirect("/login");
+        User user = DaoFactory.getUsersDao().findByUsername(username);
+
+        if (user != null){
+            showMessageDialog(null, "Username already exists!, please try with another name");
+            response.sendRedirect("/register");
+            return;
+        } else {
+            // create and save a new user
+            user = new User(username, email, password);
+
+            DaoFactory.getUsersDao().insert(user);
+            response.sendRedirect("/login");
+        }
+
+
+
     }
 }
