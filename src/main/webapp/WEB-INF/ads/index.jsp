@@ -27,7 +27,6 @@ Consider passing the id of the ad as a parameter in the GET request to this page
         <div class="col-md-6" data-dbid="${ad.id}">
             <h2><a href="/showAd?id=${ad.id}" name="ad-id">${ad.title}</a></h2>
             <p>${ad.description}</p>
-            <p>${ad.id}</p>
         </div>
     </c:forEach>
 
