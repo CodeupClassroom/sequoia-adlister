@@ -13,4 +13,8 @@ public interface Ads {
 
     // Shows one ad only
     Ad showOneAd(long id);
-}
+
+//    shows all ads by a particular user
+    List<Ad> showAdsByUser(long id);
+
+    }
