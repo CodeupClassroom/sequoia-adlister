@@ -40,6 +40,19 @@ public class MySQLAdsDao implements Ads {
     }
 
     @Override
+    public List<Ad> showAdsByUser(long id) {
+        String query = "SELECT * FROM ads where ads.user_id = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setLong(1, id);
+            ResultSet rs = stmt.executeQuery();
+            return createAdsFromResults(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving adds by user.", e);
+        }
+    }
+
+    @Override
     public Ad showOneAd(long id) {
         String query = "SELECT * FROM ads WHERE id = ? LIMIT 1";
         try {
