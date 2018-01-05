@@ -42,7 +42,6 @@ public class RegisterServlet extends HttpServlet {
         if (user != null){
             showMessageDialog(null, "Username already exists!, please try with another name");
             response.sendRedirect("/register");
-            return;
         } else {
             // create and save a new user
             user = new User(username, email, password);
@@ -50,8 +49,5 @@ public class RegisterServlet extends HttpServlet {
             DaoFactory.getUsersDao().insert(user);
             response.sendRedirect("/login");
         }
-
-
-
     }
 }
