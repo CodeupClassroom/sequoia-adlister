@@ -28,13 +28,12 @@ Consider passing the id of the ad as a parameter in the GET request to this page
 </head>
 <body>
 <div class="container">
-    <h1>test for showing one ad!!</h1>
-        <div class="col-md-6">
-            <h2>${ad.title}</h2>
-            <p>${ad.description}</p>
-            <p>${user.username}</p>
-            <p>${user.email}</p>
-        </div>
+    <div class="col-md-6">
+        <h2>${ad.title}</h2>
+        <p>${ad.description}</p>
+        <p>${user.username}</p>
+        <p>${user.email}</p>
+    </div>
 </div>
 </body>
 </html>
