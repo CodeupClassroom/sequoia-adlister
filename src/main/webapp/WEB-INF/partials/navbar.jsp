@@ -9,7 +9,9 @@
         <div class="navbar-header">
             <a class="navbar-brand" href="/ads">Adlister</a>
         </div>
+        <p>"name" parameter: <%= request.getSession().getAttribute("user") %></p>
         <ul class="nav navbar-nav navbar-right">
+
             <c:if test="${request.getSession().getAttribute('user') != null}">
                 <li><a href="/logout">Logout</a></li>
             </c:if>
