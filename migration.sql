@@ -6,7 +6,7 @@ DROP TABLE IF EXISTS users;
 
 CREATE TABLE IF NOT EXISTS users (
     id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    username VARCHAR(240) NOT NULL UNIQUE,
+    username VARCHAR(240) UNIQUE NOT NULL,
     email VARCHAR(240) NOT NULL,
     password VARCHAR(255) NOT NULL,
     PRIMARY KEY (id)
@@ -23,19 +23,19 @@ CREATE TABLE IF NOT EXISTS ads (
         ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS catagories (
+CREATE TABLE IF NOT EXISTS categories (
     id INT  UNSIGNED NOT NULL AUTO_INCREMENT,
     ad_id INT UNSIGNED NOT NULL ,
-    catagorie TEXT NOT NULL,
+    catagory TEXT NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (ad_id) REFERENCES ads(id)
         ON DELETE CASCADE
 );
 
-INSERT INTO users (username, email, password)
-    VALUES ('treasurelover','ttrash@gmail.com','treasuretrash');
-
-INSERT into ads (user_id,title, description, price)
-VALUES (1 ,'Purse for Sale','Gently used Soho small leather disco bag','800');
-
+# INSERT INTO users (username, email, password)
+#     VALUES ('treasurelover','ttrash@gmail.com','treasuretrash');
+#
+# INSERT into ads (user_id, title, description, price)
+# VALUES (1 ,'Purse for Sale','Gently used Soho small leather disco bag','800');
+#
 
