@@ -8,9 +8,12 @@
         </div>
         <ul class="nav navbar-nav navbar-right">
             <c:if test="${ sessionScope.user != null}">
+                <li><a href="/ads/create">Create A New Ad</a></li>
+                <li><a href="/profile">View Profile</a></li>
                 <li><a href="/logout">Logout</a></li>
             </c:if>
             <c:if test="${sessionScope.user == null}">
+                <li><a href="/register">Register</a></li>
                 <li><a href="/login">Login</a></li>
             </c:if>
         </ul>
