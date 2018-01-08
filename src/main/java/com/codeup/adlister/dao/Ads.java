@@ -7,6 +7,19 @@ import java.util.List;
 public interface Ads {
     // get a list of all the ads
     List<Ad> all();
+
+    //find a single ad by its id:
+    Ad findById(Long id);
     // insert a new ad and return the new ad's id
     Long insert(Ad ad);
+    //Used to display one a
+    Ad showAd(Long id);
+
+    List<Ad> search(String searchQuery);
+
+    void updateAd(Ad ad);
+
+    void deleteAd(Ad ad);
+
+    List<Ad> showUsersAds(Long id);
 }
