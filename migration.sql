@@ -32,10 +32,10 @@ CREATE TABLE IF NOT EXISTS categories (
         ON DELETE CASCADE
 );
 
-# INSERT INTO users (username, email, password)
-#     VALUES ('treasurelover','ttrash@gmail.com','treasuretrash');
-#
-# INSERT into ads (user_id, title, description, price)
-# VALUES (1 ,'Purse for Sale','Gently used Soho small leather disco bag','800');
-#
+INSERT INTO users (username, email, password)
+    VALUES ('treasurelover','ttrash@gmail.com','treasuretrash');
+
+INSERT into ads (user_id, title, description, price)
+VALUES (1 ,'Purse for Sale','Gently used Soho small leather disco bag','800');
+
 
