@@ -1,16 +1,32 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: michaelcabeza
-  Date: 1/8/18
-  Time: 11:03 AM
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>$Title$</title>
+    <jsp:include page="partials/head.jsp">
+        <jsp:param name="title" value="Search Results"/>
+    </jsp:include>
 </head>
 <body>
-$END$
+<jsp:include page="partials/navbar.jsp"/>
+
+<div class="container">
+    <div class="row">
+        <h1>Ad Results</h1>
+        <c:forEach var="ad" items="${ads}">
+            <div class="col-md-6">
+                <h3><a href="/showAd?id=${ad.id}">${ad.title}</a></h3>
+                <p>${ad.description}</p>
+            </div>
+        </c:forEach>
+    </div>
+    <div class="row">
+        <h1>User Results</h1>
+        <c:forEach var="user" items="${users}">
+            <div class="col-md-6">
+                <p><a href="/profile?id=${user.id}">${user.username}</a></p>
+            </div>
+        </c:forEach>
+    </div>
+</div>
 </body>
 </html>

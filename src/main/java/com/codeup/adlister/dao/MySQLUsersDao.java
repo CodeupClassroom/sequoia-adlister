@@ -5,6 +5,8 @@ import com.codeup.adlister.util.Password;
 import com.mysql.cj.jdbc.Driver;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MySQLUsersDao implements Users {
     private Connection connection;
@@ -49,6 +51,19 @@ public class MySQLUsersDao implements Users {
     }
 
     @Override
+    public List<User> searchUser(String searchTerm) {
+        String query = "SELECT * FROM users WHERE username LIKE ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setString(1, "%" + searchTerm + "%");
+            ResultSet rs = stmt.executeQuery();
+            return createUsersFromResults(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("An error occurred while retrieving ads and/or users.", e);
+        }
+    }
+
+    @Override
     public void editProfileInformation(String email, String password, long id) {
         String query = "UPDATE users SET email = ?, password = ? WHERE id = ?";
         try {
@@ -89,5 +104,13 @@ public class MySQLUsersDao implements Users {
             rs.getString("email"),
             rs.getString("password")
         );
+    }
+
+    private List<User> createUsersFromResults(ResultSet rs) throws SQLException {
+        List<User> users = new ArrayList<>();
+        while(rs.next()) {
+            users.add(extractUser(rs));
+        }
+        return users;
     }
 }

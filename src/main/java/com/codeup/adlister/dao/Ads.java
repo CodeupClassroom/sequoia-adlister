@@ -14,7 +14,9 @@ public interface Ads {
     // Shows one ad only
     Ad showOneAd(long id);
 
-//    shows all ads by a particular user
+    // shows all ads by a particular user
     List<Ad> showAdsByUser(long id);
 
-    }
+    // Display search results for ads
+    List<Ad> searchAd(String searchTerm);
+}

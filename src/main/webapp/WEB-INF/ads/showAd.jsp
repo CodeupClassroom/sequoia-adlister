@@ -17,23 +17,23 @@ information about that ad, as well as the information about the user that posted
 <%--You should have one page that displays the information for any arbitrary ad.
 Consider passing the id of the ad as a parameter in the GET request to this page.--%>
 
-
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<head>
-    <jsp:include page="/WEB-INF/partials/head.jsp">
-        <jsp:param name="title" value="Showing ad" />
-    </jsp:include>
-</head>
-<body>
-<div class="container">
-    <div class="col-md-6">
-        <h2>${ad.title}</h2>
-        <p>${ad.description}</p>
-        <p>${user.username}</p>
-        <p>${user.email}</p>
-    </div>
-</div>
-</body>
+    <head>
+        <jsp:include page="/WEB-INF/partials/head.jsp">
+            <jsp:param name="title" value="Showing ad" />
+        </jsp:include>
+    </head>
+    <body>
+        <jsp:include page="/WEB-INF/partials/navbar.jsp" />
+
+        <div class="container">
+            <div class="col-md-6">
+                <h2>${ad.title}</h2>
+                <p>${ad.description}</p>
+                <p>${user.username}</p>
+                <p>${user.email}</p>
+            </div>
+        </div>
+    </body>
 </html>

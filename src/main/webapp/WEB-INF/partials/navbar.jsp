@@ -5,6 +5,12 @@
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <a class="navbar-brand" href="/ads">Adlister</a>
+            <form class="navbar-form navbar-left" action="/search?searchTerm=searchTerm.value" method="GET">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="searchTerm" placeholder="Search">
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
         </div>
         <ul class="nav navbar-nav navbar-right">
             <c:if test="${ sessionScope.user != null}">
