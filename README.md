@@ -76,23 +76,3 @@ Create a catagories table and implement all the backend logic necessary to tie a
 
 ### Make it pretty!
 While bootstrap is very helpful, our site could look much better than an out of the box bootstrap website. Recall your CSS prowess and style it up!   
-
-## HTML
-1.  
-2.  
-3.  
-
-## CSS
-1.  
-2.  
-3.  
-  
-## JS
-1. animation hover   
-2.  
-3.  
-
-## Java
-1.  
-2.  
-3.  

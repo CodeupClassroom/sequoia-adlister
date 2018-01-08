@@ -76,7 +76,7 @@ public class MySQLAdsDao implements Ads {
     public List<Ad> search(String searchAd){
         String query = "SELECT * FROM ads WHERE title LIKE ? OR description LIKE ?";
         try {
-            PreparedStatement stmt = connection.prepareStatment(query, Statment.RETURN_GENERATED_KEYS);
+            PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1, "%" + searchAd + "%");
             stmt.setString(2, "%" + searchAd + "%");
 
