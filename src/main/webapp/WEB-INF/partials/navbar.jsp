@@ -17,6 +17,5 @@
                 <li><a href="/login">Login</a></li>
             </c:if>
         </ul>
-    </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
