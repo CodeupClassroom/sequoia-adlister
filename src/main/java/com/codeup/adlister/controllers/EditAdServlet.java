@@ -1,6 +1,7 @@
 package com.codeup.adlister.controllers;
 
 import com.codeup.adlister.dao.DaoFactory;
+import com.codeup.adlister.models.Ad;
 import com.codeup.adlister.models.User;
 
 import javax.servlet.ServletException;
@@ -16,23 +17,26 @@ public class EditAdServlet extends HttpServlet {
         if (request.getSession().getAttribute("user") == null) {
             response.sendRedirect("/login");
         }
-        request.getRequestDispatcher("/WEB-INF/editAd.jsp").forward(request, response);
-
-    }
-
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Long id = Long.parseLong(request.getParameter("id"));
-        String title = request.getParameter("title");
-        String description = request.getParameter("description");
+        System.out.println(id);
+//        response.sendRedirect("/editAd");
 
-
-//        boolean inputHasErrors = title.isEmpty() || description.isEmpty();
-//        if (inputHasErrors) {
-//            response.sendRedirect("/editAd");
-//        } else {
-            // create and save a new ad
-            DaoFactory.getAdsDao().editAdInformation(title, description, id);
-            response.sendRedirect("/profile");
-//        }
+        request.getRequestDispatcher("/WEB-INF/editAd.jsp").forward(request, response);
     }
+
+//    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+//        Long id = Long.parseLong(request.getParameter("id"));
+//        String title = request.getParameter("title");
+//        String description = request.getParameter("description");
+//
+//
+////        boolean inputHasErrors = title.isEmpty() || description.isEmpty();
+////        if (inputHasErrors) {
+////            response.sendRedirect("/editAd");
+////        } else {
+//            // create and save a new ad
+//            DaoFactory.getAdsDao().editAdInformation(title, description, id);
+//            response.sendRedirect("/profile");
+////        }
+//    }
 }
