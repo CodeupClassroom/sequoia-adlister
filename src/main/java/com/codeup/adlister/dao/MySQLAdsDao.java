@@ -38,6 +38,30 @@ public class MySQLAdsDao implements Ads {
         }
     }
 
+    // findAdById will make a SQL query based on an Ad id number
+    @Override
+    public Ad findAdByID(int adID) {
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement("SELECT * FROM adlister_db.ads WHERE id = ?");
+            stmt.setInt(1, adID);
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            Ad ad = new Ad(
+                    rs.getLong("id"),
+                    rs.getLong("user_id"),
+                    rs.getString("title"),
+                    rs.getString("description"),
+                    rs.getString("date_created"),
+                    rs.getString("ad_location")
+            );
+            return ad;
+//            return createAdsFromResults(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error loading single Ad.", e);
+        }
+    }
+
     @Override
     public Long insert(Ad ad) {
         try {
