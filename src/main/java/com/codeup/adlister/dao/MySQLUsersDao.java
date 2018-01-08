@@ -1,6 +1,7 @@
 package com.codeup.adlister.dao;
 
 import com.codeup.adlister.models.User;
+import com.codeup.adlister.util.Password;
 import com.mysql.cj.jdbc.Driver;
 
 import java.sql.*;
@@ -48,13 +49,13 @@ public class MySQLUsersDao implements Users {
     }
 
     @Override
-    public void editProfileInformation(User user) {
+    public void editProfileInformation(String email, String password, long id) {
         String query = "UPDATE users SET email = ?, password = ? WHERE id = ?";
         try {
-            PreparedStatement stmt = connection.prepareStatement((query));
-            stmt.setString(1, user.getEmail());
-            stmt.setString(2, user.getPassword());
-            stmt.setLong(3, user.getId());
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setString(1, email);
+            stmt.setString(2, Password.hash(password));
+            stmt.setLong(3, id);
             stmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("Error editing profile information.", e);

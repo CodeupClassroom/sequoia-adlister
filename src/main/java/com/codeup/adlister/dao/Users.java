@@ -13,5 +13,5 @@ public interface Users {
     User showUserInformation(long id);
 
     // Edit a user's profile
-    void editProfileInformation(User user);
+    void editProfileInformation(String email, String password, long id);
 }
