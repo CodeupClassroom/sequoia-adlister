@@ -15,6 +15,7 @@
     <div class="container">
         <h1>Product Title</h1>
         <h3>Price: </h3>
+        <%--//mary add in a price form $$s--%>
         <div class="form-group">
             <label for="comment">Description: </label>
             <textarea class="form-control" rows="5" id="comment"></textarea>

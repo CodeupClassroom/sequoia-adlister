@@ -5,12 +5,14 @@ public class Ad {
     private long userId;
     private String title;
     private String description;
+    //mary add in a price form $$
 
     public Ad(long id, long userId, String title, String description) {
         this.id = id;
         this.userId = userId;
         this.title = title;
         this.description = description;
+        //mary add in a price form $$
     }
 
     public Ad(long userId, String title, String description) {
