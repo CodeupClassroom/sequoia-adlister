@@ -12,10 +12,21 @@ CREATE TABLE IF NOT EXISTS users (
     PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS ads (
+CREATE TABLE IF NOT EXISTS user_info (
+  id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  user_id INT UNSIGNED NOT NULL,
+  bio VARCHAR(255) NOT NULL,
+  location VARCHAR(255) NOT NULL,
+  register_date DATE NOT NULL,
+  UNIQUE (user_id),
+  PRIMARY KEY (id),
+  FOREIGN KEY (user_id) REFERENCES users (id)
+);
+
+ CREATE TABLE IF NOT EXISTS ads (
     id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     user_id INT UNSIGNED NOT NULL,
-    title VARCHAR(240) NOT NULL,
+    title VARCHAR(255) NOT NULL,
     description TEXT NOT NULL,
     price INT NOT NULL,
     PRIMARY KEY (id),
@@ -25,12 +36,21 @@ CREATE TABLE IF NOT EXISTS ads (
 
 CREATE TABLE IF NOT EXISTS categories (
     id INT  UNSIGNED NOT NULL AUTO_INCREMENT,
-    ad_id INT UNSIGNED NOT NULL ,
-    catagory TEXT NOT NULL,
-    PRIMARY KEY (id),
-    FOREIGN KEY (ad_id) REFERENCES ads(id)
-        ON DELETE CASCADE
+    category VARCHAR(255) NOT NULL,
+    UNIQUE (category),
+    PRIMARY KEY (id)
 );
+
+CREATE TABLE IF NOT EXISTS ads_categories (
+  id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  ads_id INT UNSIGNED NOT NULL,
+  ads_category_id INT UNSIGNED NOT NULL,
+  UNIQUE (ads_id, ads_category_id),
+  PRIMARY KEY (id),
+  FOREIGN KEY (ads_id) REFERENCES ads (id),
+  FOREIGN KEY (ads_category_id) REFERENCES categories (id)
+);
+
 
 INSERT INTO users (username, email, password)
     VALUES ('treasurelover','ttrash@gmail.com','treasuretrash');
