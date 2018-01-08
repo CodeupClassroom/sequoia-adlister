@@ -2,6 +2,7 @@ package com.codeup.adlister.controllers;
 
 import com.codeup.adlister.dao.DaoFactory;
 import com.codeup.adlister.models.User;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,23 +14,49 @@ import java.io.IOException;
 @WebServlet(name = "controllers.RegisterServlet", urlPatterns = "/register")
 public class RegisterServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if(request.getAttribute("inputError") != null) {
+            request.removeAttribute("inputError");
+        }
         request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String passwordConfirmation = request.getParameter("confirm_password");
 
-        // validate input
-        boolean inputHasErrors = username.isEmpty()
-            || email.isEmpty()
-            || password.isEmpty()
-            || (! password.equals(passwordConfirmation));
+        // validate username uniqueness in db: not empty, length of username, and no special characters
+        boolean usernameHasErrors = DaoFactory.getUsersDao().findByUsername(username) != null
+            || username.isEmpty()
+            || username.length() > 255
+            || username.length() < 8
+            || !StringUtils.isAlphanumeric(username);
 
-        if (inputHasErrors) {
-            response.sendRedirect("/register");
+        // validate password uniqueness in db: not empty, length of password, and if is ascii printable
+        boolean passwordHasErrors = password.isEmpty()
+            || password.length() > 255
+            || password.length() < 8
+            || (! password.equals(passwordConfirmation))
+            || !StringUtils.isAsciiPrintable(password);
+
+        // validate email uniqueness in db: not empty, length of email, contains only one "@", has at least one "." after the "@" character
+        boolean emailHasErrors = DaoFactory.getUsersDao().findByEmail(email) != null
+            || email.isEmpty()
+            || email.length() > 255
+            || email.length() < 8
+            || StringUtils.countMatches(email, "@") != 1
+            || StringUtils.lastIndexOf(email, ".") <= StringUtils.lastIndexOf(email, "@");
+
+        if (usernameHasErrors || passwordHasErrors || emailHasErrors) {
+            username = usernameHasErrors ? "" : username;
+            password = passwordHasErrors ? "" : password;
+            email = emailHasErrors ? "" : email;
+            request.setAttribute("inputError", true);
+            request.setAttribute("username", username);
+            request.setAttribute("password", password);
+            request.setAttribute("email", email);
+            request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
             return;
         }
 
