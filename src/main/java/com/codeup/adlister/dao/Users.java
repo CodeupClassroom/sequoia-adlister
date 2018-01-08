@@ -16,5 +16,5 @@ public interface Users {
     void editProfileInformation(String email, String password, long id);
 
     // Search for a user
-    List<User> searchUser(String searchTerm);
+//    List<User> searchUser(String searchTerm);
 }

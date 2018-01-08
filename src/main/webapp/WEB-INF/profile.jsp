@@ -20,8 +20,21 @@
 
             <c:forEach var="ad" items="${ads}">
                 <div class="col-md-6">
-                    <h2><a href="/showAd?id=${ad.id}">${ad.title}</a></h2>
-                    <p>${ad.description}</p>
+                    <h2><a href="/showAd?id=${ad.id}"><c:out value="${ad.title}"/></a></h2>
+                    <p><c:out value ="${ad.description}"/></p>
+                    <form>
+                        <label class="radio-inline">
+                            <input id="edit_ad" type="radio" name="edit_ad" value="edit">Edit<br>
+                        </label>
+                        <label class="radio-inline">
+                            <input id="delete_ad" type="radio" name="edit_ad" value="delete">Delete<br>
+                        </label>
+                        <label class="radio-inline">
+                            <button type="button" class="btn btn-default">
+                                <a href="/editAd?id=${ad.id}">Submit</a>
+                            </button>
+                        </label>
+                    </form>
                 </div>
             </c:forEach>
         </div>

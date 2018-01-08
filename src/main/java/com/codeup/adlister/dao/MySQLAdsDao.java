@@ -2,6 +2,7 @@ package com.codeup.adlister.dao;
 
 import com.codeup.adlister.models.Ad;
 import com.codeup.adlister.models.User;
+import com.codeup.adlister.util.Password;
 import com.mysql.cj.api.mysqla.result.Resultset;
 import com.mysql.cj.jdbc.Driver;
 
@@ -114,4 +115,19 @@ public class MySQLAdsDao implements Ads {
         }
         return ads;
     }
+
+    @Override
+    public void editAdInformation(String title, String description, long id) {
+        String query = "UPDATE ads SET title = ?, description = ? WHERE id = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setString(1, title);
+            stmt.setString(2, description);
+            stmt.setLong(3, id);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error editing ad information.", e);
+        }
+    }
+
 }
