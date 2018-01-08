@@ -1,43 +1,51 @@
+DROP DATABASE IF EXISTS adlister_db;
+
+CREATE DATABASE adlister_db;
+
 USE adlister_db;
 
-DROP TABLE IF EXISTS ads_categories;
-DROP TABLE IF EXISTS ads;
-DROP TABLE IF EXISTS category_list;
-DROP TABLE IF EXISTS users;
-
 CREATE TABLE IF NOT EXISTS users (
-  id            INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  username      VARCHAR(240) NOT NULL,
-  email         VARCHAR(240) NOT NULL,
-  password      VARCHAR(255) NOT NULL,
-  register_date DATE         NOT NULL,
-  location      VARCHAR(255),
-  phone         VARCHAR(20),
-  bio           TEXT,
-  UNIQUE (username),
-  UNIQUE (email),
-  PRIMARY KEY (id)
+id            INT UNSIGNED NOT NULL AUTO_INCREMENT,
+username      VARCHAR(255) NOT NULL,
+email         VARCHAR(255) NOT NULL,
+password      VARCHAR(255) NOT NULL,
+deleted       TINYINT      NOT NULL DEFAULT 0,
+UNIQUE (username),
+UNIQUE (email),
+PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS category_list (
-  id       INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  category VARCHAR(250) NOT NULL,
-  UNIQUE (category),
-  PRIMARY KEY (id)
+CREATE TABLE IF NOT EXISTS user_info (
+  id            INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  user_id        INT UNSIGNED NOT NULL,
+  bio           VARCHAR(255) NOT NULL,
+  location      VARCHAR(255) NOT NULL,
+  register_date DATE         NOT NULL,
+  phone_number  VARCHAR(255) NOT NULL,
+  UNIQUE (user_id),
+  PRIMARY KEY (id),
+  FOREIGN KEY (user_id) REFERENCES users (id)
+);
+
+CREATE TABLE IF NOT EXISTS categories (
+id       INT UNSIGNED NOT NULL AUTO_INCREMENT,
+category VARCHAR(250) NOT NULL,
+UNIQUE (category),
+PRIMARY KEY (id)
 );
 
 CREATE TABLE IF NOT EXISTS ads (
   id           INT UNSIGNED NOT NULL AUTO_INCREMENT,
   user_id      INT UNSIGNED NOT NULL,
-  title        VARCHAR(240) NOT NULL,
+  title        VARCHAR(255) NOT NULL,
   description  TEXT         NOT NULL,
   date_created DATETIME     NOT NULL,
-  date_updated DATETIME,
+  date_modified DATETIME,
   ad_location  VARCHAR(255),
-  active       BOOLEAN,
+  deleted      TINYINT      NOT NULL DEFAULT 0,
   PRIMARY KEY (id),
+  UNIQUE (user_id, title),
   FOREIGN KEY (user_id) REFERENCES users (id)
-    ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS ads_categories (
@@ -47,10 +55,5 @@ CREATE TABLE IF NOT EXISTS ads_categories (
   UNIQUE (ads_id, ads_category_id),
   PRIMARY KEY (id),
   FOREIGN KEY (ads_id) REFERENCES ads (id),
-  FOREIGN KEY (ads_category_id) REFERENCES category_list (id)
+  FOREIGN KEY (ads_category_id) REFERENCES categories (id)
 );
-
-DESCRIBE users;
-DESCRIBE ads;
-DESCRIBE category_list;
-DESCRIBE ads_categories;
