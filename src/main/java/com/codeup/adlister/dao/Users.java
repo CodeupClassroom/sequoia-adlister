@@ -11,4 +11,7 @@ public interface Users {
 
     // Shows a user's information on a selected ad
     User showUserInformation(long id);
+
+    // Edit a user's profile
+    void editProfileInformation(User user);
 }
