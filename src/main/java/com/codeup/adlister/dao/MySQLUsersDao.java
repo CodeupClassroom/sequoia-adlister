@@ -31,9 +31,7 @@ public class MySQLUsersDao implements Users {
         try {
             PreparedStatement stmt = connection.prepareStatement(query);
             stmt.setString(1, username);
-            ResultSet rs = stmt.executeQuery();
-            rs.next();
-            return extractUser(rs);
+            return extractUser(stmt.executeQuery());
         } catch (SQLException e) {
             throw new RuntimeException("Error finding a user by username", e);
         }
@@ -97,6 +95,9 @@ public class MySQLUsersDao implements Users {
     }
 
     private User extractUser(ResultSet rs) throws SQLException {
+        if (! rs.next()) {
+            return null;
+        }
         return new User(
             rs.getLong("id"),
             rs.getString("username"),
