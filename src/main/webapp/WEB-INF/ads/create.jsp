@@ -19,7 +19,7 @@
             </div>
             <div class="form-group">
                 <label for="adLocation">Location</label>
-                <textarea id="adLocation" name="adLocation" class="form-control" type="text"></textarea>
+                <textarea id="adLocation" name="adLocation" class="form-control" type="text" placeholder="optional"></textarea>
             </div>
             <input type="submit" class="btn btn-block btn-primary">
         </form>
