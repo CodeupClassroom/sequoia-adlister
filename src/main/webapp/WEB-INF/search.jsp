@@ -14,19 +14,21 @@
         <h1>Ad Results</h1>
         <c:forEach var="ad" items="${ads}">
             <div class="col-md-6">
-                <h3><a href="/showAd?id=${ad.id}">${ad.title}</a></h3>
-                <p>${ad.description}</p>
+                <h3><a href="/showAd?id=${ad.id}"><c:out value="${ad.title}"/></a></h3>
+                <p><c:out value="${ad.description}"/></p>
             </div>
         </c:forEach>
     </div>
-    <div class="row">
-        <h1>User Results</h1>
-        <c:forEach var="user" items="${users}">
-            <div class="col-md-6">
-                <p><a href="/profile?id=${user.id}">${user.username}</a></p>
-            </div>
-        </c:forEach>
-    </div>
+
+                        <%--we are not using this div:--%>
+    <%--<div class="row">--%>
+        <%--<h1>User Results</h1>--%>
+        <%--<c:forEach var="user" items="${users}">--%>
+            <%--<div class="col-md-6">--%>
+                <%--<p><a href="/profile?id=${user.id}">${user.username}</a></p>--%>
+            <%--</div>--%>
+        <%--</c:forEach>--%>
+    <%--</div>--%>
 </div>
 </body>
 </html>

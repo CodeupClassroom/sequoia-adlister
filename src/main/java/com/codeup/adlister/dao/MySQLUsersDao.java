@@ -50,18 +50,18 @@ public class MySQLUsersDao implements Users {
         }
     }
 
-    @Override
-    public List<User> searchUser(String searchTerm) {
-        String query = "SELECT * FROM users WHERE username LIKE ?";
-        try {
-            PreparedStatement stmt = connection.prepareStatement(query);
-            stmt.setString(1, "%" + searchTerm + "%");
-            ResultSet rs = stmt.executeQuery();
-            return createUsersFromResults(rs);
-        } catch (SQLException e) {
-            throw new RuntimeException("An error occurred while retrieving ads and/or users.", e);
-        }
-    }
+//    @Override
+//    public List<User> searchUser(String searchTerm) {
+//        String query = "SELECT * FROM users WHERE username LIKE ?";
+//        try {
+//            PreparedStatement stmt = connection.prepareStatement(query);
+//            stmt.setString(1, "%" + searchTerm + "%");
+//            ResultSet rs = stmt.executeQuery();
+//            return createUsersFromResults(rs);
+//        } catch (SQLException e) {
+//            throw new RuntimeException("An error occurred while retrieving ads and/or users.", e);
+//        }
+//    }
 
     @Override
     public void editProfileInformation(String email, String password, long id) {

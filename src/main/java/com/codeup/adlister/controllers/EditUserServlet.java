@@ -10,13 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "controllers.EditServlet", urlPatterns = "/edit")
-public class EditServlet extends HttpServlet {
+@WebServlet(name = "controllers.EditUserServlet", urlPatterns = "/editUser")
+public class EditUserServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (request.getSession().getAttribute("user") == null) {
             response.sendRedirect("/login");
         }
-        request.getRequestDispatcher("/WEB-INF/edit.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/editUser.jsp").forward(request, response);
 
     }
 
@@ -30,7 +30,7 @@ public class EditServlet extends HttpServlet {
         boolean inputHasErrors = email.isEmpty() || password.isEmpty() || (! password.equals(passwordConfirmation));
 
         if (inputHasErrors) {
-            response.sendRedirect("/edit");
+            response.sendRedirect("/editUser");
         } else {
             // create and save a new user
 

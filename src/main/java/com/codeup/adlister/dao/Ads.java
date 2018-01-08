@@ -19,4 +19,7 @@ public interface Ads {
 
     // Display search results for ads
     List<Ad> searchAd(String searchTerm);
+
+    // Edit ad:
+    void editAdInformation(String title, String description, long id);
 }

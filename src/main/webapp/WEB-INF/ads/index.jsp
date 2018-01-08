@@ -25,12 +25,14 @@ Consider passing the id of the ad as a parameter in the GET request to this page
 
     <c:forEach var="ad" items="${ads}">
         <div class="col-md-6">
-            <h2><a  href="/showAd?id=${ad.id}">${ad.title}</a></h2>
-            <p>${ad.description}</p>
+            <h2><a  href="/showAd?id=${ad.id}"><c:out value="${ad.title}"/></a></h2>
+            <p><c:out value ="${ad.description}"/></p>
+            <%--<p><c:out value="${ad.id}"/></p>--%>
         </div>
     </c:forEach>
 
 </div>
+
 
 </body>
 </html>
