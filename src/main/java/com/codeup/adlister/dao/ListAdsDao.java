@@ -2,10 +2,13 @@ package com.codeup.adlister.dao;
 
 import com.codeup.adlister.models.Ad;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListAdsDao implements Ads {
+public class ListAdsDao {
     private List<Ad> ads;
 
     public List<Ad> all() {
@@ -55,4 +58,5 @@ public class ListAdsDao implements Ads {
         ));
         return ads;
     }
+
 }
