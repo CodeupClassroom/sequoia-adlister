@@ -35,6 +35,18 @@ public class MySQLUsersDao implements Users {
     }
 
     @Override
+    public User findByEmail(String email) {
+        String query = "SELECT * FROM users WHERE email = ? LIMIT 1";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setString(1, email);
+            return extractUser(stmt.executeQuery());
+        } catch (SQLException e) {
+            throw new RuntimeException("Error finding a user by email", e);
+        }
+    }
+
+    @Override
     public Long insert(User user) {
         String query = "INSERT INTO adlister_db.users(username, email, password, register_date) VALUES (?, ?, ?, CURDATE())";
         try {
@@ -59,8 +71,7 @@ public class MySQLUsersDao implements Users {
             rs.getLong("id"),
             rs.getString("username"),
             rs.getString("email"),
-            rs.getString("password"),
-                rs.getString("register_date")
+            rs.getString("password")
         );
     }
 
