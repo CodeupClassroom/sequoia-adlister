@@ -88,8 +88,7 @@ public class MySQLAdsDao implements Ads {
                 String title = rs.getString("title");
                 String description = rs.getString("description");
 
-                Ad ad = new Ad(id, user_id, title, description);
-                ads.add(ad);
+
             }
             return ads;
         } catch (SQLException e) {
