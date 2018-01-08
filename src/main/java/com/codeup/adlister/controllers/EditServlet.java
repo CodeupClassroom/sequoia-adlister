@@ -1,5 +1,8 @@
 package com.codeup.adlister.controllers;
 
+import com.codeup.adlister.dao.DaoFactory;
+import com.codeup.adlister.models.User;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,16 +16,26 @@ public class EditServlet extends HttpServlet {
         if (request.getSession().getAttribute("user") == null) {
             response.sendRedirect("/login");
         }
+        request.getRequestDispatcher("/WEB-INF/edit.jsp").forward(request, response);
+
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+        String passwordConfirmation = request.getParameter("confirm_password");
+        User user = (User) request.getSession().getAttribute("user");
 
-        boolean inputHasErrors = email.isEmpty() || password.isEmpty();
+
+        boolean inputHasErrors = email.isEmpty() || password.isEmpty() || (! password.equals(passwordConfirmation));
 
         if (inputHasErrors) {
             response.sendRedirect("/edit");
+        } else {
+            // create and save a new user
+
+            DaoFactory.getUsersDao().editProfileInformation(email, password, user.getId());
+            response.sendRedirect("/login");
         }
     }
 }
