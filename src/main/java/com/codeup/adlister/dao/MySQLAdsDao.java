@@ -88,7 +88,7 @@ public class MySQLAdsDao implements Ads {
                 Long user_id = rs.getLong("user_id");
                 String title = rs.getString("title");
                 String description = rs.getString("description");
-
+                ads.add(new Ad (id,user_id,title,description));
 
             }
             return ads;
