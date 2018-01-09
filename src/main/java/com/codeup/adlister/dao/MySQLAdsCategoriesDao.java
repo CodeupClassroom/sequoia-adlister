@@ -29,7 +29,7 @@ public class MySQLAdsCategoriesDao implements Categories{
     public List<String> getCategories() {
         PreparedStatement stmt = null;
         try {
-            String sql = "SELECT * FROM categories";
+            String sql = "SELECT category FROM categories";
             stmt = connection.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
             List<String> categories = new ArrayList<>();
@@ -44,7 +44,7 @@ public class MySQLAdsCategoriesDao implements Categories{
 
     // This will get corresponding category id if named category exists
     @Override
-    public List<Long> getRequestedCatergoryIds(List<String> categoryNames) {
+    public List<Long> getRequestedCategoryIds(String[] categoryNames) {
         PreparedStatement stmt = null;
         List<Long> categoryIds = new ArrayList<>();
         try {
@@ -69,10 +69,13 @@ public class MySQLAdsCategoriesDao implements Categories{
         PreparedStatement stmt = null;
         try {
             for (long catId : catIds) {
+                System.out.println("The cat ID is = " + catId);
+                System.out.println("The ad ID is = " + adId);
                 String sql = "INSERT INTO adlister_db.ads_categories (ads_id, ads_category_id) VALUES (?, ?)";
                 stmt = connection.prepareStatement(sql);
                 stmt.setLong(1, adId);
                 stmt.setLong(2, catId);
+                stmt.execute();
             }
         } catch (SQLException e) {
             throw new RuntimeException("Error inserting to ads_categories.", e);
