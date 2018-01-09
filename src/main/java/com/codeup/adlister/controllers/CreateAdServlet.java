@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import static javax.swing.JOptionPane.showMessageDialog;
 
@@ -37,6 +39,14 @@ public class CreateAdServlet extends HttpServlet {
         if (inputHasErrors) {
             showMessageDialog(null,
                     "A blank field(s) was detected. Please fix your error(s) and try again.");
+
+            HashMap<String, String> oldInput = new HashMap<>();
+
+            oldInput.put("title", ad.getTitle());
+            oldInput.put("description", ad.getDescription());
+
+            request.getSession().setAttribute("oldInput", oldInput);
+
             response.sendRedirect("/ads/create");
         } else {
             // create and save a new ad
