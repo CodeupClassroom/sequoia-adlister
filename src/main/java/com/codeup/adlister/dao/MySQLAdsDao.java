@@ -17,9 +17,9 @@ public class MySQLAdsDao implements Ads {
         try {
             DriverManager.registerDriver(new Driver());
             connection = DriverManager.getConnection(
-                config.getUrl(),
-                config.getUser(),
-                config.getPassword()
+                    config.getUrl(),
+                    config.getUser(),
+                    config.getPassword()
             );
         } catch (SQLException e) {
             throw new RuntimeException("Error connecting to the database!", e);
@@ -56,12 +56,27 @@ public class MySQLAdsDao implements Ads {
         }
     }
 
+//    -----View One Specific Ad----
+    @Override
+    public Ad ViewAd(long id) {
+        String query = "SELECT * FROM ads WHERE id = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Error, Ad does not exist", e);
+        }
+        return null;
+    }
+
+
     private Ad extractAd(ResultSet rs) throws SQLException {
         return new Ad(
-            rs.getLong("id"),
-            rs.getLong("user_id"),
-            rs.getString("title"),
-            rs.getString("description"),
+                rs.getLong("id"),
+                rs.getLong("user_id"),
+                rs.getString("title"),
+                rs.getString("description"),
                 rs.getInt("price")
         );
     }
@@ -74,8 +89,9 @@ public class MySQLAdsDao implements Ads {
         return ads;
     }
 
+
     @Override
-    public List<Ad> search(String searchAd){
+    public List<Ad> search(String searchAd) {
         String query = "SELECT * FROM ads WHERE title LIKE ? OR description LIKE ?";
         try {
             PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
@@ -90,7 +106,7 @@ public class MySQLAdsDao implements Ads {
                 String title = rs.getString("title");
                 String description = rs.getString("description");
                 int price = rs.getInt("price");
-                ads.add(new Ad (id, user_id, title, description, price));
+                ads.add(new Ad(id, user_id, title, description, price));
 
             }
             return ads;
@@ -100,3 +116,5 @@ public class MySQLAdsDao implements Ads {
         }
     }
 }
+
+
