@@ -9,8 +9,15 @@
     <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 
     <div class="container">
+
+    </div>
+
+
+
+    <div class="container">
         <h1>Welcome, ${sessionScope.user.username}!</h1>
     </div>
 
+    <jsp:include page="/WEB-INF/partials/js-footer.jsp" />
 </body>
 </html>

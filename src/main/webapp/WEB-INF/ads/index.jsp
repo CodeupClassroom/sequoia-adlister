@@ -22,6 +22,6 @@
         </div>
     </c:forEach>
 </div>
-
+<jsp:include page="/WEB-INF/partials/js-footer.jsp" />
 </body>
 </html>
