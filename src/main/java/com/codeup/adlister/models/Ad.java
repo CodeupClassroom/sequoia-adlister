@@ -5,20 +5,21 @@ public class Ad {
     private long userId;
     private String title;
     private String description;
-    //mary add in a price form $$
+    private int price;
 
-    public Ad(long id, long userId, String title, String description) {
+    public Ad(long id, String username, String title, String description, int price) {
+        this.userId = userId;
+        this.title = title;
+        this.description = description;
+        this.price = price;
+    }
+
+    public Ad(long id, long userId, String title, String description, int price) {
         this.id = id;
         this.userId = userId;
         this.title = title;
         this.description = description;
-        //mary add in a price form $$
-    }
-
-    public Ad(long userId, String title, String description) {
-        this.userId = userId;
-        this.title = title;
-        this.description = description;
+        this.price = price;
     }
 
     public long getId() {
@@ -52,4 +53,11 @@ public class Ad {
     public void setDescription(String description) {
         this.description = description;
     }
-}
+
+    public int getPrice() { return price; }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+ }

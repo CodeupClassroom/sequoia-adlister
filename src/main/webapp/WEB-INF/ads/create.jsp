@@ -23,7 +23,7 @@
                 <c:if test = "${errors.containsKey('description')}">
                     <p class = "error">${errors.get('description')}</p>
                 </c:if>
-            </div>"
+            </div>
 
             <div class="form-group">
                 <label for="category">Category</label>
@@ -31,6 +31,14 @@
                 <c:forEach var="category" items="${categories}">
                     <option value="${category.id}">"${category.classification}"</option>
                 </c:forEach>
+            </div>
+
+            <div class="form-group">
+                <label for="price">Price</label>
+                <input id="price" name="price" class="form-control" type="text">
+                <c:if test="${errors.containsKey('price')}">
+                    <option value="${ad.price}">"${ad.price}"</option>
+                </c:if>
             </div>
             <input type="submit" class="btn btn-block btn-primary">
         </form>
