@@ -23,5 +23,7 @@
         </h3>
 
     </div>
+
+    <jsp:include page="/WEB-INF/partials/js-footer.jsp" />
 </body>
 </html>
