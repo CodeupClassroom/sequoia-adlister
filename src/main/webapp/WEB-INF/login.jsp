@@ -21,5 +21,10 @@
             <input type="submit" class="btn btn-primary btn-block" value="Log In">
         </form>
     </div>
+
+    <script src="/javascript/validation.js">
+
+
+    </script>
 </body>
 </html>
