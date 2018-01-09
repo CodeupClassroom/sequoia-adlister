@@ -6,7 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MySQLAdsCategoriesDao implements Categories{
+public class MySQLAdsCategoriesDao implements Categories {
 
     private Connection connection = null;
 
@@ -42,12 +42,15 @@ public class MySQLAdsCategoriesDao implements Categories{
         }
     }
 
-    // This will get corresponding category id if named category exists
+    // This will take in a list of Strings that corospond to category names. If they are valid names in the categories table, then it will return a List<Long> of those specific ids.
     @Override
     public List<Long> getRequestedCategoryIds(String[] categoryNames) {
         PreparedStatement stmt = null;
         List<Long> categoryIds = new ArrayList<>();
         try {
+
+            // Loops for as many String names in the given argument, adding to return List each iteration
+
             for (String category : categoryNames) {
                 String sql = "SELECT id FROM categories WHERE category = ?";
                 stmt = connection.prepareStatement(sql);
@@ -57,29 +60,38 @@ public class MySQLAdsCategoriesDao implements Categories{
                     categoryIds.add(rs.getLong("id"));
                 }
             }
+
+            // Returns the final full list
             return categoryIds;
+
         } catch (SQLException e) {
             throw new RuntimeException("Error retrieving category ids.", e);
         }
     }
 
-    // This will insert ad/category relationships into the ads_categories pivot table
+    // This will insert ad/category relationships into the ads_categories pivot table after the ad is initially created. Will return unique id keys for new rows in the ads_categories table.
     @Override
-    public Long insertAdsCategories(Long adId, List<Long> catIds) {
+    public List<Long> insertAdsCategories(Long adId, List<Long> catIds) {
         PreparedStatement stmt = null;
+        List<Long> newAdIds = new ArrayList<>();
+
         try {
+
+            // Loops for as many categories were chosen by user, inserting at the end of each iteration
+
             for (long catId : catIds) {
-                System.out.println("The cat ID is = " + catId);
-                System.out.println("The ad ID is = " + adId);
                 String sql = "INSERT INTO adlister_db.ads_categories (ads_id, ads_category_id) VALUES (?, ?)";
                 stmt = connection.prepareStatement(sql);
                 stmt.setLong(1, adId);
                 stmt.setLong(2, catId);
                 stmt.execute();
+                ResultSet rs = stmt.getGeneratedKeys();
+                rs.next();
+                newAdIds.add(rs.getLong(1));
             }
         } catch (SQLException e) {
             throw new RuntimeException("Error inserting to ads_categories.", e);
-            }
-        return null;
+        }
+        return newAdIds;
     }
 }

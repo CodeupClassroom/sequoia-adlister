@@ -24,15 +24,17 @@
             </div>
 
 
-            <c:forEach var="category" items="${categories}">
-
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" name="categories" value="${category}">${category}
-                    </label>
-                </div>
-
-            </c:forEach>
+            <div class="row">
+                <c:forEach var="category" items="${categories}">
+                    <div class="col-xs-2">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="categories" value="${category}">${category}
+                            </label>
+                        </div>
+                    </div>
+                </c:forEach>
+            </div>
 
 
             <input type="submit" class="btn btn-block btn-primary">

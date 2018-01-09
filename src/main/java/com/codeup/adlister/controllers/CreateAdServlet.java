@@ -36,9 +36,13 @@ public class CreateAdServlet extends HttpServlet {
         // Find current user in database to use user id in Ad obj
         User user = (User) request.getSession().getAttribute("user");
 
+        // Capturing values of checkbox group into String array
         String[] categories = request.getParameterValues("categories");
+
+        // Converts array of category String names to List of category ids
         List<Long> catIds = DaoFactory.getAdsCategoriesDao().getRequestedCategoryIds(categories);
 
+        // Creates Ad obj with values from creation page
         Ad ad = new Ad(
             user.getId(),
             request.getParameter("title"),
