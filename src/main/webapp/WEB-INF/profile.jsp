@@ -39,6 +39,9 @@
                     <button type="button" class="btn btn-default">
                         <a href="/editAd?id=${ad.id}&title=${ad.title}&description=${ad.description}">Edit Ad <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
                     </button>
+                    <button type="button" class="btn btn-default">
+                        <a href="/deleteAd?id=${ad.id}">Delete Ad </a>
+                    </button>
                 </div>
             </c:forEach>
         </div>
