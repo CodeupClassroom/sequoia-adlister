@@ -12,3 +12,4 @@ search.addEventListener("click", function (e) {
         searchForm.submit();
     }
 });
+
