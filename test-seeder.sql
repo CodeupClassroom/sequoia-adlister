@@ -76,4 +76,11 @@ FROM ads;
 INSERT INTO ads_categories (ads_id, ads_category_id) VALUES
   (1, 2), (2, 8), (3, 3);
 
-
+# SELECT to check if ads are being linked to ad_category ids correctly
+SELECT
+  ads.title,
+  categories.category
+FROM ads
+  JOIN ads_categories ON ads.id = ads_categories.ads_id
+  JOIN categories ON ads_categories.ads_category_id = categories.id
+ORDER BY ads.title;

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -21,6 +22,21 @@
                 <label for="adLocation">Location</label>
                 <textarea id="adLocation" name="adLocation" class="form-control" type="text" placeholder="optional"></textarea>
             </div>
+
+
+            <div class="row">
+                <c:forEach var="category" items="${categories}">
+                    <div class="col-xs-2">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="categories" value="${category}">${category}
+                            </label>
+                        </div>
+                    </div>
+                </c:forEach>
+            </div>
+
+
             <input type="submit" class="btn btn-block btn-primary">
         </form>
     </div>
