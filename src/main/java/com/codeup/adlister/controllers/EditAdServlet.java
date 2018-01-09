@@ -27,17 +27,17 @@ public class EditAdServlet extends HttpServlet {
         String title = request.getParameter("title");
         String description = request.getParameter("description");
 
-//        boolean inputHasErrors = title.isEmpty() || description.isEmpty();
-//
-//        if (inputHasErrors) {
-//            showMessageDialog(null,
-//                    "A blank field(s) was detected. Please fix your error(s) and try again.");
-//            response.sendRedirect("/editAd");
-//        } else {
-//            DaoFactory.getAdsDao().editAdInformation(title, description, id);
-//            response.sendRedirect("/profile");
-//        }
-        DaoFactory.getAdsDao().editAdInformation(title, description, id);
-        response.sendRedirect("/profile");
+        boolean inputHasErrors = title.isEmpty() || description.isEmpty();
+
+        if (inputHasErrors) {
+            showMessageDialog(null,
+                    "A blank field(s) was detected. Please fix your error(s) and try again.");
+            response.sendRedirect("/profile");
+        } else {
+            DaoFactory.getAdsDao().editAdInformation(title, description, id);
+            response.sendRedirect("/profile");
+        }
+//        DaoFactory.getAdsDao().editAdInformation(title, description, id);
+//        response.sendRedirect("/profile");
     }
 }
