@@ -28,9 +28,9 @@
             <div class="form-group">
                 <label>Category</label>
                 <br>
-                <label name="category" class="checkbox-inline"><input type="checkbox" value="1">Computers</label>
-                <label name="category" class="checkbox-inline"><input type="checkbox" value="2">Home Goods</label>
-                <label name="category" class="checkbox-inline"><input type="checkbox" value="3">Fashion</label>
+                <label name="category" class="checkbox-inline"><input type="radio" value="1">Computers</label>
+                <label name="category" class="checkbox-inline"><input type="radio" value="2">Home Goods</label>
+                <label name="category" class="checkbox-inline"><input type="radio" value="3">Fashion</label>
             </div>
 
             <div class="form-group">
