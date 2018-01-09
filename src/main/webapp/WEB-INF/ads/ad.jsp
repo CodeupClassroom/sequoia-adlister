@@ -21,7 +21,7 @@
             <textarea class="form-control" rows="5" id="comment"></textarea>
         </div>
 
-        <%--#<a href="url/${categories}">${category}</a>--%>
+        #<a href="url/${categories}">${category}</a>
 
 
     </div>
