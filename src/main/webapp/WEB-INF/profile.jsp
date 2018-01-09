@@ -13,9 +13,12 @@
     <h1 class="text-center title">${sessionScope.user.username}!</h1>
     </div>
     <div class="card">
-        <img src="" alt="${sessionScope.user.username}" style="width:100%">
-        <div class="media">
+        <%--<img src="" alt="${sessionScope.user.username}">--%>
 
+        <div class="media">
+            <%--<p>Location: ${sessionScope.user.location}</p>--%>
+            <%--<p>Bio: ${sessionScope.user.bio}</p>--%>
+            <%--<p>Member Since: ${sessionScope.user.register_date}</p>--%>
         </div>
 
     </div>
@@ -26,8 +29,8 @@
         </div>
 
         <div class="list-group col-xs-12 col-sm-6">
-            <a href="/ads/users-ads?id=${sessionScope.user.id}" class="list-group-item">View Your listings</a>
-            <a href="" class="list-group-item">View sold items</a>
+            <a href="/ads/users-ads?id=${sessionScope.user.id}" class="list-group-item">View ${sessionScope.user.username}'s listings</a>
+            <a href="" class="list-group-item">View Saved Items</a>
         </div>
     </div>
     <div class="list-group-item d-flex justify-content-between align-items-center">
