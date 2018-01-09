@@ -6,17 +6,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 
-
-<%--Ad show page--%>
-
-<%--Create a page that shows the information about an individual ad. This page should show all the
-information about that ad, as well as the information about the user that posted the ad.--%>
-
-<%--Your ads index page should contain links to each individual ad page.--%>
-
-<%--You should have one page that displays the information for any arbitrary ad.
-Consider passing the id of the ad as a parameter in the GET request to this page.--%>
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
     <head>
