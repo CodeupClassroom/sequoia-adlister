@@ -12,10 +12,11 @@
     </div><!-- /.container-fluid -->
 
     <%-------Search Bar--------%>
-    <form class="navbar-form navbar-center" action="/search">
+    <form class="navbar-form navbar-center" id="search-form" action="/search">
         <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search" name="search">
-                <button type="submit" class="btn btn-default">Submit</button>
+                <input type="text" id="search-term" class="form-control" placeholder="Search" name="search">
+            <div id="search-error"></div>
+                <button type="submit" id="search" class="btn btn-default">Submit</button>
         </div>
     </form>
 

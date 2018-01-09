@@ -8,7 +8,7 @@ public class Ad {
     private int price;
 
     public Ad(long id, String username, String title, String description, int price) {
-        this.userId = userId;
+        this.userId = id;
         this.title = title;
         this.description = description;
         this.price = price;

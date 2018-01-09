@@ -26,11 +26,11 @@
             </div>
 
             <div class="form-group">
-                <label for="category">Category</label>
-                <select class="form-control" id="category" name="category"></select>
-                <c:forEach var="category" items="${categories}">
-                    <option value="${category.id}">"${category.classification}"</option>
-                </c:forEach>
+                <label>Category</label>
+                <br>
+                <label name="category" class="checkbox-inline"><input type="checkbox" value="1">Computers</label>
+                <label name="category" class="checkbox-inline"><input type="checkbox" value="2">Home Goods</label>
+                <label name="category" class="checkbox-inline"><input type="checkbox" value="3">Fashion</label>
             </div>
 
             <div class="form-group">
