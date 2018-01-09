@@ -30,11 +30,13 @@ public class CreateAdServlet extends HttpServlet {
             return;
         }
 
+
         Ad ad = new Ad(
-            user.getId(),
-            request.getParameter("title"),
-            request.getParameter("description")
-                //mary add in a price form $$
+                user.getId(),
+                user.getUsername(),
+                request.getParameter("title"),
+                request.getParameter("description"),
+                Integer.parseInt("price")
         );
 
         DaoFactory.getAdsDao().insert(ad);
