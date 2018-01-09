@@ -17,6 +17,7 @@
 
 <div class="container">
     <h1>Edit Ad</h1>
+    <h1>Delete Ad</h1>
 <form action="/ads/edit" method="post">
 
     <input id="id" name="id" type="hidden" value="${ad.id}">
@@ -33,7 +34,13 @@
     <input type="submit" class="btn btn-block btn-primary">
 </form>
 
-    <%--<form></form>--%> delete button goes here
+    <form action="/ads/">
+
+
+    </form>
+
+    <%--button goes here--%>
+
 </div>
 </body>
 </html>
