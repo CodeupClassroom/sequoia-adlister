@@ -1,8 +1,6 @@
 package com.codeup.adlister.controllers;
 
 import com.codeup.adlister.dao.DaoFactory;
-import com.codeup.adlister.models.Ad;
-import com.codeup.adlister.models.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static javax.swing.JOptionPane.showMessageDialog;
+
 @WebServlet(name = "controllers.EditAdServlet", urlPatterns = "/editAd")
 public class EditAdServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -18,25 +18,26 @@ public class EditAdServlet extends HttpServlet {
             response.sendRedirect("/login");
         }
         Long id = Long.parseLong(request.getParameter("id"));
-        System.out.println(id);
-//        response.sendRedirect("/editAd");
-
-        request.getRequestDispatcher("/WEB-INF/editAd.jsp").forward(request, response);
+        request.getSession().setAttribute("id", id);
+        request.getRequestDispatcher("/WEB-INF/ads/editAd.jsp").forward(request, response);
     }
 
-//    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-//        Long id = Long.parseLong(request.getParameter("id"));
-//        String title = request.getParameter("title");
-//        String description = request.getParameter("description");
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        long id = (long) request.getSession().getAttribute("id");
+        String title = request.getParameter("title");
+        String description = request.getParameter("description");
+
+//        boolean inputHasErrors = title.isEmpty() || description.isEmpty();
 //
-//
-////        boolean inputHasErrors = title.isEmpty() || description.isEmpty();
-////        if (inputHasErrors) {
-////            response.sendRedirect("/editAd");
-////        } else {
-//            // create and save a new ad
+//        if (inputHasErrors) {
+//            showMessageDialog(null,
+//                    "A blank field(s) was detected. Please fix your error(s) and try again.");
+//            response.sendRedirect("/editAd");
+//        } else {
 //            DaoFactory.getAdsDao().editAdInformation(title, description, id);
 //            response.sendRedirect("/profile");
-////        }
-//    }
+//        }
+        DaoFactory.getAdsDao().editAdInformation(title, description, id);
+        response.sendRedirect("/profile");
+    }
 }
