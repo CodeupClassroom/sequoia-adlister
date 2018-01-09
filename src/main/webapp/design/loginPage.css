@@ -1,0 +1,66 @@
+/*body {*/
+    /*margin: 0;*/
+    /*padding: 0;*/
+    /*background: #fff;*/
+
+    /*color:#fff;*/
+    /*font-family: Arial,Helvetica,sans-serif;*/
+    /*font-size: 12px;*/
+/*}*/
+
+/*.container {*/
+    /*position: absolute;*/
+    /*top: -20px;*/
+    /*left: -20px;*/
+    /*right: -40px;*/
+    /*bottom: -40px;*/
+    /*width: auto;*/
+    /*height: auto;*/
+    /*-webkit-filter: blur(5px);*/
+    /*z-index: 0;*/
+/*}*/
+
+
+
+/*div.h1 {*/
+
+    /*float: left;*/
+    /*color: goldenrod;*/
+    /*font-family: 'Exo', sans-serif;*/
+    /*font-size: 35px;*/
+    /*font-weight: 200;*/
+/*}*/
+
+/*.login {*/
+    /*position: absolute;*/
+    /*top: calc(50% - 75px);*/
+    /*left: calc(50% - 50px);*/
+    /*height: 150px;*/
+    /*width: 350px;*/
+    /*padding: 10px;*/
+    /*z-index: 2;*/
+/*}*/
+
+/*.login hover{*/
+    /*opacity: 0.8;*/
+/*}*/
+/*.login input[type=button]:active{*/
+    /*opacity: 0.6;*/
+/*}*/
+/*.login input [type=text]:focus{*/
+    /*outline: none;*/
+    /*border: 1px solid goldenrod;*/
+/*}*/
+
+/*.login input[type=password]:focus{*/
+    /*outline: none;*/
+    /*border: 1px solid goldenrod;*/
+/*}*/
+
+/*.login input[type=button]:focus{*/
+    /*outline: none;*/
+/*}*/
+/*input.placeholder {*/
+    /*color: black;*/
+/*}*/
+
