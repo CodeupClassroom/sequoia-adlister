@@ -2,6 +2,7 @@ package com.codeup.adlister.dao;
 
 import com.codeup.adlister.models.User;
 import com.mysql.cj.jdbc.Driver;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.*;
 
@@ -48,12 +49,13 @@ public class MySQLUsersDao implements Users {
 
     @Override
     public Long insert(User user) {
-        String query = "INSERT INTO adlister_db.users(username, email, password, register_date) VALUES (?, ?, ?, CURDATE())";
+        String query = "INSERT INTO adlister_db.users(username, email, password) VALUES (?, ?, ?)";
         try {
             PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1, user.getUsername());
             stmt.setString(2, user.getEmail());
             stmt.setString(3, user.getPassword());
+            //stmt.setString(3, BCrypt.hashpw(user.getPassword(), BCrypt.gensalt(DaoFactory.hashNumberOfRounds)));
             stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
             rs.next();
@@ -75,4 +77,19 @@ public class MySQLUsersDao implements Users {
         );
     }
 
+    private User extractUserComplete(ResultSet rs) throws SQLException {
+        if (! rs.next()) {
+            return null;
+        }
+        return new User(
+            rs.getLong("id"),
+            rs.getString("username"),
+            rs.getString("email"),
+            rs.getString("password"),
+            rs.getString("bio"),
+            rs.getString("location"),
+            rs.getDate("register_date").toString(),
+            rs.getString("phone_number")
+        );
+    }
 }
