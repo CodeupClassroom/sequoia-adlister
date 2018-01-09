@@ -10,7 +10,6 @@
 </head>
 <body>
     <jsp:include page="/WEB-INF/partials/navbar.jsp" />
-    <jsp:include page="/WEB-INF/partials/ads/create.jsp" />
 
     <div class="container">
         <h1>Product Title</h1>
@@ -21,7 +20,7 @@
             <textarea class="form-control" rows="5" id="comment"></textarea>
         </div>
 
-        #<a href="url/${categories}">${category}</a>
+        #
 
 
     </div>

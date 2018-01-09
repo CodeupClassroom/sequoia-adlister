@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS users (
     title VARCHAR(255) NOT NULL,
     description TEXT NOT NULL,
     price INT NULL,
-    category INT NULL,
+    category VARCHAR(255) NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (user_id) REFERENCES users(id)
         ON DELETE CASCADE
