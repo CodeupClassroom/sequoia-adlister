@@ -24,7 +24,18 @@ public class User {
         this.username = username;
         this.email = email;
         this.password = password;
+    }
+
+    //Complete user constructor for rendering profile
+    public User(long id, String username, String email, String password, String bio, String location, String registerDate, String phone) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.bio = bio;
+        this.location = location;
         this.registerDate = registerDate;
+        this.phone = phone;
     }
 
     public long getId() {
