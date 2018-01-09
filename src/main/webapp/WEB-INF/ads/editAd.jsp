@@ -9,7 +9,7 @@
 <div class="container">
     <h1>Editing Ads</h1>
 
-    <form action="/ads/editAd" method="post">
+    <form action="/editAd" method="post">
         <div class="form-group">
             <label for="title">Title</label>
             <input id="title" name="title" class="form-control" type="text" placeholder="${ad.title}">
