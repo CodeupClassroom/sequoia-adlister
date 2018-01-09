@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(name = "controllers.CreateAdServlet", urlPatterns = "/ads/create")
 public class CreateAdServlet extends HttpServlet {
@@ -22,7 +23,10 @@ public class CreateAdServlet extends HttpServlet {
             return;
         }
 
-        // If logged in, sends ads/create.jsp
+        // If logged in, grabs the updated list of valid categories for checkboxes on the jsp
+        List<String> categories = DaoFactory.getAdsCategoriesDao().getCategories();
+        request.setAttribute("categories", categories);
+
         request.getRequestDispatcher("/WEB-INF/ads/create.jsp")
             .forward(request, response);
     }
@@ -32,6 +36,13 @@ public class CreateAdServlet extends HttpServlet {
         // Find current user in database to use user id in Ad obj
         User user = (User) request.getSession().getAttribute("user");
 
+        // Capturing values of checkbox group into String array
+        String[] categories = request.getParameterValues("categories");
+
+        // Converts array of category String names to List of category ids
+        List<Long> catIds = DaoFactory.getAdsCategoriesDao().getRequestedCategoryIds(categories);
+
+        // Creates Ad obj with values from creation page
         Ad ad = new Ad(
             user.getId(),
             request.getParameter("title"),
@@ -40,7 +51,12 @@ public class CreateAdServlet extends HttpServlet {
         );
 
         // Send to ads after creation
-        DaoFactory.getAdsDao().insert(ad);
-        response.sendRedirect("/ads");
+        Long adId = DaoFactory.getAdsDao().insert(ad);
+
+        // Adding the appropriate ad_id/category_id relationships on ads_categories table
+        DaoFactory.getAdsCategoriesDao().insertAdsCategories(adId, catIds);
+
+//        DaoFactory.getAdsCategoriesDao().insertAdsCategories();
+        response.sendRedirect("/ad?adID=" + Long.toString(adId));
     }
 }
