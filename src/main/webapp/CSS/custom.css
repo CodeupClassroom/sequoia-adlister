@@ -1,4 +1,8 @@
 body {
-    background-color: lightblue;
-    /*background-image: url("images/wood_background.jpep");*/
+    /*background-color: lightblue;*/
+    background-image: url("/images/wood_background.jpeg");
+}
+
+.container {
+    padding: 20px;
 }
