@@ -16,11 +16,11 @@
             <c:if test="${ sessionScope.user != null}">
                 <li><a href="/ads/create">Create A New Ad</a></li>
                 <li><a href="/profile">View Profile</a></li>
-                <li><a href="/logout">Logout</a></li>
+                <li><a href="/logout">Logout <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a></li>
             </c:if>
             <c:if test="${sessionScope.user == null}">
-                <li><a href="/register">Register</a></li>
-                <li><a href="/login">Login</a></li>
+                <li><a href="/register">Register <span class="glyphicon glyphicon-user" aria-hidden="true"></span></a></li>
+                <li><a href="/login">Login <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></a></li>
             </c:if>
         </ul>
     </div><!-- /.container-fluid -->
