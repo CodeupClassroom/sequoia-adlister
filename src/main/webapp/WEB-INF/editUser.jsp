@@ -7,7 +7,7 @@
     <body>
         <jsp:include page="/WEB-INF/partials/navbar.jsp" />
         <div class="container">
-            <form action="/editUser" method="post">
+            <form action="/editUser" method="POST">
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input id="email" name="email" class="form-control" type="text">
