@@ -15,6 +15,17 @@
             <ul class="nav navbar-nav">
                 <li><a href="/ads">See All Ads</a></li>
             </ul>
+
+            <%-- THIS IS WHERE THE SEARCH BOX WILL BE EMBEDDED IN THE NAVBAR --%>
+
+            <%--<form class="navbar-form navbar-left">--%>
+                <%--<jsp:include page="/WEB-INF/partials/searchbar.jsp" />--%>
+                <%--<div class="form-group">--%>
+                    <%--<input type="text" class="form-control" placeholder="Search">--%>
+                <%--</div>--%>
+                <%--<button type="submit" class="btn btn-default">Submit</button>--%>
+            <%--</form>--%>
+
             <ul class="nav navbar-nav navbar-right">
                 <c:choose>
                     <c:when test="${loggedIn.equals(\"true\")}">
