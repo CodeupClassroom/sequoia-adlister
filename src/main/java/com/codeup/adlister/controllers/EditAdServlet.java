@@ -1,8 +1,6 @@
 package com.codeup.adlister.controllers;
 
 import com.codeup.adlister.dao.DaoFactory;
-import com.codeup.adlister.models.Ad;
-import com.codeup.adlister.models.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+
+import static javax.swing.JOptionPane.showMessageDialog;
 
 @WebServlet(name = "controllers.EditAdServlet", urlPatterns = "/editAd")
 public class EditAdServlet extends HttpServlet {
@@ -27,9 +27,6 @@ public class EditAdServlet extends HttpServlet {
         long id = (long) request.getSession().getAttribute("id");
         String title = request.getParameter("title");
         String description = request.getParameter("description");
-
-
-//        boolean inputHasErrors = title.isEmpty() || description.isEmpty();
 //        if (inputHasErrors) {
 //            response.sendRedirect("/editAd");
 //        } else {
@@ -37,5 +34,6 @@ public class EditAdServlet extends HttpServlet {
         DaoFactory.getAdsDao().editAdInformation(title, description, id);
         response.sendRedirect("/profile");
 //        }
+
     }
 }
