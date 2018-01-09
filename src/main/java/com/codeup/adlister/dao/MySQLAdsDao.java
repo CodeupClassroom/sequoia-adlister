@@ -62,12 +62,16 @@ public class MySQLAdsDao implements Ads {
         String query = "SELECT * FROM ads WHERE id = ?";
         try {
             PreparedStatement stmt = connection.prepareStatement(query);
-
+            stmt.setLong(1, id);
+            ResultSet rs = stmt.executeQuery();
+//            ----to move onto the next line in table---
+            rs.next();
+//            ---Returning extract ad method----
+            return extractAd(rs);
 
         } catch (SQLException e) {
             throw new RuntimeException("Error, Ad does not exist", e);
         }
-        return null;
     }
 
 

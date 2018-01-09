@@ -51,6 +51,22 @@ public class MySQLUsersDao implements Users {
         }
     }
 
+//    ----User Information----
+    @Override
+    public User userInformation(long id) {
+        String query = "SELECT * FROM users WHERE id =?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setLong(1, id);
+            ResultSet rs = stmt.executeQuery();
+//            ----Returning extract user information----
+            return extractUser(rs);
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Error, unable to display user information", e);
+        }
+    }
+
     private User extractUser(ResultSet rs) throws SQLException {
         if (! rs.next()) {
             return null;

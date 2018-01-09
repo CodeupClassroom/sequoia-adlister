@@ -10,12 +10,15 @@
 </head>
 <body>
     <jsp:include page="/WEB-INF/partials/navbar.jsp" />
-    <jsp:include page="/WEB-INF/partials/ads/create.jsp" />
+    <%--<jsp:include page="/WEB-INF/partials/ads/create.jsp" />--%>
 
     <div class="container">
-        <h1>Product Title</h1>
+        <%------Expression Language to access attributs from a request object------%>
+        <h1>${ad.title}</h1>
         <img>
-        <h3>Price: </h3>
+        <h3>${ad.price} </h3>
+            <h3>${ad.description} </h3>
+            <p>${user.username}</p>
         <div class="form-group">
             <label for="comment">Description: </label>
             <textarea class="form-control" rows="5" id="comment"></textarea>
