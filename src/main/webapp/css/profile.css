@@ -1,0 +1,19 @@
+.info-panel {
+    margin-top: 20px;
+}
+
+.info-panel img {
+    width: 100%;
+}
+
+.info-panel h5 {
+    font-weight: bolder;
+}
+
+.info-panel-title {
+    margin-bottom: 5px;
+}
+
+.info-panel-bars {
+    margin: 5px 0;
+}

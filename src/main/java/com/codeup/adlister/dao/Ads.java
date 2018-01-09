@@ -11,6 +11,9 @@ public interface Ads {
     // get a single ad
     Ad findAdByID(int adID);
 
+    // get all ads belonging to a user ID
+    List<Ad> adsByUserId(long userId);
+
     // insert a new ad and return the new ad's id
     Long insert(Ad ad);
 
