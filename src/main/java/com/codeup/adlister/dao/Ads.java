@@ -22,4 +22,8 @@ public interface Ads {
 
     // Edit ad:
     void editAdInformation(String title, String description, long id);
-}
+
+//    deletes one ad:
+    void deleteAd(long id);
+
+    }

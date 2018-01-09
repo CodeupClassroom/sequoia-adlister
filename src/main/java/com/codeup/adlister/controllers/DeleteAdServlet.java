@@ -1,44 +1,33 @@
 package com.codeup.adlister.controllers;
 
-        import com.codeup.adlister.dao.DaoFactory;
+import com.codeup.adlister.dao.DaoFactory;
+import com.codeup.adlister.models.Ad;
+import com.codeup.adlister.models.User;
 
-        import javax.servlet.ServletException;
-        import javax.servlet.annotation.WebServlet;
-        import javax.servlet.http.HttpServlet;
-        import javax.servlet.http.HttpServletRequest;
-        import javax.servlet.http.HttpServletResponse;
-        import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
-        import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 @WebServlet(name = "controllers.DeleteAdServlet", urlPatterns = "/deleteAd")
 public class DeleteAdServlet extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if (request.getSession().getAttribute("user") == null) {
-            response.sendRedirect("/login");
-        }
-        Long id = Long.parseLong(request.getParameter("id"));
-        request.getSession().setAttribute("id", id);
-
-        request.getRequestDispatcher("/WEB-INF/ads/deleteAd.jsp").forward(request, response);
-    }
-
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        long id = (long) request.getSession().getAttribute("id");
-        String title = request.getParameter("title");
-        String description = request.getParameter("description");
+        Long id = Long.parseLong(request.getParameter("id"));
+        Ad ad = DaoFactory.getAdsDao().showOneAd(id);
+        User user = DaoFactory.getUsersDao().showUserInformation(ad.getUserId());
 
-        boolean inputHasErrors = title.isEmpty() || description.isEmpty();
+        User currentSessionUser = (User) request.getSession().getAttribute("user");
 
-        if (inputHasErrors) {
-            showMessageDialog(null,
-                    "A blank field(s) was detected. Please fix your error(s) and try again.");
+
+        if (user.getId() == currentSessionUser.getId()) {
+            DaoFactory.getAdsDao().deleteAd(id);
             response.sendRedirect("/profile");
-        } else {
-//            DaoFactory.getAdsDao().editAdInformation(title, description, id);
-//            response.sendRedirect("/profile");
         }
-
     }
 }
+
 

@@ -1,6 +1,8 @@
 package com.codeup.adlister.controllers;
 
 import com.codeup.adlister.dao.DaoFactory;
+import com.codeup.adlister.models.Ad;
+import com.codeup.adlister.models.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -28,18 +30,37 @@ public class EditAdServlet extends HttpServlet {
         String title = request.getParameter("title");
         String description = request.getParameter("description");
 
+        User currentSessionUser = (User) request.getSession().getAttribute("user");
+        Ad ad = DaoFactory.getAdsDao().showOneAd(id);
+        User user = DaoFactory.getUsersDao().showUserInformation(ad.getUserId());
 
-        boolean inputHasErrors = title.isEmpty() || description.isEmpty();
 
-        if (inputHasErrors) {
-            showMessageDialog(null,
-                    "A blank field(s) was detected. Please fix your error(s) and try again.");
-            response.sendRedirect("/profile");
-        } else {
-            DaoFactory.getAdsDao().editAdInformation(title, description, id);
-            response.sendRedirect("/profile");
+        if (user.getId() == currentSessionUser.getId()) {
+            boolean inputHasErrors = title.isEmpty() || description.isEmpty();
+
+            if (inputHasErrors) {
+                showMessageDialog(null,
+                        "A blank field(s) was detected. Please fix your error(s) and try again.");
+                response.sendRedirect("/profile");
+            } else {
+                DaoFactory.getAdsDao().editAdInformation(title, description, id);
+                response.sendRedirect("/profile");
+            }
         }
-//        DaoFactory.getAdsDao().editAdInformation(title, description, id);
-//        response.sendRedirect("/profile");
     }
+
+
+
+
+    // 0. create and empty list of errors
+    // 1. for every piece of validation you want to do
+    // 2. check some condition
+    // 3. if the condition fails, add a nice message to the list
+
+    // pass the errors to the jsp
+    // ...
+
+    // in the jsp
+    // check if the errors are empty
+    // if not, loop through and display them
 }

@@ -19,7 +19,8 @@
         <div class="row">
             <div class="col-xa-12 center-block">
                 <button type="button" class="btn btn-default center-block">
-                    <a href="/editUser?id=${sessionScope.user.id}">Edit Profile <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+                    <a href="/editUser?id=${sessionScope.user.id}">Edit Profile <span class="glyphicon glyphicon-edit"
+                                                                                      aria-hidden="true"></span></a>
                 </button>
             </div>
         </div>
@@ -37,11 +38,14 @@
                     <h2><a href="/showAd?id=${ad.id}"><c:out value="${ad.title}"/></a></h2>
                     <p><c:out value="${ad.description}"/></p>
                     <button type="button" class="btn btn-default">
-                        <a href="/editAd?id=${ad.id}&title=${ad.title}&description=${ad.description}">Edit Ad <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+                        <a href="/editAd?id=${ad.id}&title=${ad.title}&description=${ad.description}">Edit Ad <span
+                                class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
                     </button>
-                    <button type="button" class="btn btn-default">
-                        <a href="/deleteAd?id=${ad.id}">Delete Ad </a>
-                    </button>
+                    <form id="myform" method="post" action="/deleteAd">
+                        <input type="hidden" name="id" value=${ad.id}>
+                        <button type="submit" class="btn btn-default">Delete
+                        </button>
+                    </form>
                 </div>
             </c:forEach>
         </div>
