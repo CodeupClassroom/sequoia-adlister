@@ -37,7 +37,7 @@
                     <h2><a href="/showAd?id=${ad.id}"><c:out value="${ad.title}"/></a></h2>
                     <p><c:out value="${ad.description}"/></p>
                     <button type="button" class="btn btn-default">
-                        <a href="/editAd?id=${ad.id}">Edit Ad <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+                        <a href="/editAd?id=${ad.id}&title=${ad.title}&description=${ad.description}">Edit Ad <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
                     </button>
                 </div>
             </c:forEach>
