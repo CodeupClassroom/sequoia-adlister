@@ -15,17 +15,9 @@
         <%------Expression Language to access attributs from a request object------%>
         <h1>${ad.title}</h1>
         <img>
-        <h3>${ad.price} </h3>
-            <h3>${ad.description} </h3>
-            <p>${user.username}</p>
-        <div class="form-group">
-            <label for="comment">Description: </label>
-            <textarea class="form-control" rows="5" id="comment"></textarea>
-        </div>
-
-        #
-
-
+        <h3>Price: $${ad.price} </h3>
+            <h3>Description: ${ad.description} </h3>
+            <p>User: ${user.username}</p>
     </div>
 </body>
 
