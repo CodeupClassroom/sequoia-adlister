@@ -10,7 +10,14 @@
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 
 <div class="container">
-    <h1>Here are all the ads!</h1>
+    <h1>Trash to Treasure</h1>
+
+    <c:forEach var="category" items="${categories}">
+        <div>
+            <a class="btn btn-primary" href="#" role="button">${category}</a>
+            <%--# = /ads?categories=${category.id}”>${categories}"--%>
+        </div>
+    </c:forEach>
 
     <c:forEach var="ad" items="${ads}">
         <div class="col-md-6">
