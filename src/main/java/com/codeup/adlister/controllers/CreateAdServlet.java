@@ -58,17 +58,17 @@ public class CreateAdServlet extends HttpServlet {
         } else {
 
             // create and save a new ad
-            DaoFactory.getAdsDao().insert(ad);
-            request.getSession().setAttribute("ad", ad);
-
-            System.out.println(ad.getId());
+            Long adId = DaoFactory.getAdsDao().insert(ad);
 
 
+            System.out.println(adId);
 
-//            for (String category : categories) {
-//                long category_id = Long.parseLong(category);
-//                DaoFactory.getAdsDao().insertAdCategory(ad.getId(), category_id);
-//            }
+
+
+            for (String category : categories) {
+                long category_id = Long.parseLong(category);
+                DaoFactory.getAdsDao().insertAdCategory(adId, category_id);
+            }
             response.sendRedirect("/ads");
         }
     }
