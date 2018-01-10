@@ -14,8 +14,8 @@
     <% String username = request.getParameter("username");
         if (username == null) username = "";
 
-        String description = request.getParameter("description");
-        if (description == null) description = "";
+        String email = request.getParameter("email");
+        if (email == null) email = "";
     %>
 
     <div class="container">
@@ -23,11 +23,11 @@
         <form action="/register" method="post">
             <div class="form-group">
                 <label for="username">Username</label>
-                <input id="username" name="username" class="form-control" type="text">
+                <input id="username" name="username" class="form-control" type="text" value="<%=username%>">
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input id="email" name="email" class="form-control" type="text">
+                <input id="email" name="email" class="form-control" type="text" value="<%=email%>">
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
