@@ -113,7 +113,9 @@ public class MySQLAdsDao implements Ads {
             rs.getString("title"),
             rs.getString("description"),
             rs.getString("date_created"),
-            rs.getString("ad_location")
+            rs.getString("date_modified"),
+            rs.getString("ad_location"),
+            DaoFactory.getAdsCategoriesDao().getCategoriesByAdID(rs.getLong("id"))
         );
     }
 
