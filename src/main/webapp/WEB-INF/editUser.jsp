@@ -26,7 +26,7 @@
     </form>
     <c:if test="${sessionScope.listOfErrors.size() > 0}">
         <div id="errors" class="alert alert-danger">
-            <p>Unable to register user!</p>
+            <p>Unable to edit user!</p>
             <ul>
                 <c:forEach var="message" items="${listOfErrors}">
                     <li><c:out value="${message}"></c:out></li>
@@ -35,5 +35,6 @@
         </div>
     </c:if>
 </div>
+<script src="/js/hideErrorsInProfile.js"></script>
 </body>
 </html>
