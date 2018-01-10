@@ -19,16 +19,6 @@
             </div>
         </c:forEach>
     </div>
-
-                        <%--we are not using this div:--%>
-    <%--<div class="row">--%>
-        <%--<h1>User Results</h1>--%>
-        <%--<c:forEach var="user" items="${users}">--%>
-            <%--<div class="col-md-6">--%>
-                <%--<p><a href="/profile?id=${user.id}">${user.username}</a></p>--%>
-            <%--</div>--%>
-        <%--</c:forEach>--%>
-    <%--</div>--%>
 </div>
 </body>
 </html>

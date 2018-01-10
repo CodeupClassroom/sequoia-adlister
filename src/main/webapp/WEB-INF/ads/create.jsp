@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -20,32 +21,25 @@
             <form action="/ads/create" method="post">
                 <div class="form-group">
                     <label for="title">Title</label>
-                    <input id="title" name="title" class="form-control" type="text" value="${sessionScope.oldInput.title == null ? "": sessionScope.oldInput.title}">
+                    <input id="title" name="title" class="form-control" type="text"
+                           value="${sessionScope.oldInput.title == null ? "": sessionScope.oldInput.title}">
                 </div>
                 <div class="form-group">
                     <label for="description">Description</label>
-                    <textarea id="description" name="description" class="form-control" type="text">${sessionScope.oldInput.description == null ? "": sessionScope.oldInput.description}</textarea>
+                    <textarea id="description" name="description" class="form-control" type="text">
+                        ${sessionScope.oldInput.description == null ? "": sessionScope.oldInput.description}
+                    </textarea>
                 </div>
 
                 <div class="form-group">
-                    <input type="checkbox" name="category" value="1">Electronics<br>
-                    <input type="checkbox" name="category" value="2"> Clothing<br>
-                    <input type="checkbox" name="category" value="3"> Furniture<br>
-                    <input type="checkbox" name="category" value="service"> Service<br>
-                    <input type="checkbox" name="category" value="babies_toys"> Babies_toys<br>
-                    <input type="checkbox" name="category" value="appliances"> Appliances<br>
-                    <input type="checkbox" name="category" value="garden_patio"> Garden_patio<br>
-                    <input type="checkbox" name="category" value="automotive"> Automotive<br>
-                    <input type="checkbox" name="category" value="farm_animals"> Farm_animals<br>
-                    <input type="checkbox" name="category" value="home"> Home<br>
-                    <input type="checkbox" name="category" value="other"> Other<br>
+                    <c:forEach var="category" items="${categories}">
+                        <input type="checkbox" name="category" value="${category.id}"> ${category.category}<br>
+                    </c:forEach>
                 </div>
                 <input type="submit" class="btn btn-block btn-primary">
             </form>
         </div>
     </div>
-
-
 </div>
 </body>
 </html>
