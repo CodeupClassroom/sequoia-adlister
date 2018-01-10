@@ -26,9 +26,9 @@
                         <h6 class="info-panel-title">Contact Phone Number</h6>
                         <hr class="info-panel-bars">
                         <br>
-                        <button type="button" class="btn btn-primary btn-xs">
+                        <a href="/edit-account" class="btn btn-primary btn-xs">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit Info Details
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>

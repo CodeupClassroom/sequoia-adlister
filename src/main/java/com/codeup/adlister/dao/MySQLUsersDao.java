@@ -67,6 +67,50 @@ public class MySQLUsersDao implements Users {
         }
     }
 
+    @Override
+    public boolean updateInfo(String bio, String location, String phone, long userId) {
+        String query = "UPDATE user_info SET bio = ?, location = ?, phone_number = ? WHERE user_id = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1, bio);
+            stmt.setString(2, location);
+            stmt.setString(3, phone);
+            stmt.setLong(4, userId);
+            stmt.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            throw new RuntimeException("Error updating user information", e);
+        }
+    }
+
+    @Override
+    public boolean updateEmail(String email, long userId) {
+        String query = "UPDATE users SET email = ? WHERE id = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1, email);
+            stmt.setLong(2, userId);
+            stmt.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            throw new RuntimeException("Error Updating Email to User", e);
+        }
+    }
+
+    @Override
+    public boolean updatePassword(String password, long userId) {
+        String query = "UPDATE users SET password = ? WHERE id = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1, password);
+            stmt.setLong(2, userId);
+            stmt.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            throw new RuntimeException("Error Updating Password to User", e);
+        }
+    }
+          
     // Used when inserting a new user. Will take their id and insert register date on user_info table
     private Long insertRegisterDate(Long userId) {
         try {
