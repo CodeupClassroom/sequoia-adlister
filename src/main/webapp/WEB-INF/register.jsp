@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <jsp:include page="partials/head.jsp">
@@ -28,6 +29,18 @@
             </div>
             <input type="submit" class="btn btn-primary btn-block">
         </form>
+
+        <c:if test="${sessionScope.listOfErrors.size() > 0}">
+            <div id="errors" class="alert alert-danger">
+                <p>Unable to register user!</p>
+                <ul>
+                    <c:forEach var="message" items="${listOfErrors}">
+                        <li><c:out value="${message}"></c:out></li>
+                    </c:forEach>
+                </ul>
+            </div>
+        </c:if>
     </div>
 </body>
+<script src="/js/hideErrorsInProfile.js"></script>
 </html>
