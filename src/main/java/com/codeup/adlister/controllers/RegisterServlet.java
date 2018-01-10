@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static javax.swing.JOptionPane.showMessageDialog;
-
 @WebServlet(name = "controllers.RegisterServlet", urlPatterns = "/register")
 public class RegisterServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -59,7 +57,6 @@ public class RegisterServlet extends HttpServlet {
 
         ArrayList<String> listOfErrors = new ArrayList<>();
 
-
         if (username.isEmpty()) {
             String usernameIsEmpty = "You must enter an username.";
             listOfErrors.add(usernameIsEmpty);
@@ -99,7 +96,6 @@ public class RegisterServlet extends HttpServlet {
             inputHasErrors = true;
         }
 
-
         if (inputHasErrors) {
             request.getSession().setAttribute("listOfErrors", listOfErrors);
             request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
@@ -109,9 +105,5 @@ public class RegisterServlet extends HttpServlet {
             DaoFactory.getUsersDao().insert(user);
             response.sendRedirect("/login");
         }
-
-
     }
 }
-
-
