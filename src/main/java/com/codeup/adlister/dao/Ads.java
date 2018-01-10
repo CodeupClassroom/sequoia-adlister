@@ -19,7 +19,7 @@ public interface Ads {
 
     void updateAd(Ad ad);
 
-    void deleteAd(Ad ad);
+    void deleteAd(Long id);
 
     List<Ad> showUsersAds(Long id);
 }
