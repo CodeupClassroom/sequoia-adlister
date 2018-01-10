@@ -6,4 +6,5 @@ public interface Categories {
     List<String> getCategories();
     List<Long> getRequestedCategoryIds(String[] categoryNames);
     List<Long> insertAdsCategories(Long adId, List<Long> catIds);
+    List<String> getCategoriesByAdID(long adID);
 }
