@@ -36,6 +36,12 @@ public class CreateAdServlet extends HttpServlet {
         boolean inputHasErrors = ad.getTitle().isEmpty() || ad.getDescription().isEmpty();
         String[] categories = request.getParameterValues("category");
 
+        for(String category:categories) {
+            System.out.println(category);
+        }
+
+        System.out.println(ad.getId());
+
         if (inputHasErrors) {
             showMessageDialog(null,
                     "A blank field(s) was detected. Please fix your error(s) and try again.");
@@ -50,12 +56,19 @@ public class CreateAdServlet extends HttpServlet {
             response.sendRedirect("/ads/create");
 
         } else {
-            for (String id : categories) {
-                DaoFactory.getAdsDao().insertAdCategory(ad.getId(), Long.parseLong(id));
-            }
 
             // create and save a new ad
             DaoFactory.getAdsDao().insert(ad);
+            request.getSession().setAttribute("ad", ad);
+
+            System.out.println(ad.getId());
+
+
+
+//            for (String category : categories) {
+//                long category_id = Long.parseLong(category);
+//                DaoFactory.getAdsDao().insertAdCategory(ad.getId(), category_id);
+//            }
             response.sendRedirect("/ads");
         }
     }
