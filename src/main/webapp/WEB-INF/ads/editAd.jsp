@@ -19,17 +19,6 @@
 
 <div class="container">
     <h1>Editing Ads</h1>
-
-    <%--<c:if test="${sessionScope.listOfErrors.size() > 0}">--%>
-        <%--<div id="errors" class="alert alert-danger" style="display: block;">--%>
-            <%--<ul>--%>
-                <%--<li>Username must more than 5 characters</li>--%>
-                <%--<li>Passwords do not match</li>--%>
-            <%--</ul>--%>
-        <%--</div>--%>
-    <%--</c:if>--%>
-
-
     <form action="/editAd" method="post">
         <div class="form-group">
             <label for="title">Title</label>

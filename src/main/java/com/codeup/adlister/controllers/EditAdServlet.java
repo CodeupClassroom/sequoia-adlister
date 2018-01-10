@@ -64,11 +64,12 @@ public class EditAdServlet extends HttpServlet {
 
             if (inputHasErrors) {
                 request.getSession().setAttribute("listOfErrors", listOfErrors);
+                request.getSession().setAttribute("adIdWithError", id);
 
 
 //                showMessageDialog(null,
 //                        "A blank field(s) was detected. Please fix your error(s) and try again.");
-                response.sendRedirect("/editAd");
+                response.sendRedirect("/profile");
             } else {
                 DaoFactory.getAdsDao().editAdInformation(title, description, id);
                 response.sendRedirect("/profile");
