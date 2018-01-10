@@ -63,5 +63,7 @@
         </div>
     </section>
 </div>
+<script src="/js/hideErrorsInProfile.js"></script>
+
 </body>
 </html>
