@@ -8,6 +8,16 @@
 </head>
 <body>
     <jsp:include page="partials/navbar.jsp"/>
+
+
+    <%--// obtaining inputs for text area--%>
+    <% String username = request.getParameter("username");
+        if (username == null) username = "";
+
+        String description = request.getParameter("description");
+        if (description == null) description = "";
+    %>
+
     <div class="container">
         <h1>Please fill in your information.</h1>
         <form action="/register" method="post">
