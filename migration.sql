@@ -18,16 +18,30 @@ CREATE TABLE IF NOT EXISTS users (
 );
 
 
- CREATE TABLE IF NOT EXISTS ads (
+CREATE TABLE IF NOT EXISTS ads (
     id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     user_id INT UNSIGNED NOT NULL,
     title VARCHAR(255) NOT NULL,
     description TEXT NOT NULL,
     price INT NULL,
-    category VARCHAR(255) NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (user_id) REFERENCES users(id)
         ON DELETE CASCADE
 );
 
+CREATE TABLE IF NOT EXISTS categories (
+   id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+   category VARCHAR(255) NOT NULL,
+   UNIQUE (category),
+   PRIMARY KEY (id)
+);
 
+CREATE TABLE IF NOT EXISTS ads_categories (
+  id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  ads_id INT UNSIGNED NOT NULL,
+  ads_category_id INT UNSIGNED NOT NULL,
+  UNIQUE (ads_id, ads_category_id),
+  PRIMARY KEY (id),
+  FOREIGN KEY (ads_id) REFERENCES ads (id),
+  FOREIGN KEY (ads_category_id) REFERENCES categories (id)
+);

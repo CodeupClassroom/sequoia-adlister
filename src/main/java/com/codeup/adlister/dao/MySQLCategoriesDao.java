@@ -9,17 +9,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MySQLCategoriesDao implements Categories {
-
     private Connection connection;
 
     public MySQLCategoriesDao(Config config) {
         try {
+            String selectAllCategories = "SELECT * FROM categories";
             DriverManager.registerDriver(new Driver());
             connection = DriverManager.getConnection(
                     config.getUrl(),
                     config.getUser(),
                     config.getPassword()
             );
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery(selectAllCategories);
+            while (rs.next()){
+            }
         } catch (SQLException e) {
             throw new RuntimeException("Error connecting to the database!", e);
         }
@@ -38,18 +42,14 @@ public class MySQLCategoriesDao implements Categories {
         }
     }
 
-//    @Override
-//    public List<Category> findAdCategories(Ad ad) {
-//        List<String> categories = new ArrayList<>();
-//
-//        return null;
-//    }
-
 
     private Category extractCategory(ResultSet rs) throws SQLException {
+        if (!rs.next()) {
+            return null;
+        }
         return new Category(
                 rs.getLong("id"),
-                rs.getString("classification")
+                rs.getString("category")
         );
     }
 

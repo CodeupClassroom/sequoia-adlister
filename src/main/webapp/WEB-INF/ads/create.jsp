@@ -25,16 +25,22 @@
                 </c:if>
             </div>
 
-            <div class="form-group">
-                <label>Category</label>
-                <br>
-                <label name="category" class="checkbox-inline"><input type="radio" value="1">Computers</label>
-                <label name="category" class="checkbox-inline"><input type="radio" value="2">Home Goods</label>
-                <label name="category" class="checkbox-inline"><input type="radio" value="3">Fashion</label>
-            </div>
+            <%--<div class="form-group">--%>
+                <%--<label>Category</label>--%>
+                <%--<br>--%>
+                <%--&lt;%&ndash;<select>&ndash;%&gt;--%>
+                    <%--&lt;%&ndash;<option value="${categories.id}">${categories.category}</option>&ndash;%&gt;--%>
+                    <%--&lt;%&ndash;<option value="${categories.id}">${categories.category}</option>&ndash;%&gt;--%>
+                <%--&lt;%&ndash;</select>&ndash;%&gt;--%>
+
+                <%--&lt;%&ndash;<label name="category" class="checkbox-inline"><input type="radio" value="${categories.id}">${categories.category}</label>&ndash;%&gt;--%>
+                <%--&lt;%&ndash;<label name="category" class="checkbox-inline"><input type="radio" value="${categories.id}">${categories.category}</label>&ndash;%&gt;--%>
+                <%--If you do not the see the proper classification for your listing, feel free to add a new one:--%>
+                <%--<form action="/index.jsp" method="POST" name="category" class="form-group"><label>new category</label></form>--%>
+            <%--</div>--%>
 
             <div class="form-group">
-                <label for="price">Price</label>
+                <label for="price">Price: $</label>
                 <input id="price" name="price" class="form-control" type="text">
                 <c:if test="${errors.containsKey('price')}">
                     <option value="${ad.price}">"${ad.price}"</option>
