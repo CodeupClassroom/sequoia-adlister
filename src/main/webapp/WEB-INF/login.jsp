@@ -4,7 +4,7 @@
     <jsp:include page="/WEB-INF/partials/head.jsp">
         <jsp:param name="title" value="Please Log In" />
     </jsp:include>
-    <link rel="stylesheet" href="/design/loginPage.css">
+    <%--<link rel="stylesheet" href="/design/loginPage.css">--%>
 </head>
 <body>
     <jsp:include page="/WEB-INF/partials/navbar.jsp" />
@@ -13,19 +13,20 @@
         <div class="grad"></div>
 
         <div class="header"><h1>Please Log In</h1></div>
-            <form action="/login" method="POST">
+            <form action="/login" id="user-form" method="POST">
                 <div class="form-group loginform">
-                    <label for="username">Username</label>
-                    <input id="username" name="username" class="form-control" type="text" placeholder="User name">
+                    <label for="userinput">Username</label>
+                    <input id="userinput" name="username" class="form-control" type="text" placeholder="User name">
+                    <div id="user-error"></div>
                 </div>
                 <div class="form-group">
-                    <label for="password">Password</label>
-                    <input id="password" name="password" class="form-control" type="password">
+                    <label for="passinput">Password</label>
+                    <input id="passinput" name="password" class="form-control" type="password" placeholder="Password">
+                    <div id="pass-error" ></div>
                 </div>
-                <input type="submit" class="btn btn-primary btn-block" value="Log In">
+                <input type="submit" id="user-btn" class="btn btn-primary btn-block" value="Log In">
             </form>
     </div>
-    <div class="shadow"></div>
 
     <script src="/javascript/validation.js"></script>
 

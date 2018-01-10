@@ -13,20 +13,18 @@
 
     <div class="container">
         <%------Expression Language to access attributs from a request object------%>
-        <h1>${ad.title}</h1>
+        <h3>${ad.title}</h3>
         <img>
-        <h3>${ad.price} </h3>
-            <h3>${ad.description} </h3>
-            <p>${user.username}</p>
-        <div class="form-group">
-            <label for="comment">Description: </label>
-            <textarea class="form-control" rows="5" id="comment"></textarea>
-        </div>
+        <h5>Price: $${ad.price} </h5>
+            <h5>Description: ${ad.description} </h5>
+            <p>User: ${user.username}</p>
 
-        #
-
-
+            <form action="/ads/edit" methos="GET">
+                <button type="submit" id="edit_button" value=${ad.id} class="edit" name="ad_id">Edit</button>
+            </form>
     </div>
+
+
 </body>
 
 </html>
