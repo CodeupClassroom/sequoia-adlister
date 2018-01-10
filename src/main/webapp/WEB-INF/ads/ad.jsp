@@ -13,12 +13,15 @@
 
     <div class="container">
         <%------Expression Language to access attributs from a request object------%>
-        <h1>${ad.title}</h1>
+        <h3>${ad.title}</h3>
         <img>
-        <h3>Price: $${ad.price} </h3>
-            <h3>Description: ${ad.description} </h3>
+        <h5>Price: $${ad.price} </h5>
+            <h5>Description: ${ad.description} </h5>
             <p>User: ${user.username}</p>
+            <input type="button" id="edit_button" value="Edit" class="edit">
     </div>
+
+
 </body>
 
 </html>
