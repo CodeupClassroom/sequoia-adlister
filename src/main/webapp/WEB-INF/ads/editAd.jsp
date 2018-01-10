@@ -17,6 +17,8 @@
     if (description == null) description = "";
 %>
 
+
+
 <div class="container">
     <h1>Editing Ads</h1>
     <form action="/editAd" method="post">

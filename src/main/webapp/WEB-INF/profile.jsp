@@ -46,9 +46,6 @@
                                     <li><c:out value="${message}"></c:out></li>
                                 </c:forEach>
                                 </ul>
-
-                                    <%--<p>we have an error!</p>--%>
-                                    <%--<p>Unable to edit ad!</p>--%>
                             </div>
                         </c:if>
                     </c:if>

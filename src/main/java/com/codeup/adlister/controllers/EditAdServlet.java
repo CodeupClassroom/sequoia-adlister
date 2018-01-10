@@ -37,12 +37,6 @@ public class EditAdServlet extends HttpServlet {
         User currentSessionUser = (User) request.getSession().getAttribute("user");
         boolean inputHasErrors = false;
 
-        HashMap<String, String> oldInput2 = new HashMap<>();
-
-        oldInput2.put("title", title);
-        oldInput2.put("description", description);
-        request.getSession().setAttribute("oldInput", oldInput2);
-
         if (user.getId() == currentSessionUser.getId()) {
             ArrayList<String> listOfErrors = new ArrayList<>();
 
@@ -65,10 +59,6 @@ public class EditAdServlet extends HttpServlet {
             if (inputHasErrors) {
                 request.getSession().setAttribute("listOfErrors", listOfErrors);
                 request.getSession().setAttribute("adIdWithError", id);
-
-
-//                showMessageDialog(null,
-//                        "A blank field(s) was detected. Please fix your error(s) and try again.");
                 response.sendRedirect("/profile");
             } else {
                 DaoFactory.getAdsDao().editAdInformation(title, description, id);
