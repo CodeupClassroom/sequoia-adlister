@@ -5,7 +5,7 @@
     <jsp:include page="/WEB-INF/partials/head.jsp">
         <jsp:param name="title" value="Welcome to my site!" />
     </jsp:include>
-    <link rel="stylesheet" href="/design/loginPage.css">
+    <%--<link rel="stylesheet" href="/design/loginPage.css">--%>
 </head>
 <body>
     <jsp:include page="/WEB-INF/partials/navbar.jsp" />
@@ -13,7 +13,7 @@
         <h1>Welcome to the Trash to Treasure!</h1>
     </div>
     <div class="container">
-        <h1>Here are all the ads!</h1>
+        <%--<h1>Here are all the ads!</h1>--%>
 
         <c:forEach var="ad" items="${ads}">
             <div class="col-md-6">
