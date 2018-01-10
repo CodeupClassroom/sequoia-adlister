@@ -15,7 +15,7 @@
     <div class="input-group">
         <input type="text" name="search" class="form-control" placeholder="Search for an ad">
         <span class="input-group-btn">
-            <button type="submit" class="btn btn-success">Go  <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+            <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Go</button>
         </span>
     </div>
 </form>
