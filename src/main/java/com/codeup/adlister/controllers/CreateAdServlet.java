@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 
 import static javax.swing.JOptionPane.showMessageDialog;
 
@@ -28,15 +29,17 @@ public class CreateAdServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         User user = (User) request.getSession().getAttribute("user");
+        String[] categories = request.getParameterValues("category");
+
         Ad ad = new Ad(
                 user.getId(),
                 request.getParameter("title"),
-                request.getParameter("description")
+                request.getParameter("description"),
+                categories
         );
         boolean inputHasErrors = ad.getTitle().isEmpty() || ad.getDescription().isEmpty();
-        String[] categories = request.getParameterValues("category");
 
-        for(String category:categories) {
+        for(String category : ad.getCategories()) {
             System.out.println(category);
         }
 
