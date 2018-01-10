@@ -13,27 +13,56 @@ import java.io.IOException;
 
 @WebServlet(name = "EditAdServlet", urlPatterns = "/ads/edit")
 public class EditAdServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-
-    }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (request.getSession().getAttribute("user") == null) {
             response.sendRedirect("/login");
             return;
         }
-        Long id = Long.parseLong(request.getParameter("ad_id"));
+        if (request.getParameter("id") != null) {
 
-        Ad ad = DaoFactory.getAdsDao().ViewAd(id);
+            Long id = Long.parseLong(request.getParameter("id"));
+            DaoFactory.getAdsDao().ViewAd(id);
 
-        User user = DaoFactory.getUsersDao().userInformation(ad.getUserId());
+            Ad ad = DaoFactory.getAdsDao().ViewAd(id);
+//            User user = DaoFactory.getUsersDao().userInformation(ad.getUserId());
 
-        request.setAttribute("ad", ad);
-        request.setAttribute("user", user);
+            request.setAttribute("ad", ad);
+//            request.setAttribute("user", user);
+            request.getRequestDispatcher("/WEB-INF/ads/editAd.jsp")
+                    .forward(request, response);
+        }
+    }
 
-        request.getRequestDispatcher("/WEB-INF/ads/editAd.jsp")
-                .forward(request, response);
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        String title = request.getParameter("title");
+        String description = request.getParameter("description");
+        Integer price = Integer.parseInt(request.getParameter("price"));
+//        long id = (long) request.getParameter("id");
+
+        Ad ad = DaoFactory.getAdsDao().ViewAd(Long.parseLong(request.getParameter("id")));
+//        User user = DaoFactory.getUsersDao().userInformation(ad.getUserId());
+        ad.setTitle(title);
+        ad.setDescription(description);
+        ad.setPrice(price);
+//        ad.setId(id);
+
+//        DaoFactory.getAdsDao().editAd(title, description, price, id);
+        DaoFactory.getAdsDao().editAd(ad);
+        response.sendRedirect("/ads/users-ads?id=" + ad.getId()); //concatenation done do go back to specific ad id
+
     }
 }
+
+
+//    The doPost method on the editAdServlet handles updating an existing record in the db.
+//        For this to work, we need:
+
+//        Prerequisite: Add an update() method to the MySQLAdsDAO to handle updating existing ads.
+
+//        Inside the doPost on editAdServlet,
+//        1. Find the existing Ad given its id from the form.
+//        2. call the update method.
+//        3. redirect users back to see the Ad
 

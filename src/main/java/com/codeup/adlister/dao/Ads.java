@@ -14,6 +14,9 @@ public interface Ads {
     Ad ViewAd (long id);
 
 
+    //    ---------Method to Update Ad---------
+//    void editAd(String title, String description, Integer price, long id);
+    void editAd(Ad ad);
     List<Ad> search(String searchAd);
 
 }
