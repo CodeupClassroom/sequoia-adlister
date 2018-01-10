@@ -3,36 +3,23 @@
 <html>
 <head>
     <jsp:include page="/WEB-INF/partials/head.jsp">
-        <jsp:param name="title" value="Viewing All The Ads" />
+        <jsp:param name="title" value="Viewing All The Ads"/>
     </jsp:include>
 </head>
 <body>
-
-<%--Ad show page--%>
-
-<%--Create a page that shows the information about an individual ad. This page should show all the
-information about that ad, as well as the information about the user that posted the ad.--%>
-
-<%--Your ads index page should contain links to each individual ad page.--%>
-
-<%--You should have one page that displays the information for any arbitrary ad.
-Consider passing the id of the ad as a parameter in the GET request to this page.--%>
-
-<jsp:include page="/WEB-INF/partials/navbar.jsp" />
+<jsp:include page="/WEB-INF/partials/navbar.jsp"/>
 
 <div class="container">
-    <h1>Here Are all the ads!</h1>
+    <div class="fancy-background">
+        <h1>Here Are all the ads!</h1>
 
-    <c:forEach var="ad" items="${ads}">
-        <div class="col-md-6">
-            <h2><a  href="/showAd?id=${ad.id}"><c:out value="${ad.title}"/></a></h2>
-            <p><c:out value ="${ad.description}"/></p>
-            <%--<p><c:out value="${ad.id}"/></p>--%>
-        </div>
-    </c:forEach>
-
+        <c:forEach var="ad" items="${ads}">
+            <div class="col-md-6">
+                <h2><a href="/showAd?id=${ad.id}"><c:out value="${ad.title}"/></a></h2>
+                <p><c:out value="${ad.description}"/></p>
+            </div>
+        </c:forEach>
+    </div>
 </div>
-
-
 </body>
 </html>
