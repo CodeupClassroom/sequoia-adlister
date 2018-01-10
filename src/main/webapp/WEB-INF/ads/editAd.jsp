@@ -18,7 +18,6 @@
 %>
 
 
-
 <div class="container">
     <h1>Editing Ads</h1>
     <form action="/editAd" method="post">
@@ -32,8 +31,20 @@
         </div>
         <input type="submit" class="btn btn-block btn-primary">
     </form>
+<c:if test="${sessionScope.listOfErrors.size() > 0}">
+    <div id="errors" class="alert alert-danger">
+        <p>Unable to edit ad!</p>
+        <ul>
+            <c:forEach var="message" items="${listOfErrors}">
+                <li><c:out value="${message}"></c:out></li>
+            </c:forEach>
+        </ul>
+    </div>
+</c:if>
 </div>
 </body>
+<script src="/js/hideErrorsInProfile.js"></script>
+
 </html>
 
 
