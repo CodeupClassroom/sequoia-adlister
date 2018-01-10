@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 
 @WebServlet(name = "controllers.LoginServlet", urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
@@ -21,10 +22,9 @@ public class LoginServlet extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-
         User user = DaoFactory.getUsersDao().findByUsername(username);
 
         if (user == null) {
@@ -33,11 +33,30 @@ public class LoginServlet extends HttpServlet {
         }
 
         boolean validAttempt = Password.check(password, user.getPassword());
+        boolean inputHasErrors = false;
+        ArrayList<String> listOfErrors = new ArrayList<>();
 
         if (validAttempt) {
             request.getSession().setAttribute("user", user);
             response.sendRedirect("/profile");
         } else {
+            if (username.isEmpty()) {
+                String usernameIsEmpty = "You must enter a username.";
+                listOfErrors.add(usernameIsEmpty);
+                inputHasErrors = true;
+            }
+
+            if (password.isEmpty()) {
+                String passwordIsEmpty = "You must enter a password.";
+                listOfErrors.add(passwordIsEmpty);
+                inputHasErrors = true;
+            }
+
+            if (inputHasErrors) {
+                // Displays an error message based on user input.
+                request.getSession().setAttribute("listOfErrors", listOfErrors);
+                request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+            }
             response.sendRedirect("/login");
         }
     }
