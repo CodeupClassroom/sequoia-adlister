@@ -16,7 +16,7 @@ public class RegisterServlet extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String username = request.getParameter("username");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
@@ -24,18 +24,40 @@ public class RegisterServlet extends HttpServlet {
 
         // validate input
         boolean inputHasErrors = username.isEmpty()
-            || email.isEmpty()
-            || password.isEmpty()
-            || (! password.equals(passwordConfirmation));
+                || password.isEmpty();
 
         if (inputHasErrors) {
-            response.sendRedirect("/register");
-            return;
-        }
+                doGet(request, response);
 
-        // create and save a new user
-        User user = new User(username, email, password);
-        DaoFactory.getUsersDao().insert(user);
-        response.sendRedirect("/login");
+        } else {
+
+            //Check to see if username already exist in database
+            User registerName = DaoFactory.getUsersDao().findByUsername(username);
+            if (registerName != null) {
+                request.setAttribute("user", registerName);
+                request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
+                return;
+            }
+
+            if(!password.equals(passwordConfirmation)){
+                request.setAttribute("password", password);
+                request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
+                return;
+            }
+
+            if(email.isEmpty() || !email.contains("@")){
+                request.setAttribute("email", email);
+                request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
+                return;
+            }
+
+
+            // create and save a new user
+            User user = new User(username, email, password);
+            Long id = DaoFactory.getUsersDao().insert(user);
+            user.setId(id);
+            request.getSession().setAttribute("user", user);
+            response.sendRedirect("/profile");
+        }
     }
 }

@@ -37,7 +37,6 @@
         <button type="submit" class="btn btn-default">Delete</button>
 
     </form>
-    <%--<form></form>--%> delete button goes here
 
 </div>
 </body>
