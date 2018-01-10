@@ -14,7 +14,7 @@ public interface Ads {
     Long insert(Ad ad);
 
     // insert a category to an ad
-    Long insertAdCategory(long ads_id, long cat_id);
+    void insertAdCategory(long ads_id, long cat_id);
 
     // Shows one ad only
     Ad showOneAd(long id);

@@ -101,16 +101,13 @@ public class MySQLAdsDao implements Ads {
     }
 
     @Override
-    public Long insertAdCategory(long ads_id, long cat_id) {
+    public void insertAdCategory(long ads_id, long cat_id) {
         try {
             String insertQuery = "INSERT INTO ad_category(ads_id, cat_id) VALUES (?, ?)";
-            PreparedStatement stmt = connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement stmt = connection.prepareStatement(insertQuery);
             stmt.setLong(1, ads_id);
             stmt.setLong(2, cat_id);
             stmt.executeUpdate();
-            ResultSet rs = stmt.getGeneratedKeys();
-            rs.next();
-            return rs.getLong(1);
         } catch (SQLException e) {
             throw new RuntimeException("Error creating a category for ad.", e);
         }
