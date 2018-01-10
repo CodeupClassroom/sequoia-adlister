@@ -106,7 +106,7 @@ public class MySQLAdsCategoriesDao implements Categories {
 
             for (long catId : catIds) {
                 String sql = "INSERT INTO adlister_db.ads_categories (ads_id, ads_category_id) VALUES (?, ?)";
-                stmt = connection.prepareStatement(sql);
+                stmt = connection.prepareStatement(sql, stmt.RETURN_GENERATED_KEYS);
                 stmt.setLong(1, adId);
                 stmt.setLong(2, catId);
                 stmt.execute();
