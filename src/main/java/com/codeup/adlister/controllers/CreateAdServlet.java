@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,6 +35,9 @@ public class CreateAdServlet extends HttpServlet {
                 request.getParameter("description")
         );
 
+        String [] categories = request.getParameterValues("category");
+
+
         boolean inputHasErrors = ad.getTitle().isEmpty() || ad.getDescription().isEmpty();
 
         if (inputHasErrors) {
@@ -50,9 +54,16 @@ public class CreateAdServlet extends HttpServlet {
             response.sendRedirect("/ads/create");
 
         } else {
-            // create and save a new ad
-            DaoFactory.getAdsDao().insert(ad);
-            response.sendRedirect("/ads");
+
+            for (String category: categories) {
+                Long category_id = DaoFactory.getAdsDao().extractCategoryId(category);
+                DaoFactory.getAdsDao().insertAdCategory(ad.getId(), category_id);
+
+                // create and save a new ad
+                DaoFactory.getAdsDao().insert(ad);
+                response.sendRedirect("/ads");
+            }
+
         }
     }
 }

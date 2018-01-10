@@ -3,6 +3,7 @@ package com.codeup.adlister.dao;
 import com.codeup.adlister.models.Ad;
 import com.codeup.adlister.models.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface Ads {
@@ -10,6 +11,11 @@ public interface Ads {
     List<Ad> all();
     // insert a new ad and return the new ad's id
     Long insert(Ad ad);
+
+    // insert a category to an ad
+    Long insertAdCategory(long ads_id, long cat_id);
+
+    long extractCategoryId(String category);
 
     // Shows one ad only
     Ad showOneAd(long id);
