@@ -14,9 +14,6 @@ import java.io.IOException;
 @WebServlet(name = "controllers.RegisterServlet", urlPatterns = "/register")
 public class RegisterServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if(request.getAttribute("inputError") != null) {
-            request.removeAttribute("inputError");
-        }
         request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
     }
 
@@ -44,7 +41,6 @@ public class RegisterServlet extends HttpServlet {
         boolean emailHasErrors = DaoFactory.getUsersDao().findByEmail(email) != null
             || email.isEmpty()
             || email.length() > 255
-            || email.length() < 8
             || StringUtils.countMatches(email, "@") != 1
             || StringUtils.lastIndexOf(email, ".") <= StringUtils.lastIndexOf(email, "@");
 
