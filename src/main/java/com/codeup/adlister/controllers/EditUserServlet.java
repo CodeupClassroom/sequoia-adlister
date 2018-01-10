@@ -47,6 +47,7 @@ public class EditUserServlet extends HttpServlet {
         }
 
         if (inputHasErrors) {
+            // Displays an error message based on user input.
             request.getSession().setAttribute("listOfErrors", listOfErrors);
             request.getRequestDispatcher("/WEB-INF/editUser.jsp").forward(request, response);
         } else {

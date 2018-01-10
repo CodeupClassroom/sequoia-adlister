@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static javax.swing.JOptionPane.showMessageDialog;
-
 @WebServlet(name = "controllers.RegisterServlet", urlPatterns = "/register")
 public class RegisterServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -107,9 +105,5 @@ public class RegisterServlet extends HttpServlet {
             DaoFactory.getUsersDao().insert(user);
             response.sendRedirect("/login");
         }
-
-
     }
 }
-
-
