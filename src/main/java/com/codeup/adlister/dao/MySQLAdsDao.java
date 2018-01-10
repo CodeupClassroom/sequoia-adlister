@@ -1,6 +1,7 @@
 package com.codeup.adlister.dao;
 
 import com.codeup.adlister.models.Ad;
+import com.codeup.adlister.models.Category;
 import com.codeup.adlister.models.User;
 import com.codeup.adlister.util.Password;
 import com.mysql.cj.api.mysqla.result.Resultset;
@@ -124,20 +125,6 @@ public class MySQLAdsDao implements Ads {
         );
     }
 
-    @Override
-    public long extractCategoryId(String category) {
-        try {
-            String query = "SELECT * FROM categories WHERE category = ?";
-            PreparedStatement stmt = connection.prepareStatement(query);
-            stmt.setString(1, category);
-            ResultSet rs = stmt.executeQuery();
-            rs.next();
-            return rs.getLong(1);
-        } catch (SQLException e) {
-            throw new RuntimeException("Error extracting a category id from '" + category + "'.", e);
-        }
-    }
-
     private List<Ad> createAdsFromResults(ResultSet rs) throws SQLException {
         List<Ad> ads = new ArrayList<>();
         while (rs.next()) {
@@ -171,5 +158,4 @@ public class MySQLAdsDao implements Ads {
             throw new RuntimeException("Error deleting ad.", e);
         }
     }
-
 }

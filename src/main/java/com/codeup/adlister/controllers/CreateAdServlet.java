@@ -10,9 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 import static javax.swing.JOptionPane.showMessageDialog;
 
@@ -24,6 +22,7 @@ public class CreateAdServlet extends HttpServlet {
             response.sendRedirect("/login");
             return;
         }
+        request.setAttribute("categories", DaoFactory.getCategoriesDao().getAllCategories());
         request.getRequestDispatcher("/WEB-INF/ads/create.jsp").forward(request, response);
     }
 
@@ -34,11 +33,8 @@ public class CreateAdServlet extends HttpServlet {
                 request.getParameter("title"),
                 request.getParameter("description")
         );
-
-        String [] categories = request.getParameterValues("category");
-
-
         boolean inputHasErrors = ad.getTitle().isEmpty() || ad.getDescription().isEmpty();
+        String[] categories = request.getParameterValues("category");
 
         if (inputHasErrors) {
             showMessageDialog(null,
@@ -54,16 +50,13 @@ public class CreateAdServlet extends HttpServlet {
             response.sendRedirect("/ads/create");
 
         } else {
-
-            for (String category: categories) {
-                Long category_id = DaoFactory.getAdsDao().extractCategoryId(category);
-                DaoFactory.getAdsDao().insertAdCategory(ad.getId(), category_id);
-
-                // create and save a new ad
-                DaoFactory.getAdsDao().insert(ad);
-                response.sendRedirect("/ads");
+            for (String id : categories) {
+                DaoFactory.getAdsDao().insertAdCategory(ad.getId(), Long.parseLong(id));
             }
 
+            // create and save a new ad
+            DaoFactory.getAdsDao().insert(ad);
+            response.sendRedirect("/ads");
         }
     }
 }

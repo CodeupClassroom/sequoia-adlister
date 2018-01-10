@@ -39,7 +39,8 @@ CREATE TABLE ad_category (
 );
 
 INSERT INTO categories (category)
-    VALUES ('clothing'),
+    VALUES ('electronics'),
+        ('clothing'),
         ('furniture'),
         ('service'),
         ('babies_toys'),
