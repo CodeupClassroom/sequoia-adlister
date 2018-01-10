@@ -10,6 +10,7 @@
         <h1>Create a New Ad</h1>
         <form action="/ads/create" method="post">
             <div class="form-group">
+
                 <label for="title">Title</label>
                 <input id="title" name="title" class="form-control" type="text">
                 <c:if test = "${errors.containsKey('title')}">
@@ -27,17 +28,11 @@
 
             <div class="form-group">
                 <label>Category</label>
-                <br>
-                <%--<select>--%>
-                    <%--<option value="${categories.id}">${categories.category}</option>--%>
-                    <%--<option value="${categories.id}">${categories.category}</option>--%>
-                <%--</select>--%>
-<%--row div to seperate categories into columns--%>
-                <label name="category" class="checkbox-inline"><input type="checkbox" value="${categories}">${categories.category}</label>
-                <label name="category" class="checkbox-inline"><input type="checkbox" value="${categories.id}">${categories.category}</label>
-                If you do not the see the proper classification for your listing, feel free to add a new one:
-                <form action="/index.jsp" method="POST" name="category" class="form-group"><label>new category</label></form>
-            </div>
+                <c:forEach var="category" items="${categories}">
+                <div>
+                <input type="checkbox" name="category" class="checkbox-inline">${category}
+                </div>
+                </c:forEach>
 
             <div class="form-group">
                 <label for="price">Price: $</label>
