@@ -48,6 +48,7 @@ public class CreateAdServlet extends HttpServlet {
             request.getSession().setAttribute("oldInput", oldInput);
 
             response.sendRedirect("/ads/create");
+
         } else {
             // create and save a new ad
             DaoFactory.getAdsDao().insert(ad);

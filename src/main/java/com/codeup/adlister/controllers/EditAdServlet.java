@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import static javax.swing.JOptionPane.showMessageDialog;
@@ -27,7 +28,7 @@ public class EditAdServlet extends HttpServlet {
 
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         long id = (long) request.getSession().getAttribute("id");
         String title = request.getParameter("title");
         String description = request.getParameter("description");
@@ -37,7 +38,6 @@ public class EditAdServlet extends HttpServlet {
         boolean inputHasErrors = false;
 
         if (user.getId() == currentSessionUser.getId()) {
-            inputHasErrors = title.isEmpty() || description.isEmpty();
             ArrayList<String> listOfErrors = new ArrayList<>();
 
             if (title.isEmpty()) {
@@ -52,19 +52,23 @@ public class EditAdServlet extends HttpServlet {
                 inputHasErrors = true;
             }
 
+            for(String message: listOfErrors) {
+                System.out.println(message);
+            }
+
             if (inputHasErrors) {
                 request.getSession().setAttribute("listOfErrors", listOfErrors);
-//                showMessageDialog(null,
-//                        "A blank field(s) was detected. Please fix your error(s) and try again.");
-                response.sendRedirect("/editAd");
+                request.getSession().setAttribute("adIdWithError", id);
+//                response.sendRedirect("/profile");
+                request.getRequestDispatcher("/WEB-INF/ads/editAd.jsp").forward(request, response);
+
             } else {
                 DaoFactory.getAdsDao().editAdInformation(title, description, id);
                 response.sendRedirect("/profile");
+
             }
         }
     }
-
-
 
 
     // 0. create and empty list of errors
