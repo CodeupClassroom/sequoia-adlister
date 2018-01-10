@@ -27,6 +27,7 @@ import java.io.IOException;
 public class IndividualAdServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Long id = Long.parseLong(request.getParameter("id"));
+
         Ad ad = DaoFactory.getAdsDao().showOneAd(id);
         User user = DaoFactory.getUsersDao().showUserInformation(ad.getUserId());
         System.out.println(user);
