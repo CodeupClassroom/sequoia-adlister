@@ -59,7 +59,6 @@ public class RegisterServlet extends HttpServlet {
 
         ArrayList<String> listOfErrors = new ArrayList<>();
 
-
         if (username.isEmpty()) {
             String usernameIsEmpty = "You must enter an username.";
             listOfErrors.add(usernameIsEmpty);
@@ -98,7 +97,6 @@ public class RegisterServlet extends HttpServlet {
             listOfErrors.add(usernameExists);
             inputHasErrors = true;
         }
-
 
         if (inputHasErrors) {
             request.getSession().setAttribute("listOfErrors", listOfErrors);

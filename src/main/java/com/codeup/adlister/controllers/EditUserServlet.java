@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 
 @WebServlet(name = "controllers.EditUserServlet", urlPatterns = "/editUser")
 public class EditUserServlet extends HttpServlet {
@@ -17,23 +18,39 @@ public class EditUserServlet extends HttpServlet {
             response.sendRedirect("/login");
         }
         request.getRequestDispatcher("/WEB-INF/editUser.jsp").forward(request, response);
-
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String passwordConfirmation = request.getParameter("confirm_password");
         User user = (User) request.getSession().getAttribute("user");
+        boolean inputHasErrors = false;
+        ArrayList<String> listOfErrors = new ArrayList<>();
 
+        if (email.isEmpty()) {
+            String emailIsEmpty = "You must enter an email.";
+            listOfErrors.add(emailIsEmpty);
+            inputHasErrors = true;
+        }
 
-        boolean inputHasErrors = email.isEmpty() || password.isEmpty() || (! password.equals(passwordConfirmation));
+        if (password.isEmpty()) {
+            String passwordIsEmpty = "You must enter a password.";
+            listOfErrors.add(passwordIsEmpty);
+            inputHasErrors = true;
+        }
+
+        if (!passwordConfirmation.equals(password)) {
+            String passwordsDoNotMatch = "Your passwords do not match.";
+            listOfErrors.add(passwordsDoNotMatch);
+            inputHasErrors = true;
+        }
 
         if (inputHasErrors) {
-            response.sendRedirect("/editUser");
+            request.getSession().setAttribute("listOfErrors", listOfErrors);
+            request.getRequestDispatcher("/WEB-INF/editUser.jsp").forward(request, response);
         } else {
-            // create and save a new user
-
+            // Save the new user information
             DaoFactory.getUsersDao().editProfileInformation(email, password, user.getId());
             response.sendRedirect("/login");
         }
