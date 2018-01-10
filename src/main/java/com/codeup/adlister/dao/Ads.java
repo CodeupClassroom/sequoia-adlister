@@ -15,6 +15,8 @@ public interface Ads {
     // insert a category to an ad
     Long insertAdCategory(long ads_id, long cat_id);
 
+    long extractCategoryId(String category);
+
     // Shows one ad only
     Ad showOneAd(long id);
 

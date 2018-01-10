@@ -124,6 +124,21 @@ public class MySQLAdsDao implements Ads {
         );
     }
 
+    @Override
+    public long extractCategoryId(String category) {
+        try {
+            String insertQuery = "SELECT * FROM categories WHERE category = ?";
+            PreparedStatement stmt = connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1, category);
+            stmt.executeQuery();
+            ResultSet rs = stmt.getGeneratedKeys();
+            rs.next();
+            return rs.getLong(1);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error creating a category for ad.", e);
+        }
+    }
+
     private List<Ad> createAdsFromResults(ResultSet rs) throws SQLException {
         List<Ad> ads = new ArrayList<>();
         while (rs.next()) {
