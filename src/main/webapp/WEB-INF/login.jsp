@@ -27,6 +27,7 @@
                 <input id="password" name="password" class="form-control" type="password">
             </div>
             <input type="submit" class="btn btn-primary btn-block" value="Log In">
+            <a href="/register" class="btn btn-warning btn-block">Not a Member? Sign Up!</a>
         </form>
     </div>
     <jsp:include page="/WEB-INF/partials/js-footer.jsp" />

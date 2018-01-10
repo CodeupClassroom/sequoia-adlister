@@ -19,12 +19,15 @@
                         <img src="stock-user-img.svg" alt="Stock User Image">
                         <h6 class="info-panel-title">Location</h6>
                         <hr class="info-panel-bars">
+                        <h6>${location}</h6>
                         <br>
                         <h6 class="info-panel-title">Date Joined</h6>
                         <hr class="info-panel-bars">
+                        <h6>${regDate}</h6>
                         <br>
                         <h6 class="info-panel-title">Contact Phone Number</h6>
                         <hr class="info-panel-bars">
+                        <h6>${phone}</h6>
                         <br>
                         <a href="/edit-account" class="btn btn-primary btn-xs">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit Info Details
@@ -39,6 +42,7 @@
                         <br>
                         <h4 class="info-panel-title">Bio</h4>
                         <hr class="info-panel-bars">
+                        <p>${bio}</p>
                         <br>
                         <c:forEach var="ad" items="${userAds}">
                             <div class="col-md-6">

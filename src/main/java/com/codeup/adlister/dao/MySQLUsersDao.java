@@ -48,6 +48,62 @@ public class MySQLUsersDao implements Users {
     }
 
     @Override
+    public String getBio(long userId) {
+        String query = "SELECT bio FROM user_info WHERE user_id = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setLong(1, userId);
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            return rs.getString("bio");
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving bio from user", e);
+        }
+    }
+
+    @Override
+    public String getLocation(long userId) {
+        String query = "SELECT location FROM user_info WHERE user_id = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setLong(1, userId);
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            return rs.getString("location");
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving location from user", e);
+        }
+    }
+
+    @Override
+    public String getPhone(long userId) {
+        String query = "SELECT phone_number FROM user_info WHERE user_id = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setLong(1, userId);
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            return rs.getString("phone_number");
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving phone number from user", e);
+        }
+    }
+
+    @Override
+    public String getRegDate(long userId) {
+        String query = "SELECT register_date FROM user_info WHERE user_id = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setLong(1, userId);
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            return rs.getString("register_date");
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving register date from user", e);
+        }
+    }
+
+    @Override
     public Long insert(User user) {
         String query = "INSERT INTO adlister_db.users(username, email, password) VALUES (?, ?, ?)";
         try {

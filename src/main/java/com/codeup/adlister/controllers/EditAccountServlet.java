@@ -19,6 +19,10 @@ public class EditAccountServlet extends HttpServlet {
             response.sendRedirect("/login");
             return;
         }
+        User user = (User) request.getSession().getAttribute("user");
+        request.setAttribute("bio", DaoFactory.getUsersDao().getBio(user.getId()));
+        request.setAttribute("location", DaoFactory.getUsersDao().getLocation(user.getId()));
+        request.setAttribute("phone", DaoFactory.getUsersDao().getPhone(user.getId()));
         request.getRequestDispatcher("/WEB-INF/edit-account.jsp").forward(request, response);
     }
 
@@ -37,7 +41,7 @@ public class EditAccountServlet extends HttpServlet {
                         || !StringUtils.isAsciiPrintable(location);
 
                 boolean phoneError = phone.length() > 255
-                        || !StringUtils.isNumeric(StringUtils.remove(phone, '+'));
+                        || (!StringUtils.isNumeric(StringUtils.remove(phone, '+')) && !phone.isEmpty());
 
                 if(bioError || locationError || phoneError) {
                     bio = bioError ? "" : bio;
