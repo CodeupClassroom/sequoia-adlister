@@ -11,23 +11,29 @@
         <h1>Please fill in your information.</h1>
         <form action="/register" method="post">
             <div class="form-group">
-                <label for="username">Username</label>
-                <input id="username" name="username" class="form-control" type="text">
+                <label for="reg-username">Username</label>
+                <input id="reg-username" name="username" class="form-control" type="text">
+                <div id="reg-usererror"></div>
             </div>
             <div class="form-group">
-                <label for="email">Email</label>
-                <input id="email" name="email" class="form-control" type="text">
+                <label for="reg-email">Email</label>
+                <input id="reg-email" name="email" class="form-control" type="text">
+                <div id="reg-emailerror"></div>
             </div>
             <div class="form-group">
-                <label for="password">Password</label>
-                <input id="password" name="password" class="form-control" type="password">
+                <label for="reg-password">Password</label>
+                <input id="reg-password" name="password" class="form-control" type="password">
+                <div id="reg-passerror"></div>
             </div>
             <div class="form-group">
-                <label for="confirm_password">Confirm Password</label>
-                <input id="confirm_password" name="confirm_password" class="form-control" type="password">
+                <label for="reg_confirm_password">Confirm Password</label>
+                <input id="reg_confirm_password" name="confirm_password" class="form-control" type="password">
+                <div id="reg-conpasserror"></div>
             </div>
-            <input type="submit" class="btn btn-primary btn-block">
+            <input type="submit" id="formsubmit" class="btn btn-primary btn-block">
         </form>
+        <script src="/javascript/registerValidation.js"></script>
     </div>
+
 </body>
 </html>

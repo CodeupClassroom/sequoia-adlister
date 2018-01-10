@@ -37,6 +37,6 @@
         <a href="/ads" class="list-group-item">Search for Treasure</a>
     </div>
 </div>
-
+<script src="/javascript/validation.js"></script>
 </body>
 </html>
