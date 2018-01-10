@@ -11,7 +11,6 @@
 
 <div class="container">
     <h1 style="text-align: center">Current Active Ads</h1>
-    <jsp:include page="/WEB-INF/partials/searchbar.jsp" />
     <c:forEach var="ad" items="${ads}">
         <div class="col-md-6">
             <h2>
