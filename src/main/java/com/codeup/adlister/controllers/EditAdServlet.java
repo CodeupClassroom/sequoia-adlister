@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import static javax.swing.JOptionPane.showMessageDialog;
@@ -36,8 +37,13 @@ public class EditAdServlet extends HttpServlet {
         User currentSessionUser = (User) request.getSession().getAttribute("user");
         boolean inputHasErrors = false;
 
+        HashMap<String, String> oldInput2 = new HashMap<>();
+
+        oldInput2.put("title", title);
+        oldInput2.put("description", description);
+        request.getSession().setAttribute("oldInput", oldInput2);
+
         if (user.getId() == currentSessionUser.getId()) {
-            inputHasErrors = title.isEmpty() || description.isEmpty();
             ArrayList<String> listOfErrors = new ArrayList<>();
 
             if (title.isEmpty()) {
@@ -52,8 +58,14 @@ public class EditAdServlet extends HttpServlet {
                 inputHasErrors = true;
             }
 
+            for(String message: listOfErrors) {
+                System.out.println(message);
+            }
+
             if (inputHasErrors) {
                 request.getSession().setAttribute("listOfErrors", listOfErrors);
+
+
 //                showMessageDialog(null,
 //                        "A blank field(s) was detected. Please fix your error(s) and try again.");
                 response.sendRedirect("/editAd");
@@ -63,8 +75,6 @@ public class EditAdServlet extends HttpServlet {
             }
         }
     }
-
-
 
 
     // 0. create and empty list of errors

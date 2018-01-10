@@ -1,11 +1,13 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <jsp:include page="/WEB-INF/partials/head.jsp">
-        <jsp:param name="title" value="Edit an ad" />
-    </jsp:include></head>
+        <jsp:param name="title" value="Edit an ad"/>
+    </jsp:include>
+</head>
 <body>
-<jsp:include page="/WEB-INF/partials/navbar.jsp" />
+<jsp:include page="/WEB-INF/partials/navbar.jsp"/>
 
 <%--// obtaining inputs for text area--%>
 <% String title = request.getParameter("title");
@@ -17,6 +19,16 @@
 
 <div class="container">
     <h1>Editing Ads</h1>
+
+    <%--<c:if test="${sessionScope.listOfErrors.size() > 0}">--%>
+        <%--<div id="errors" class="alert alert-danger" style="display: block;">--%>
+            <%--<ul>--%>
+                <%--<li>Username must more than 5 characters</li>--%>
+                <%--<li>Passwords do not match</li>--%>
+            <%--</ul>--%>
+        <%--</div>--%>
+    <%--</c:if>--%>
+
 
     <form action="/editAd" method="post">
         <div class="form-group">
