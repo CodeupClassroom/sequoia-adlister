@@ -59,6 +59,8 @@ public class MySQLUsersDao implements Users {
             stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
             rs.next();
+            Long userId = rs.getLong(1);
+            insertRegisterDate(userId);
             return rs.getLong(1);
         } catch (SQLException e) {
             throw new RuntimeException("Error creating new user", e);
@@ -106,6 +108,21 @@ public class MySQLUsersDao implements Users {
             return true;
         } catch (SQLException e) {
             throw new RuntimeException("Error Updating Password to User", e);
+        }
+    }
+          
+    // Used when inserting a new user. Will take their id and insert register date on user_info table
+    private Long insertRegisterDate(Long userId) {
+        try {
+            String query = "INSERT INTO adlister_db.user_info(user_id, register_date) VALUES (?, CURDATE())";
+            PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            stmt.setLong(1, userId);
+            stmt.execute();
+            ResultSet rs = stmt.getGeneratedKeys();
+            rs.next();
+            return rs.getLong(1);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error creating new user register date", e);
         }
     }
 

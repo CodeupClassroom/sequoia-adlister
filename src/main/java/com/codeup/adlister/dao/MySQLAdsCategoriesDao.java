@@ -42,6 +42,31 @@ public class MySQLAdsCategoriesDao implements Categories {
         }
     }
 
+    // This will get a list of strings for all categories linked to any individual ad
+    @Override
+    public List<String> getCategoriesByAdID(long adID) {
+        PreparedStatement stmt = null;
+        try {
+            String sql = "SELECT\n" +
+                    "  c.category\n" +
+                    "FROM ads a\n" +
+                    "JOIN ads_categories ac ON ac.ads_id = a.id\n" +
+                    "JOIN categories c ON ac.ads_category_id = c.id\n" +
+                    "WHERE a.id = ?;";
+            stmt = connection.prepareStatement(sql);
+            stmt.setLong(1, adID);
+            ResultSet rs = stmt.executeQuery();
+            List<String> categories = new ArrayList<>();
+            while (rs.next()) {
+                categories.add(rs.getString(1));
+            }
+            return categories;
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving categories.", e);
+        }
+    }
+
+
     // This will take in a list of Strings that corospond to category names. If they are valid names in the categories table, then it will return a List<Long> of those specific ids.
     @Override
     public List<Long> getRequestedCategoryIds(String[] categoryNames) {
@@ -81,7 +106,7 @@ public class MySQLAdsCategoriesDao implements Categories {
 
             for (long catId : catIds) {
                 String sql = "INSERT INTO adlister_db.ads_categories (ads_id, ads_category_id) VALUES (?, ?)";
-                stmt = connection.prepareStatement(sql);
+                stmt = connection.prepareStatement(sql, stmt.RETURN_GENERATED_KEYS);
                 stmt.setLong(1, adId);
                 stmt.setLong(2, catId);
                 stmt.execute();

@@ -11,7 +11,6 @@
 
 <div class="container">
     <h1 style="text-align: center">Current Active Ads</h1>
-    <jsp:include page="/WEB-INF/partials/searchbar.jsp" />
     <c:forEach var="ad" items="${ads}">
         <div class="col-md-6">
             <h2>
@@ -19,6 +18,7 @@
             </h2>
             <p>${ad.description}<a href="/ad?adID=${ad.id}"> more</a></p>
             <p>${ad.adLocation}<small> (Posted: ${ad.dateCreated})</small></p>
+            <p>${ad.categories}</p>
         </div>
     </c:forEach>
 </div>

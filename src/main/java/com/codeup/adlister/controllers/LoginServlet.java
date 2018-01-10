@@ -29,6 +29,7 @@ public class LoginServlet extends HttpServlet {
         //if (user == null || !BCrypt.checkpw(password, user.getPassword())) {
         if (user == null || !password.equals(user.getPassword())) {
             request.setAttribute("loginError",true);
+            request.setAttribute("username", username);
             request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request,response);
         } else {
             request.getSession().setAttribute("user", user);
