@@ -2,20 +2,20 @@ package com.codeup.adlister.models;
 
 public class Category {
     private long id;
-    private String classification;
+    private String category;
 
     public Category() {}
 
-    public Category(long id, String classification) {
+    public Category(long id, String category) {
         this.id = id;
-        this.classification = classification;
+        this.category = category;
     }
 
     public long getId () {
         return id;
     }
 
-    public String getClassification() {
-        return classification;
+    public String getCategory() {
+        return category;
     }
 }

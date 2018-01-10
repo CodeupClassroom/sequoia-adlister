@@ -11,7 +11,7 @@ public interface Categories {
     List<Category> all();
     // insert a new category and return the category's id
 //    Long insert(Categories category);
-    // view single category classification
+    // view single category
 //    Category ViewCategory(int id);
 //    Category getCategoryId(int id);
 

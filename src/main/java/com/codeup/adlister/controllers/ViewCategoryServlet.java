@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name="ViewCategoryServlet", urlPatterns = "/ads/index")
+@WebServlet(name="ViewCategoryServlet", urlPatterns = "/ads")
 public class ViewCategoryServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
