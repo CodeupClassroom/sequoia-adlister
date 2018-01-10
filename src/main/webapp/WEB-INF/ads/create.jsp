@@ -19,7 +19,20 @@
             <label for="description">Description</label>
             <textarea id="description" name="description" class="form-control" type="text">${sessionScope.oldInput.description == null ? "": sessionScope.oldInput.description}</textarea>
         </div>
-        <input type="submit" class="btn btn-block btn-primary">
+        <div class="form-group">
+            <input type="checkbox" name="category" value="electronics"> Electronics<br>
+            <input type="checkbox" name="category" value="clothing"> Clothing<br>
+            <input type="checkbox" name="category" value="furniture"> Furniture<br>
+            <input type="checkbox" name="category" value="service"> Service<br>
+            <input type="checkbox" name="category" value="babies_toys"> Babies_toys<br>
+            <input type="checkbox" name="category" value="appliances"> Appliances<br>
+            <input type="checkbox" name="category" value="garden_patio"> Garden_patio<br>
+            <input type="checkbox" name="category" value="automotive"> Automotive<br>
+            <input type="checkbox" name="category" value="farm_animals"> Farm_animals<br>
+            <input type="checkbox" name="category" value="home"> Home<br>
+            <input type="checkbox" name="category" value="other"> Other<br>
+        </div>
+            <input type="submit" class="btn btn-block btn-primary">
     </form>
 </div>
 </body>
