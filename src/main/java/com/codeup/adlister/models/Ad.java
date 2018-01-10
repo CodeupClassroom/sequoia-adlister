@@ -9,6 +9,7 @@ public class Ad {
     private String description;
     private String[] categories;
 
+
     public Ad(long id, long userId, String title, String description, String[] categories) {
         this.id = id;
         this.userId = userId;
@@ -62,4 +63,3 @@ public class Ad {
     public void setCategories(String[] categories) {
         this.categories = categories;
     }
-}
