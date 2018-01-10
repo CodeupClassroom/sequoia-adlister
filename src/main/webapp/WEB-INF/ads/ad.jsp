@@ -18,7 +18,10 @@
         <h5>Price: $${ad.price} </h5>
             <h5>Description: ${ad.description} </h5>
             <p>User: ${user.username}</p>
-            <input type="button" id="edit_button" value="Edit" class="edit">
+
+            <form action="/ads/edit" methos="GET">
+                <button type="submit" id="edit_button" value=${ad.id} class="edit" name="ad_id">Edit</button>
+            </form>
     </div>
 
 
