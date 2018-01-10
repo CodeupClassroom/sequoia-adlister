@@ -1,6 +1,7 @@
 package com.codeup.adlister.dao;
 
 import com.codeup.adlister.models.Ad;
+import com.codeup.adlister.models.Category;
 import com.codeup.adlister.models.User;
 
 import java.util.ArrayList;
@@ -14,8 +15,6 @@ public interface Ads {
 
     // insert a category to an ad
     Long insertAdCategory(long ads_id, long cat_id);
-
-    long extractCategoryId(String category);
 
     // Shows one ad only
     Ad showOneAd(long id);
@@ -31,5 +30,4 @@ public interface Ads {
 
 //    deletes one ad:
     void deleteAd(long id);
-
-    }
+ }
