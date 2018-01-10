@@ -15,23 +15,23 @@ import java.io.IOException;
     public class ViewAdServlet extends HttpServlet {
         public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-            Long id = Long.parseLong(request.getParameter("id"));
+                Long id = Long.parseLong(request.getParameter("id"));
 
-            Ad ad = DaoFactory.getAdsDao().ViewAd(id);
+                Ad ad = DaoFactory.getAdsDao().ViewAd(id);
 //            -----Include user id info to show on ad-----
-            User user = DaoFactory.getUsersDao().userInformation(ad.getUserId());
+                User user = DaoFactory.getUsersDao().userInformation(ad.getUserId());
 
-            //make a getrequest to the servlet,
-            // parameter hold the ID number of the individual ad,
-            // save that number into a variable,
-            // a href = tag --> send to servlet with id
+                //make a getrequest to the servlet,
+                // parameter hold the ID number of the individual ad,
+                // save that number into a variable,
+                // a href = tag --> send to servlet with id
 
 
-
-            request.setAttribute("ad", ad);
+                request.setAttribute("ad", ad);
 //            ----Set attribute for user----
-            request.setAttribute("user", user);
-            request.getRequestDispatcher("/WEB-INF/ads/ad.jsp").forward(request, response);
+                request.setAttribute("user", user);
+                request.getRequestDispatcher("/WEB-INF/ads/ad.jsp").forward(request, response);
 
-        }
+            }
+//        }
     }

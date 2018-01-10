@@ -56,7 +56,7 @@ public class MySQLAdsDao implements Ads {
         }
     }
 
-//    -----View One Specific Ad----
+//    -----Method to View One Specific Ad----
     @Override
     public Ad ViewAd(long id) {
         String query = "SELECT * FROM ads WHERE id = ?";
@@ -71,6 +71,24 @@ public class MySQLAdsDao implements Ads {
 
         } catch (SQLException e) {
             throw new RuntimeException("Error, Ad does not exist", e);
+        }
+    }
+
+//    ---------Method to Update Ad---------
+    @Override
+//    public void editAd(String title, String description, Integer price, long id) {
+        public void editAd(Ad ad) {
+        String query = "UPDATE ads SET title = ?, description = ?, price = ? WHERE id = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setString(1, ad.getTitle());
+            stmt.setString(2, ad.getDescription());
+            stmt.setInt(3, ad.getPrice());
+            stmt.setLong(4, ad.getId());
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Error, unable to edit your ad.", e);
         }
     }
 
