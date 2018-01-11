@@ -38,7 +38,7 @@ public class CreateAdServlet extends HttpServlet {
                 request.getParameter("description")
         );
 
-        ArrayList<String> listOfCreateAdErrors = ValidateAd.validate(ad);
+        ArrayList<String> listOfCreateAdErrors = new ArrayList<>();
 
         boolean inputHasErrors = false;
 
@@ -55,6 +55,12 @@ public class CreateAdServlet extends HttpServlet {
             inputHasErrors = true;
         }
 
+        if(categories.length == 0){
+            String noCategoriesSelected = "You must select at least 1 category";
+            listOfCreateAdErrors.add(noCategoriesSelected);
+            inputHasErrors = true;
+        }
+
 
         if (inputHasErrors) {
             request.getSession().setAttribute("listOfCreateAdErrors", listOfCreateAdErrors);
@@ -65,7 +71,6 @@ public class CreateAdServlet extends HttpServlet {
             oldInput.put("description", ad.getDescription());
 
             request.getSession().setAttribute("oldInput", oldInput);
-
 
             request.setAttribute("categories", DaoFactory.getCategoriesDao().getAllCategories());
             request.getRequestDispatcher("/WEB-INF/ads/create.jsp").forward(request, response);
