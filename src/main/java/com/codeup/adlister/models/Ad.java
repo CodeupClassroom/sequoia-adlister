@@ -29,6 +29,10 @@ public class Ad {
         this.description = description;
         this.categories = categories;
     }
+    public Ad(String title, String description) {
+        this.title = title;
+        this.description = description;
+    }
 
     public long getId() {
         return id;
