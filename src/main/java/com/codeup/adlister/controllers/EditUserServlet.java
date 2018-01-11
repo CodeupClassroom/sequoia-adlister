@@ -53,6 +53,9 @@ public class EditUserServlet extends HttpServlet {
         } else {
             // Save the new user information
             DaoFactory.getUsersDao().editProfileInformation(email, password, user.getId());
+            User userUpdated = DaoFactory.getUsersDao().findByUsername(user.getUsername());
+            request.getSession().setAttribute("user", userUpdated);
+
             response.sendRedirect("/login");
         }
     }
