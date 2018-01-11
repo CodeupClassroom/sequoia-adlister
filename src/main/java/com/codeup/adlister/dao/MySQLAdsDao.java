@@ -5,6 +5,7 @@ import com.codeup.adlister.models.Category;
 import com.codeup.adlister.models.User;
 import com.codeup.adlister.util.Password;
 import com.mysql.cj.api.mysqla.result.Resultset;
+import com.mysql.cj.core.util.StringUtils;
 import com.mysql.cj.jdbc.Driver;
 
 import java.io.FileInputStream;
@@ -74,8 +75,8 @@ public class MySQLAdsDao implements Ads {
         String query = "SELECT * FROM ads WHERE title LIKE ? OR description LIKE ?";
         try {
             PreparedStatement stmt = connection.prepareStatement(query);
-            stmt.setString(1, "%" + searchTerm + "%");
-            stmt.setString(2, "%" + searchTerm + "%");
+            stmt.setString(1, "%" + org.apache.commons.lang3.StringUtils.replace(searchTerm, " ", "%") + "%");
+            stmt.setString(2, "%" + org.apache.commons.lang3.StringUtils.replace(searchTerm, " ", "%") + "%");
             ResultSet rs = stmt.executeQuery();
             return createAdsFromResults(rs);
         } catch (SQLException e) {
