@@ -16,21 +16,20 @@
         <%--<img src="" alt="${sessionScope.user.username}">--%>
 
         <div class="media">
-            <%--<p>Location: ${sessionScope.user.location}</p>--%>
-            <%--<p>Bio: ${sessionScope.user.bio}</p>--%>
-            <%--<p>Member Since: ${sessionScope.user.register_date}</p>--%>
+            <p>Location: ${sessionScope.user.location}</p>
+            <p>Bio: ${sessionScope.user.bio}</p>
         </div>
 
     </div>
     <div class="row">
         <div class="list-group col-xs-12 col-sm-6">
             <a href="/ads/create" class="list-group-item">Create a New Adlisting</a>
-            <a href="/update-profile" class="list-group-item">Update Your Profile</a>
+            <a href="/profile/update" class="list-group-item">Update Your Profile</a>
         </div>
 
         <div class="list-group col-xs-12 col-sm-6">
             <a href="/ads/users-ads?id=${sessionScope.user.id}" class="list-group-item">View ${sessionScope.user.username}'s listings</a>
-            <a href="" class="list-group-item">View Saved Items</a>
+            <a href="" class="list-group-item">Dumpster Dive Random Find</a>
         </div>
     </div>
     <div class="list-group-item d-flex justify-content-between align-items-center">

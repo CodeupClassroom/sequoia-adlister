@@ -6,11 +6,18 @@ public interface Categories {
     // get a list of all the categories from db
     List<String> getCategories();
 
-    // show all categories
+    // getCategoryForAd( ) by the ad id or ad object
 
 
+    // FINISHING CATEGORY WORK //
+    //
+    //
+    // inserting category attached to new ad should go through ads DAO
 
-//    List<String> useAdCategories(int findCategoryId, List<String> categoryIds);
-////    Category getCategoryId(int id);
+    // crud operation on ads
+    // category / ad
+
+    //    List<String> useAdCategories(int findCategoryId, List<String> categoryIds);
+    //    Category getCategoryId(int id);
 
 }

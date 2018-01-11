@@ -17,7 +17,7 @@
 
         <div class="col-xs-12 col-md-6">
 
-            <a href="#" class="list-group-item active">Update your Username and Email</a>
+            <h2>Update your Username and Email</h2>
 
 
             <div class="form-row">
@@ -48,15 +48,15 @@
 
         <div class="col-xs-12 col-md-6">
 
-            <a href="#" class="list-group-item active">Update your Password</a>
+            <h2>Update your Password</h2>
 
 
             <div class="form-row">
 
                 <div class="form-group col-md-12">
 
-                    <label for="currentPassword">Current password</label>
-                    <input type="password" class="form-control" name="currentPassword" id="currentPassword"
+                    <label>Current password</label>
+                    <input type="password" class="form-control" name="currentPassword"
                            placeholder="Current password">
 
                     <c:if test="${errors.containsKey('password')}">
@@ -75,8 +75,8 @@
 
                 <div class="form-group col-md-6">
 
-                    <label for="newPassword">New password</label>
-                    <input type="password" class="form-control" name="newPassword" id="newPassword"
+                    <label>New password</label>
+                    <input type="password" class="form-control" name="newPassword"
                            placeholder="New password">
 
                     <c:if test="${errors.containsKey('password')}">
@@ -86,8 +86,8 @@
                 </div>
 
                 <div class="form-group col-md-6">
-                    <label for="confirmPassword">Confirm password</label>
-                    <input type="password" class="form-control" name="confirmPassword" id="confirmPassword"
+                    <label>Confirm password</label>
+                    <input type="password" class="form-control" name="confirmPassword"
                            placeholder="Confirm password">
 
                     <c:if test="${errors.containsKey('confirmPassword')}">
@@ -98,7 +98,8 @@
 
 
                 <div class="form-row">
-                    <a href="#" class="list-group-item active">Update your Bio and Location</a>
+
+                    <h2>Update your Bio and Location</h2>
 
                     <div class="form-group col-md-6">
                         <label>Bio: </label>

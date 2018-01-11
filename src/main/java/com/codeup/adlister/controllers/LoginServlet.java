@@ -18,7 +18,7 @@ public class LoginServlet extends HttpServlet {
             response.sendRedirect("/profile");
             return;
         }
-        request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/user/login.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -28,7 +28,7 @@ public class LoginServlet extends HttpServlet {
 
         if (user == null || !BCrypt.checkpw(password, user.getPassword())) {
             request.setAttribute("loginerror", true);
-            request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/user/login.jsp").forward(request, response);
         } else {
             request.getSession().setAttribute("user", user);
             response.sendRedirect("/profile");
