@@ -27,23 +27,23 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password");
         User user = DaoFactory.getUsersDao().findByUsername(username);
         boolean inputHasErrors = false;
-        ArrayList<String> listOfErrorsWithPassword = new ArrayList<>();
+        ArrayList<String> listOfLoginErrors = new ArrayList<>();
 
         if (username.isEmpty()) {
             String usernameIsEmpty = "You must enter a username.";
-            listOfErrorsWithPassword.add(usernameIsEmpty);
+            listOfLoginErrors.add(usernameIsEmpty);
             inputHasErrors = true;
         }
 
         if (password.isEmpty()) {
             String passwordIsEmpty = "You must enter a password.";
-            listOfErrorsWithPassword.add(passwordIsEmpty);
+            listOfLoginErrors.add(passwordIsEmpty);
             inputHasErrors = true;
         }
 
         if (inputHasErrors) {
             // Displays an error message based on user input.
-            request.getSession().setAttribute("listOfErrors", listOfErrorsWithPassword);
+            request.getSession().setAttribute("listOfLoginErrors", listOfLoginErrors);
             request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
         }
 
@@ -51,12 +51,12 @@ public class LoginServlet extends HttpServlet {
 
         if (!validAttempt) {
             String incorrectPassword = "You must  enter the correct password.";
-            listOfErrorsWithPassword.add(incorrectPassword);
+            listOfLoginErrors.add(incorrectPassword);
             inputHasErrors = true;
         }
 
         if (inputHasErrors) {
-            request.getSession().setAttribute("listOfErrors", listOfErrorsWithPassword);
+            request.getSession().setAttribute("listOfLoginErrors", listOfLoginErrors);
             request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
         }
 
