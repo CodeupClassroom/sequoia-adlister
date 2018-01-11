@@ -36,12 +36,14 @@ public class MySQLUsersDao implements Users {
 
     @Override
     public Long insert(User user) {
-        String query = "INSERT INTO users(username, email, password) VALUES (?, ?, ?)";
+        String query = "INSERT INTO users(username, email, password, bio, location) VALUES (?, ?, ?, ?, ?)";
         try {
             PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1, user.getUsername());
             stmt.setString(2, user.getEmail());
             stmt.setString(3, user.getPassword());
+            stmt.setString(4, user.getBio());
+            stmt.setString(5, user.getLocation());
             stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
             rs.next();
@@ -51,7 +53,7 @@ public class MySQLUsersDao implements Users {
         }
     }
 
-//    ----User Information----
+
     @Override
     public User userInformation(long id) {
         String query = "SELECT * FROM users WHERE id =?";
@@ -75,8 +77,25 @@ public class MySQLUsersDao implements Users {
             rs.getLong("id"),
             rs.getString("username"),
             rs.getString("email"),
-            rs.getString("password")
+            rs.getString("password"),
+            rs.getString("bio"),
+            rs.getString("location")
         );
     }
 
+    public void update(User user) {
+        String updateUserProfile = "UPDATE users SET username = ?, email = ?, password = ?, bio = ?, location = ? WHERE id = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(updateUserProfile);
+            stmt.setString(1, user.getUsername());
+            stmt.setString(2, user.getEmail());
+            stmt.setString(3, user.getPassword());
+            stmt.setString(4, user.getBio());
+            stmt.setString(5, user.getLocation());
+            stmt.executeUpdate();
+        } catch (SQLException e){
+            throw new RuntimeException("Error - unable to update user profile", e);
+        }
+    }
 }
+
