@@ -30,6 +30,12 @@
                             <div class="col-lg-6 ads_display_by_col">
                                 <h2><a href="/showAd?id=${ad.id}"><c:out value="${ad.title}"/></a></h2>
                                 <p><c:out value="${ad.description}"/></p>
+
+                                <small>categories: </small>
+                                <c:forEach var="category" items="${ad.categories}">
+                                    <small><c:out value="${category.category}"/>, </small>
+                                </c:forEach>
+
                                 <div class="row">
                                     <div class="col-lg-3">
                                         <button type="button" class="btn btn-default">

@@ -16,6 +16,11 @@
             <div class="col-md-6">
                 <h3><a href="/showAd?id=${ad.id}"><c:out value="${ad.title}"/></a></h3>
                 <p><c:out value="${ad.description}"/></p>
+
+                <small>categories: </small>
+                <c:forEach var="category" items="${ad.categories}">
+                    <small><c:out value="${category.category}"/>, </small>
+                </c:forEach>
             </div>
         </c:forEach>
     </div>
