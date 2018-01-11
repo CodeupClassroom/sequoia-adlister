@@ -46,7 +46,7 @@ INSERT INTO categories (category)
         ('Service'),
         ('Babies & Toys'),
         ('Appliances'),
-        ('Garden_patio'),
+        ('Garden & Patio'),
         ('Automotive'),
         ('Farm Animals'),
         ('Home'),
