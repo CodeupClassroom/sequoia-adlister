@@ -22,6 +22,7 @@
             <li><a href="/login">Login</a></li>
             <li><a href="/logout">Logout</a></li>
             <li><a href="/register">Register</a></li>
+            <li><a href="/search_categories">Search by Category</a></li>
 
         </c:if>
 

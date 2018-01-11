@@ -66,7 +66,7 @@ public class MySQLAdsDao extends Dao implements Ads {
     }
 
     @Override
-    public Long insert(Ad ad) {
+    public Long insert(Ad ad, String[] categoriesIds) {
         try {
             String insertQuery = "INSERT INTO ads(user_id, title, description) VALUES (?, ?, ?)";
             PreparedStatement stmt = connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);
@@ -76,7 +76,18 @@ public class MySQLAdsDao extends Dao implements Ads {
             stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
             rs.next();
-            return rs.getLong(1);
+           Long adId = rs.getLong(1);
+            for (String categoryId :
+                    categoriesIds) {
+                String insert = "INSERT INTO categories_ads(categories_id,ads_id) VALUES(?,?)";
+                stmt = connection.prepareStatement(insert);
+                stmt.setLong(1,Long.parseLong(categoryId));
+                stmt.setLong(2,adId);
+                stmt.executeUpdate();
+            }
+
+
+           return adId;
         } catch (SQLException e) {
             throw new RuntimeException("Error creating a new ad.", e);
         }
@@ -154,6 +165,20 @@ public class MySQLAdsDao extends Dao implements Ads {
             return createAdsFromResults(rs);
         } catch (SQLException e) {
             throw new RuntimeException("error showing users ads", e);
+        }
+    }
+
+    @Override
+    public List<Ad> searchCategory(Long id){
+        try{
+            PreparedStatement stmt = connection.prepareStatement(
+                    "SELECT * FROM ads JOIN categories_ads ON ads.id = ads_id WHERE categories_id = ?"
+            );
+            stmt.setLong(1,id);
+            ResultSet rs = stmt.executeQuery();
+            return createAdsFromResults(rs);
+        }catch(SQLException e){
+            throw new RuntimeException("error retrieving category", e);
         }
     }
 

@@ -38,12 +38,15 @@ public class CreateAdServlet extends HttpServlet {
             return;
         }
         User user = (User) request.getSession().getAttribute("user");
+
+        String[] categoriesIds = request.getParameterValues("categories_id");
+
         Ad ad = new Ad(
                 user.getId(),
                 request.getParameter("title"),
                 request.getParameter("description")
         );
-        DaoFactory.getAdsDao().insert(ad);
+        DaoFactory.getAdsDao().insert(ad, categoriesIds);
         response.sendRedirect("/ads");
 
 
