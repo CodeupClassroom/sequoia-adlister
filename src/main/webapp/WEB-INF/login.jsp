@@ -26,11 +26,11 @@
         <input type="submit" class="btn btn-primary btn-block" value="Log In">
     </form>
 
-    <c:if test="${sessionScope.listOfErrors.size() > 0}">
+    <c:if test="${sessionScope.listOfLoginErrors.size() > 0}">
         <div id="errors" class="alert alert-danger">
             <p>Unable to login!</p>
             <ul>
-                <c:forEach var="message" items="${listOfErrors}">
+                <c:forEach var="message" items="${listOfLoginErrors}">
                     <li><c:out value="${message}"></c:out></li>
                 </c:forEach>
             </ul>

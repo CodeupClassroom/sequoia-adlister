@@ -3,6 +3,7 @@ package com.codeup.adlister.controllers;
 import com.codeup.adlister.dao.DaoFactory;
 import com.codeup.adlister.models.Ad;
 import com.codeup.adlister.models.User;
+import com.codeup.adlister.util.ValidateAd;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -27,26 +29,35 @@ public class CreateAdServlet extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/ads/create.jsp").forward(request, response);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         User user = (User) request.getSession().getAttribute("user");
         String[] categories = request.getParameterValues("category");
 
         Ad ad = new Ad(
-                user.getId(),
                 request.getParameter("title"),
                 request.getParameter("description")
         );
-        boolean inputHasErrors = ad.getTitle().isEmpty() || ad.getDescription().isEmpty();
 
-//        for(String category : ad.getCategories()) {
-//            System.out.println(category);
-//        }
+        ArrayList<String> listOfCreateAdErrors = ValidateAd.validate(ad);
 
-        System.out.println(ad.getId());
+        boolean inputHasErrors = false;
+
+
+        if (ad.getTitle().isEmpty()) {
+            String titleIsEmpty = "You must enter a title.";
+            listOfCreateAdErrors.add(titleIsEmpty);
+            inputHasErrors = true;
+        }
+
+        if (ad.getDescription().isEmpty()) {
+            String descriptionIsEmpty = "You must enter a description.";
+            listOfCreateAdErrors.add(descriptionIsEmpty);
+            inputHasErrors = true;
+        }
+
 
         if (inputHasErrors) {
-            showMessageDialog(null,
-                    "A blank field(s) was detected. Please fix your error(s) and try again.");
+            request.getSession().setAttribute("listOfCreateAdErrors", listOfCreateAdErrors);
 
             HashMap<String, String> oldInput = new HashMap<>();
 
@@ -55,17 +66,15 @@ public class CreateAdServlet extends HttpServlet {
 
             request.getSession().setAttribute("oldInput", oldInput);
 
-            response.sendRedirect("/ads/create");
+
+            request.setAttribute("categories", DaoFactory.getCategoriesDao().getAllCategories());
+            request.getRequestDispatcher("/WEB-INF/ads/create.jsp").forward(request, response);
+
 
         } else {
 
             // create and save a new ad
             Long adId = DaoFactory.getAdsDao().insert(ad);
-
-
-            System.out.println(adId);
-
-
 
             for (String category : categories) {
                 long category_id = Long.parseLong(category);
