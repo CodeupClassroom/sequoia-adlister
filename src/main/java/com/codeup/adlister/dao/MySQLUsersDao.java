@@ -1,11 +1,14 @@
 package com.codeup.adlister.dao;
 
 import com.codeup.adlister.models.User;
-import com.mysql.cj.jdbc.Driver;
 
-import java.sql.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class MySQLUsersDao extends Dao implements Users {
+
 
     public MySQLUsersDao(Config config) {
         super(config);

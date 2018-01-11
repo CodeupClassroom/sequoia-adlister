@@ -11,7 +11,7 @@ public interface Ads {
     //find a single ad by its id:
     Ad findById(Long id);
     // insert a new ad and return the new ad's id
-    Long insert(Ad ad);
+    Long insert(Ad ad, String[] categoriesIds);
     //Used to display one a
     Ad showAd(Long id);
 
@@ -22,4 +22,6 @@ public interface Ads {
     void deleteAd(Long id);
 
     List<Ad> showUsersAds(Long id);
+
+    List<Ad> searchCategory(Long id);
 }

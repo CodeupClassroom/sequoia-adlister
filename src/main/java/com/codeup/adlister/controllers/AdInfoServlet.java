@@ -18,7 +18,7 @@ public class AdInfoServlet extends HttpServlet {
         Long id = Long.parseLong(request.getParameter("id"));
         Ad ad = DaoFactory.getAdsDao().showAd(id);
         User user = DaoFactory.getUsersDao().showUserInformation(ad.getUserId());
-        System.out.println(user);
+
 
         request.setAttribute("ad", ad);
         request.setAttribute("user", user);
