@@ -8,11 +8,15 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp"/>
+
+<% String email = request.getParameter("email");
+    if (email == null) email = ""; %>
+
 <div class="container">
     <form action="/editUser" method="POST">
         <div class="form-group">
             <label for="email">Email</label>
-            <input id="email" name="email" class="form-control" type="text">
+            <input id="email" name="email" class="form-control" type="text" value="<%=email%>">
         </div>
         <div class="form-group">
             <label for="password">Password</label>
