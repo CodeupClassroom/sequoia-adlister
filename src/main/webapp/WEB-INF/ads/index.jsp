@@ -20,7 +20,7 @@
     <section class="ads_display">
         <div class="row">
             <c:forEach var="ad" items="${ads}">
-            <div class="col-md-6">
+            <div class="col-md-6 ads_display_by_col">
                 <h3><a href="/showAd?id=${ad.id}"><c:out value="${ad.title}"/></a></h3>
                 <h5><c:out value="${ad.description}"/></h5>
                 <small>categories: </small>
