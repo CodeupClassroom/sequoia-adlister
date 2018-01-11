@@ -11,4 +11,6 @@ public interface Users {
 
     User userInformation(long id);
 
+    void update(User user);
+
 }
