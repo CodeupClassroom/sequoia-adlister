@@ -10,4 +10,5 @@ public interface Users {
     Long insert(User user);
 
     User userInformation(long id);
+
 }
