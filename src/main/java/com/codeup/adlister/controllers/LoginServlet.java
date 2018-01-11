@@ -49,6 +49,17 @@ public class LoginServlet extends HttpServlet {
 
         boolean validAttempt = Password.check(password, user.getPassword());
 
+        if (!validAttempt) {
+            String incorrectPassword = "You must  enter the correct password.";
+            listOfErrors.add(incorrectPassword);
+            inputHasErrors = true;
+        }
+
+        if (inputHasErrors) {
+            request.getSession().setAttribute("listOfErrors", listOfErrors);
+            request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+        }
+
         if (validAttempt) {
             request.getSession().setAttribute("user", user);
             response.sendRedirect("/profile");
