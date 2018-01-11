@@ -20,20 +20,24 @@
     <section class="ads_display">
         <div class="row">
             <c:forEach var="ad" items="${ads}">
-                <div class="col-md-6">
-                    <h3><a href="/showAd?id=${ad.id}"><c:out value="${ad.title}"/></a></h3>
-                    <h5><c:out value="${ad.description}"/></h5>
-                </div>
+            <div class="col-md-6">
+                <h3><a href="/showAd?id=${ad.id}"><c:out value="${ad.title}"/></a></h3>
+                <h5><c:out value="${ad.description}"/></h5>
+                <small>categories: </small>
+                <c:forEach var="category" items="${ad.categories}">
+                   <small><c:out value="${category.category}"/>, </small>
+                </c:forEach>
+            </div>
             </c:forEach>
         </div>
     </section
 
     <%--<section class="welcome">--%>
-        <%--<div class="row">--%>
-            <%--<div class="col-xs-12">--%>
-                <%--<h1 style="text-align: center">Welcome to the Adlister!</h1>--%>
-            <%--</div>--%>
-        <%--</div>--%>
+    <%--<div class="row">--%>
+    <%--<div class="col-xs-12">--%>
+    <%--<h1 style="text-align: center">Welcome to the Adlister!</h1>--%>
+    <%--</div>--%>
+    <%--</div>--%>
     <%--</section>--%>
 </div>
 </body>
