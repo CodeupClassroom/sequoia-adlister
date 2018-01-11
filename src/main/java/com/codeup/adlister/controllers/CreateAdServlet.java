@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -31,17 +32,19 @@ public class CreateAdServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         User user = (User) request.getSession().getAttribute("user");
+
         String[] categories = request.getParameterValues("category");
 
         Ad ad = new Ad(
+                user.getId(),
                 request.getParameter("title"),
                 request.getParameter("description")
         );
 
-        ArrayList<String> listOfCreateAdErrors = ValidateAd.validate(ad);
 
         boolean inputHasErrors = false;
 
+        ArrayList<String> listOfCreateAdErrors = new ArrayList<>();
 
         if (ad.getTitle().isEmpty()) {
             String titleIsEmpty = "You must enter a title.";
@@ -52,6 +55,11 @@ public class CreateAdServlet extends HttpServlet {
         if (ad.getDescription().isEmpty()) {
             String descriptionIsEmpty = "You must enter a description.";
             listOfCreateAdErrors.add(descriptionIsEmpty);
+            inputHasErrors = true;
+        }
+        if(categories == null || categories.length == 0){
+            String noCategoriesSelected = "You must select at least 1 category";
+            listOfCreateAdErrors.add(noCategoriesSelected);
             inputHasErrors = true;
         }
 
@@ -65,7 +73,6 @@ public class CreateAdServlet extends HttpServlet {
             oldInput.put("description", ad.getDescription());
 
             request.getSession().setAttribute("oldInput", oldInput);
-
 
             request.setAttribute("categories", DaoFactory.getCategoriesDao().getAllCategories());
             request.getRequestDispatcher("/WEB-INF/ads/create.jsp").forward(request, response);
