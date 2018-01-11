@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/webapp/design/loginPage.css">
+<%--<link rel="stylesheet" href="/webapp/design/loginPage.css">--%>
 <nav class="navbar navbar-default">
     <div id="box" class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -22,4 +22,5 @@
     </form>
 
 </nav>
+
 
