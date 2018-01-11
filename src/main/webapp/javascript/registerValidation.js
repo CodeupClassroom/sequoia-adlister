@@ -1,7 +1,7 @@
 var user = document.getElementById("formsubmit");
 
-user.addEventListener("click",function(e) {
-    e.preventDefault();
+user.addEventListener("click",function() {
+
 
     var username = document.getElementById("reg-username");
 
@@ -10,11 +10,11 @@ user.addEventListener("click",function(e) {
         var userError = document.getElementById("reg-usererror");
         userError.innerHTML = ("please fill out Input");
 
-    }else if (username.value.includes("<") || username.value.includes(">")){
+    } if (username.value.includes("<") || username.value.includes(">")){
         userError = document.getElementById("reg-usererror");
         userError.innerHTML = ("< and > are not valid");
 
-    } else if (username.value.includes("$")
+    } if (username.value.includes("$")
         || username.value.includes("@")
         || username.value.includes("*")
         || username.value.includes("&")
@@ -23,18 +23,7 @@ user.addEventListener("click",function(e) {
         userError = document.getElementById("reg-usererror");
         userError.innerHTML = ("special characters are not valid");
 
-    } else {
-        var userForm = document.getElementById("formsubmit");
-        userForm.submit();
     }
-});
-
-
-
-var email = document.getElementById("formsubmit");
-
-email.addEventListener("click",function(e) {
-    e.preventDefault();
 
     var emailinput = document.getElementById("reg-email");
 
@@ -44,11 +33,11 @@ email.addEventListener("click",function(e) {
         var emailerror = document.getElementById("reg-emailerror");
         emailerror.innerHTML = ("Please fill out input");
 
-    }else if (emailinput.value.includes("<") || emailinput.value.includes(">")) {
+    } if (emailinput.value.includes("<") || emailinput.value.includes(">")) {
         emailerror = document.getElementById("reg-emailerror");
         emailerror.innerHTML = ("< and > are not valid");
 
-    } else if (emailinput.value.includes("$")
+    } if (emailinput.value.includes("$")
         ||emailinput.value.includes("*")
         ||emailinput.value.includes("&")
         ||emailinput.value.includes("%")
@@ -56,18 +45,10 @@ email.addEventListener("click",function(e) {
         emailerror = document.getElementById("reg-emailerror");
         emailerror.innerHTML = ("special characters are not valid");
 
-    } else {
-        var regForm = document.getElementById("formsubmit");
-        regForm.submit();
     }
-});
 
-var pass = document.getElementById("formsubmit");
 
-pass.addEventListener("click",function(e) {
-    e.preventDefault();
-
-    var password = document.getElementById("reg-password");
+    var password = document.getElementById("txtPassword");
 
 
     if (password.value.trim() === ""){
@@ -87,40 +68,43 @@ pass.addEventListener("click",function(e) {
         passError = document.getElementById("reg-passerror");
         passError.innerHTML = ("special characters are not valid");
 
-    } else {
-        var userForm = document.getElementById("formsubmit");
-        userForm.submit();
     }
-});
 
 
-var confpass = document.getElementById("formsubmit");
-
-confpass.addEventListener("click",function(e) {
-    e.preventDefault();
-
-    var cpassword = document.getElementById("reg_confirm_password");
+    var cpassword = document.getElementById("txtConfirmPassword");
 
 
     if (cpassword.value.trim() === ""){
         var cpassError = document.getElementById("reg-conpasserror");
         cpassError.innerHTML = ("please fill out Input");
 
-    }else if (password.value.includes("<") || password.value.includes(">")){
+    }if (password.value.includes("<") || password.value.includes(">")){
         cpassError = document.getElementById("reg-conpasserror");
         cpassError.innerHTML = ("< and > are not valid");
 
-    } else if (username.value.includes("$")
+    }if (username.value.includes("$")
         || username.value.includes("@")
         || username.value.includes("*")
         || username.value.includes("&")
         || username.value.includes("%")
         || username.value.includes("#")){
+
         passError = document.getElementById("reg-conpasserror");
         passError.innerHTML = ("special characters are not valid");
 
-    } else {
-        var userForm = document.getElementById("formsubmit");
-        userForm.submit();
     }
+    console.log(password.value);
+    console.log(cpassword.value);
+
+
+        function Validation() {
+
+
+            if (cpassword.value !== password.value) {
+                document.getElementById("reg-conpasserror").innerHTML = "Passwords do not match";
+            }
+        }
+
+    window.setTimeout(Validation, 5000);
+
 });

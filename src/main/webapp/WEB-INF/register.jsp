@@ -21,13 +21,14 @@
                 <div id="reg-emailerror"></div>
             </div>
             <div class="form-group">
-                <label for="reg-password">Password</label>
-                <input id="reg-password" name="password" class="form-control" type="password">
+                <label for="txtPassword">Password</label>
+                <input id="txtPassword" name="password" class="form-control" type="password">
                 <div id="reg-passerror"></div>
             </div>
             <div class="form-group">
-                <label for="reg_confirm_password">Confirm Password</label>
-                <input id="reg_confirm_password" name="confirm_password" class="form-control" type="password">
+
+                <label for="txtConfirmPassword">Confirm Password</label>
+                <input id="txtConfirmPassword" name="confirm_password" class="form-control" type="password">
                 <div id="reg-conpasserror"></div>
             </div>
             <input type="submit" class="btn btn-primary btn-block">
