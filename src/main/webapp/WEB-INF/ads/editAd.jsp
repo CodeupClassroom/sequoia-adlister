@@ -30,7 +30,7 @@
         </div>
         <input type="submit" class="btn btn-block btn-primary">
     </form>
-    <c:if test="${sessionScope.listOfErrors.size() > 0}">
+    <c:if test="${sessionScope.listOfEditUserErrors.size() > 0}">
         <div id="errors" class="alert alert-danger">
             <p>Unable to edit ad!</p>
             <ul>
