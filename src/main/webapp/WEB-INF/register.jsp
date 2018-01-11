@@ -9,7 +9,7 @@
     <jsp:include page="partials/navbar.jsp" />
     <div class="container">
         <h1>Please fill in your information.</h1>
-        <form action="/register" method="post">
+        <form id="formsubmit" action="/register" method="post">
             <div class="form-group">
                 <label for="reg-username">Username</label>
                 <input id="reg-username" name="username" class="form-control" type="text">
@@ -30,7 +30,7 @@
                 <input id="reg_confirm_password" name="confirm_password" class="form-control" type="password">
                 <div id="reg-conpasserror"></div>
             </div>
-            <input type="submit" id="formsubmit" class="btn btn-primary btn-block">
+            <input type="submit" class="btn btn-primary btn-block">
         </form>
         <script src="/javascript/registerValidation.js"></script>
     </div>

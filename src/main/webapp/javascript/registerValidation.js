@@ -74,11 +74,11 @@ pass.addEventListener("click",function(e) {
         var passError = document.getElementById("reg-passerror");
         passError.innerHTML = ("please fill out Input");
 
-    }else if (password.value.includes("<") || username.value.includes(">")){
+    }else if (password.value.includes("<") || password.value.includes(">")){
         passError = document.getElementById("reg-passerror");
         passError.innerHTML = ("< and > are not valid");
 
-    } else if (username.value.includes("$")
+    } else if (password.value.includes("$")
         || username.value.includes("@")
         || username.value.includes("*")
         || username.value.includes("&")

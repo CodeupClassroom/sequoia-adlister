@@ -29,13 +29,13 @@ e.preventDefault();
 var username = document.getElementById("userinput");
 
 
-    if (username.value === "" || " ") {
+    if (username.value === "") {
         var userError = document.getElementById("user-error");
         userError.innerHTML = ("please fill out Input");
-    }else if (username.value === "<"||">") {
+    }else if (username.value === "<"|| username.value === ">") {
         userError = document.getElementById("user-error");
         userError.innerHTML = ("< and > are not valid");
-    } else if (username.value === "$"|| "@" || "*" || "&" || "%" || "#") {
+    } else if (username.value === "$"|| username.value === "@" || username.value === "*" || username.value === "&" || username.value === "%" || username.value === "#") {
         userError = document.getElementById("user-error");
         userError.innerHTML = ("special characters are not valid");
 
