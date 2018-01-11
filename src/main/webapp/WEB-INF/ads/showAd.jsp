@@ -25,6 +25,7 @@
             <h5>Price: $${ad.price} </h5>
             <h5>Description: ${ad.description} </h5>
             <p>User: ${user.username}</p>
+            <a href="/ads/edit?id=${ad.id}"><input type="button" value="Edit"/></a>
         </div>
     </c:forEach>
 </div>
