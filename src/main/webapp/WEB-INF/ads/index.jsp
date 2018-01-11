@@ -23,9 +23,9 @@
             <div class="col-md-6 ads_display_by_col">
                 <h3><a href="/showAd?id=${ad.id}"><c:out value="${ad.title}"/></a></h3>
                 <h5><c:out value="${ad.description}"/></h5>
-                <small>categories: </small>
+                <small>Categories: </small>
                 <c:forEach var="category" items="${ad.categories}">
-                   <small><c:out value="${category.category}"/>, </small>
+                   <small><c:out value="${category.category}"/> / </small>
                 </c:forEach>
             </div>
             </c:forEach>
