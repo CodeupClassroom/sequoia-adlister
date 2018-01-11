@@ -47,11 +47,11 @@ public class LoginServlet extends HttpServlet {
             request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
         }
 
-        boolean validAttempt = Password.check(password, user.getPassword());
+        boolean validAttempt = user != null && Password.check(password, user.getPassword());
 
         if (!validAttempt) {
-            String incorrectPassword = "You must enter the correct password.";
-            listOfLoginErrors.add(incorrectPassword);
+            String invalidAttempt = "You must enter the correct username or password.";
+            listOfLoginErrors.add(invalidAttempt);
             inputHasErrors = true;
         }
 
