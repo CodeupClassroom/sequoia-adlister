@@ -12,7 +12,7 @@
     <div class="container">
         <div class="container">
             <div class="row">
-                <div class="col-xs-4 col-xs-offset-1">
+                <div class="col-xs-3 col-xs-offset-1">
                     <h1 style="text-align: center">Welcome, ${sessionScope.user.username}!</h1>
                     <img src="/images/user_pic.png" alt="">
                     <h5>Username: ${sessionScope.user.username}</h5>
@@ -49,3 +49,15 @@
     </div>
 </body>
 </html>
+<%--<h3>Nested Columns</h3>--%>
+<%--<div class="row">--%>
+
+    <%--<div class="col-lg-8">1</div>--%>
+    <%--<div class="col-lg-4">--%>
+        <%--<div class="row">--%>
+            <%--<div class="col-lg-6">1</div>--%>
+            <%--<div class="col-lg-6">2</div>--%>
+        <%--</div>--%>
+    <%--</div>--%>
+
+<%--</div>--%>
