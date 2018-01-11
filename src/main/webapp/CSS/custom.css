@@ -4,14 +4,15 @@ body {
     font-family: 'Yantramanav', sans-serif;
 }
 
-.welcome, .ads_header, .ads_display {
+.welcome, .ads_header, .ads_display_by_col {
     border-radius: 25px;
     background-color: rgba(211, 211, 211, 0.75);
     padding-bottom: 12px;
 }
 
-.ads_display {
+.ads_display_by_col {
     margin-top: 20px;
+    /*margin-right: 10px;*/
 }
 
 h1, h2, h3, h4, h5, h6, a {
