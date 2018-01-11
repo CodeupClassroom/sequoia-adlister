@@ -26,7 +26,7 @@
                 </div>
                 <div class="form-group">
                     <label for="description">Description</label>
-                    <textarea id="description" name="description" class="form-control" type="text">
+                    <textarea id="description" name="description" class="form-control">
                         ${sessionScope.oldInput.description == null ? "": sessionScope.oldInput.description}
                     </textarea>
                 </div>
@@ -40,6 +40,19 @@
             </form>
         </div>
     </div>
+    <c:if test="${sessionScope.listOfErrors.size() > 0}">
+        <div id="errors" class="alert alert-danger">
+            <p>Unable to create ad!</p>
+            <ul>
+                <c:forEach var="message" items="${listOfErrors}">
+                    <li><c:out value="${message}"></c:out></li>
+                </c:forEach>
+            </ul>
+        </div>
+    </c:if>
+</div>
+</body>
+<script src="/js/hideErrorsInProfile.js"></script>
 </div>
 </body>
 </html>

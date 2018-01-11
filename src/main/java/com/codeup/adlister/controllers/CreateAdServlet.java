@@ -3,6 +3,7 @@ package com.codeup.adlister.controllers;
 import com.codeup.adlister.dao.DaoFactory;
 import com.codeup.adlister.models.Ad;
 import com.codeup.adlister.models.User;
+import com.codeup.adlister.util.ValidateAd;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -32,21 +34,14 @@ public class CreateAdServlet extends HttpServlet {
         String[] categories = request.getParameterValues("category");
 
         Ad ad = new Ad(
-                user.getId(),
                 request.getParameter("title"),
                 request.getParameter("description")
         );
-        boolean inputHasErrors = ad.getTitle().isEmpty() || ad.getDescription().isEmpty();
 
-//        for(String category : ad.getCategories()) {
-//            System.out.println(category);
-//        }
+        ArrayList<String> listOfErrors = ValidateAd.validate(ad);
 
-        System.out.println(ad.getId());
-
-        if (inputHasErrors) {
-            showMessageDialog(null,
-                    "A blank field(s) was detected. Please fix your error(s) and try again.");
+        if (listOfErrors.size() > 0) {
+            request.getSession().setAttribute("listOfErrors", listOfErrors);
 
             HashMap<String, String> oldInput = new HashMap<>();
 
@@ -61,11 +56,6 @@ public class CreateAdServlet extends HttpServlet {
 
             // create and save a new ad
             Long adId = DaoFactory.getAdsDao().insert(ad);
-
-
-            System.out.println(adId);
-
-
 
             for (String category : categories) {
                 long category_id = Long.parseLong(category);
