@@ -10,14 +10,27 @@
 <jsp:include page="partials/navbar.jsp"/>
 
 <div class="container">
-    <div class="row">
-        <h1>Ad Results</h1>
-        <c:forEach var="ad" items="${ads}">
-            <div class="col-md-6">
-                <h3><a href="/showAd?id=${ad.id}"><c:out value="${ad.title}"/></a></h3>
-                <p><c:out value="${ad.description}"/></p>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 ads_result">
+                <h1 style="text-align: center">Ad Results</h1>
             </div>
-        </c:forEach>
+        </div>
+        <section>
+            <div class="row">
+                <c:forEach var="ad" items="${ads}">
+                    <div class="col-md-6 ads_display_by_col">
+                        <h3><a href="/showAd?id=${ad.id}"><c:out value="${ad.title}"/></a></h3>
+                        <h5><c:out value="${ad.description}"/></h5>
+
+                        <small>Categories: </small>
+                        <c:forEach var="category" items="${ad.categories}">
+                            <small><c:out value="${category.category}"/> / </small>
+                        </c:forEach>
+                    </div>
+                </c:forEach>
+            </div>
+        </section>
     </div>
 </div>
 </body>
