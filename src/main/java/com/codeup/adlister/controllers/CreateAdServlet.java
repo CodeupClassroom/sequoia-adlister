@@ -29,7 +29,7 @@ public class CreateAdServlet extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/ads/create.jsp").forward(request, response);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         User user = (User) request.getSession().getAttribute("user");
         String[] categories = request.getParameterValues("category");
 
@@ -38,10 +38,26 @@ public class CreateAdServlet extends HttpServlet {
                 request.getParameter("description")
         );
 
-        ArrayList<String> listOfErrors = ValidateAd.validate(ad);
+        ArrayList<String> listOfCreateAdErrors = ValidateAd.validate(ad);
 
-        if (listOfErrors.size() > 0) {
-            request.getSession().setAttribute("listOfErrors", listOfErrors);
+        boolean inputHasErrors = false;
+
+
+        if (ad.getTitle().isEmpty()) {
+            String titleIsEmpty = "You must enter a title.";
+            listOfCreateAdErrors.add(titleIsEmpty);
+            inputHasErrors = true;
+        }
+
+        if (ad.getDescription().isEmpty()) {
+            String descriptionIsEmpty = "You must enter a description.";
+            listOfCreateAdErrors.add(descriptionIsEmpty);
+            inputHasErrors = true;
+        }
+
+
+        if (inputHasErrors) {
+            request.getSession().setAttribute("listOfCreateAdErrors", listOfCreateAdErrors);
 
             HashMap<String, String> oldInput = new HashMap<>();
 
@@ -50,7 +66,10 @@ public class CreateAdServlet extends HttpServlet {
 
             request.getSession().setAttribute("oldInput", oldInput);
 
-            response.sendRedirect("/ads/create");
+
+            request.setAttribute("categories", DaoFactory.getCategoriesDao().getAllCategories());
+            request.getRequestDispatcher("/WEB-INF/ads/create.jsp").forward(request, response);
+
 
         } else {
 
