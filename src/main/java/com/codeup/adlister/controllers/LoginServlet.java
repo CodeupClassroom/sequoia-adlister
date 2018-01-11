@@ -50,7 +50,7 @@ public class LoginServlet extends HttpServlet {
         boolean validAttempt = Password.check(password, user.getPassword());
 
         if (!validAttempt) {
-            String incorrectPassword = "You must  enter the correct password.";
+            String incorrectPassword = "You must enter the correct password.";
             listOfLoginErrors.add(incorrectPassword);
             inputHasErrors = true;
         }
