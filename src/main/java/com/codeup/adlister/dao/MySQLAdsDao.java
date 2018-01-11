@@ -146,6 +146,7 @@ public class MySQLAdsDao implements Ads {
 
     @Override
     public void deleteAd(long id) {
+        deletecategories(id);
         String query = "DELETE FROM ads WHERE id = ?";
         try {
             PreparedStatement stmt = connection.prepareStatement(query);
@@ -153,6 +154,17 @@ public class MySQLAdsDao implements Ads {
             stmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("Error deleting ad.", e);
+        }
+    }
+
+    public void deletecategories(long id){
+        String query = "DELETE FROM ad_category WHERE ads_id = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setLong(1, id);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error  ad.", e);
         }
     }
 }

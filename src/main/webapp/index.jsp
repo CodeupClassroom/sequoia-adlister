@@ -13,7 +13,7 @@
     <section class="welcome">
         <div class="row">
             <div class="col-xs-12">
-                <h1 style="text-align: center">Welcome to the Adlister!</h1>
+                <h1 style="text-align: center">Welcome to our Yard Sale Adlister!</h1>
             </div>
         </div>
     </section>

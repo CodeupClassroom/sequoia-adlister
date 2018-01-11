@@ -40,11 +40,11 @@
             </form>
         </div>
     </div>
-    <c:if test="${sessionScope.listOfErrors.size() > 0}">
+    <c:if test="${sessionScope.listOfCreateAdErrors.size() > 0}">
         <div id="errors" class="alert alert-danger">
             <p>Unable to create ad!</p>
             <ul>
-                <c:forEach var="message" items="${listOfErrors}">
+                <c:forEach var="message" items="${listOfCreateAdErrors}">
                     <li><c:out value="${message}"></c:out></li>
                 </c:forEach>
             </ul>
