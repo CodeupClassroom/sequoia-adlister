@@ -34,6 +34,7 @@ public class CreateAdServlet extends HttpServlet {
         String[] categories = request.getParameterValues("category");
 
         Ad ad = new Ad(
+                user.getId(),
                 request.getParameter("title"),
                 request.getParameter("description")
         );

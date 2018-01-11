@@ -4,7 +4,7 @@ body {
     font-family: 'Yantramanav', sans-serif;
 }
 
-.welcome, .ads_header, .ads_display_by_col {
+.welcome, .ads_header, .ads_display_by_col, .ads_result {
     border-radius: 25px;
     background-color: rgba(211, 211, 211, 0.75);
     padding-bottom: 12px;
