@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -31,6 +32,7 @@ public class CreateAdServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         User user = (User) request.getSession().getAttribute("user");
+
         String[] categories = request.getParameterValues("category");
 
         Ad ad = new Ad(
@@ -55,7 +57,7 @@ public class CreateAdServlet extends HttpServlet {
             listOfCreateAdErrors.add(descriptionIsEmpty);
             inputHasErrors = true;
         }
-        if(categories == null && categories.length < 0){
+        if(categories == null || categories.length == 0){
             String noCategoriesSelected = "You must select at least 1 category";
             listOfCreateAdErrors.add(noCategoriesSelected);
             inputHasErrors = true;
