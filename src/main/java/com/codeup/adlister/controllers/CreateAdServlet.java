@@ -38,10 +38,10 @@ public class CreateAdServlet extends HttpServlet {
                 request.getParameter("description")
         );
 
-        ArrayList<String> listOfCreateAdErrors = new ArrayList<>();
 
         boolean inputHasErrors = false;
 
+        ArrayList<String> listOfCreateAdErrors = new ArrayList<>();
 
         if (ad.getTitle().isEmpty()) {
             String titleIsEmpty = "You must enter a title.";
@@ -55,7 +55,7 @@ public class CreateAdServlet extends HttpServlet {
             inputHasErrors = true;
         }
 
-        if(categories.length == 0){
+        if(categories.length <= 0){
             String noCategoriesSelected = "You must select at least 1 category";
             listOfCreateAdErrors.add(noCategoriesSelected);
             inputHasErrors = true;
@@ -65,12 +65,12 @@ public class CreateAdServlet extends HttpServlet {
         if (inputHasErrors) {
             request.getSession().setAttribute("listOfCreateAdErrors", listOfCreateAdErrors);
 
-            HashMap<String, String> oldInput = new HashMap<>();
-
-            oldInput.put("title", ad.getTitle());
-            oldInput.put("description", ad.getDescription());
-
-            request.getSession().setAttribute("oldInput", oldInput);
+//            HashMap<String, String> oldInput = new HashMap<>();
+//
+//            oldInput.put("title", ad.getTitle());
+//            oldInput.put("description", ad.getDescription());
+//
+//            request.getSession().setAttribute("oldInput", oldInput);
 
             request.setAttribute("categories", DaoFactory.getCategoriesDao().getAllCategories());
             request.getRequestDispatcher("/WEB-INF/ads/create.jsp").forward(request, response);
