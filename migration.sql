@@ -1,11 +1,12 @@
 USE adlister_db;
 
+# KEEPING THESE LINES IS NOT RECOMMENDED (by me, anyway)
 DROP TABLE IF EXISTS ad_category;
 DROP TABLE IF EXISTS ads;
 DROP TABLE IF EXISTS categories;
 DROP TABLE IF EXISTS users;
 
-CREATE TABLE categories
+CREATE TABLE IF NOT EXISTS categories
 (
     id       INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
     category VARCHAR(255),
@@ -13,7 +14,7 @@ CREATE TABLE categories
 );
 
 
-CREATE TABLE users (
+CREATE TABLE IF NOT EXISTS users (
     id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     username VARCHAR(240) NOT NULL,
     email VARCHAR(240) NOT NULL,
@@ -21,7 +22,7 @@ CREATE TABLE users (
     PRIMARY KEY (id)
 );
 
-CREATE TABLE ads (
+CREATE TABLE IF NOT EXISTS ads (
     id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     user_id INT UNSIGNED NOT NULL,
     title VARCHAR(240) NOT NULL,
@@ -31,7 +32,7 @@ CREATE TABLE ads (
         ON DELETE CASCADE
 );
 
-CREATE TABLE ad_category (
+CREATE TABLE IF NOT EXISTS ad_category (
     ads_id INTEGER UNSIGNED NOT NULL,
     cat_id INTEGER UNSIGNED NOT NULL,
     FOREIGN KEY (ads_id) REFERENCES ads (id),
@@ -39,14 +40,14 @@ CREATE TABLE ad_category (
 );
 
 INSERT INTO categories (category)
-    VALUES ('electronics'),
-        ('clothing'),
-        ('furniture'),
-        ('service'),
-        ('babies_toys'),
-        ('appliances'),
-        ('garden_patio'),
-        ('automotive'),
-        ('farm_animals'),
-        ('home'),
-        ('other');
+    VALUES ('Electronics'),
+        ('Clothing'),
+        ('Furniture'),
+        ('Service'),
+        ('Babies & Toys'),
+        ('Appliances'),
+        ('Garden_patio'),
+        ('Automotive'),
+        ('Farm Animals'),
+        ('Home'),
+        ('Other');
