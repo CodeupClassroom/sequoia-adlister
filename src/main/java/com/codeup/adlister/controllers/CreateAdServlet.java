@@ -34,14 +34,13 @@ public class CreateAdServlet extends HttpServlet {
         Ad ad = new Ad(
                 user.getId(),
                 request.getParameter("title"),
-                request.getParameter("description"),
-                categories
+                request.getParameter("description")
         );
         boolean inputHasErrors = ad.getTitle().isEmpty() || ad.getDescription().isEmpty();
 
-        for(String category : ad.getCategories()) {
-            System.out.println(category);
-        }
+//        for(String category : ad.getCategories()) {
+//            System.out.println(category);
+//        }
 
         System.out.println(ad.getId());
 

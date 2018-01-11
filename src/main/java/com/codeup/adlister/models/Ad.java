@@ -7,19 +7,24 @@ public class Ad {
     private long userId;
     private String title;
     private String description;
-    private String[] categories;
+    private List<Category> categories;
 
 
-    public Ad(long id, long userId, String title, String description, String[] categories) {
+    public Ad(long id, long userId, String title, String description) {
         this.id = id;
         this.userId = userId;
         this.title = title;
         this.description = description;
-        this.categories = categories;
     }
 
-    public Ad(long userId, String title, String description, String[] categories) {
+    public Ad(long userId, String title, String description) {
         this.userId = userId;
+        this.title = title;
+        this.description = description;
+    }
+
+    public Ad(long id,String title, String description, List<Category> categories) {
+        this.id = id;
         this.title = title;
         this.description = description;
         this.categories = categories;
@@ -56,10 +61,12 @@ public class Ad {
     public void setDescription(String description) {
         this.description = description;
     }
-    public String[] getCategories() {
+
+    public List<Category> getCategories() {
         return categories;
     }
 
-    public void setCategories(String[] categories) {
+    public void setCategories(List<Category> categories) {
         this.categories = categories;
     }
+}
