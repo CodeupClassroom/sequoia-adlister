@@ -4,7 +4,7 @@
     <jsp:include page="partials/head.jsp">
         <jsp:param name="title" value="Register For Our Site!" />
     </jsp:include>
-    <link rel="stylesheet" href="/design/loginPage.css">
+    <link rel="stylesheet" href="/design/adlister.css">
 </head>
 <body>
     <jsp:include page="partials/navbar.jsp" />
@@ -14,7 +14,7 @@
 
         <div class="container">
 
-            <form action="/register" class="form-group loginform" id="user-form" method="POST">
+            <form action="/register" class="form-group loginform" id="user-form" method="POST" onsubmit="return myFunction()">
 
                     <label for="usrname">Username</label>
                     <input type="text" id="usrname" name="usrname" required>
@@ -35,12 +35,13 @@
                 <br>
 
 
-                    <label for="ConfirmPassword">Confirm Password</label>
-                    <input id="ConfirmPassword" name="confirm_password" class="form-control" type="password">
-                    <div id="reg-passerror"></div>
+                    <label for="ConfirmPassword">Confirm Password
+                    <input id="ConfirmPassword" name="confirm_password" class="form-control" type="password" onkeyup="check()">
+                    <span id="reg-passerror"></span>
+                    </label>
 
 
-                <input type="submit" class="btn btn-primary btn-block">
+                <input type="submit" value="Submit" class="btn btn-primary btn-block">
             </form>
         </div>
     </div>
@@ -51,10 +52,6 @@
         <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
         <p id="number" class="invalid">A <b>number</b></p>
         <p id="length" class="invalid">Minimum <b>8 characters</b></p>
-    </div>
-
-    <div id="cmessage">
-        <p id="confirm" class="invalid"> <b>Passwords Do Not Match</b></p>
     </div>
 
     <script src="/javascript/registerValidation.js"></script>

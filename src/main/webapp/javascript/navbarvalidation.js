@@ -12,9 +12,10 @@ search.addEventListener("click", function (e) {
 
     if (term.value.includes("<") || term.value.includes(">")) {
 
+
         searchError.innerHTML = ("HTML tags are not valid");
 
-    } if (term.value.includes("$")) {
+    } else if (term.value.includes("$")) {
         searchError.innerHTML = ("$ is not valid");
 
     } else  {
