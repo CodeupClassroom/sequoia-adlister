@@ -4,29 +4,38 @@
     <jsp:include page="/WEB-INF/partials/head.jsp">
         <jsp:param name="title" value="Please Log In" />
     </jsp:include>
-    <%--<link rel="stylesheet" href="/design/loginPage.css">--%>
+    <link rel="stylesheet" href="/design/loginPage.css">
 </head>
 <body>
     <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 
     <div class="container-form">
-        <div class="grad"></div>
-
         <div class="header"><h1>Please Log In</h1></div>
-            <form action="/login" id="user-form" method="POST">
-                <div class="form-group loginform">
-                    <label for="userinput">Username</label>
-                    <input id="userinput" name="username" class="form-control" type="text" placeholder="User name">
-                    <div id="user-error"></div>
-                </div>
-                <div class="form-group">
-                    <label for="passinput">Password</label>
-                    <input id="passinput" name="password" class="form-control" type="password" placeholder="Password">
-                    <div id="pass-error" ></div>
-                </div>
-                <input type="submit" id="user-btn" class="btn btn-primary btn-block" value="Log In">
+        <div class="container">
+            <form action="/login" class="form-group loginform" id="user-form" method="POST">
+                <label for="usrname">Username</label>
+                <input type="text" id="usrname" name="usrname" required>
+
+                <label for="psw">Password</label>
+                <input type="password" id="psw" name="psw"
+                       pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                       title="Must contain at least one number
+                       and one uppercase and lowercase letter,
+                       and at least 8 or more characters" required>
+
+                <input type="submit" class="btn-block" value="Login">
             </form>
+        </div>
     </div>
+
+    <div id="message">
+        <h3>Password must contain the following:</h3>
+        <p id="letter" class="invalid">A <b>lowercase</b>letter</p>
+        <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+        <p id="number" class="invalid">A <b>number</b></p>
+        <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+    </div>
+
 
     <script src="/javascript/validation.js"></script>
 

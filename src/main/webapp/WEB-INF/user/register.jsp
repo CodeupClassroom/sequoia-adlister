@@ -4,36 +4,59 @@
     <jsp:include page="../partials/head.jsp">
         <jsp:param name="title" value="Register For Our Site!" />
     </jsp:include>
+    <link rel="stylesheet" href="/design/loginPage.css">
 </head>
 <body>
     <jsp:include page="../partials/navbar.jsp" />
-    <div class="container">
-        <h1>Please fill in your information.</h1>
-        <form id="formsubmit" action="/register" method="post">
-            <div class="form-group">
-                <label for="reg-username">Username</label>
-                <input id="reg-username" name="username" class="form-control" type="text">
-                <div id="reg-usererror"></div>
-            </div>
-            <div class="form-group">
-                <label for="reg-email">Email</label>
-                <input id="reg-email" name="email" class="form-control" type="text">
-                <div id="reg-emailerror"></div>
-            </div>
-            <div class="form-group">
-                <label for="reg-password">Password</label>
-                <input id="reg-password" name="password" class="form-control" type="password">
-                <div id="reg-passerror"></div>
-            </div>
-            <div class="form-group">
-                <label for="reg_confirm_password">Confirm Password</label>
-                <input id="reg_confirm_password" name="confirm_password" class="form-control" type="password">
-                <div id="reg-conpasserror"></div>
-            </div>
-            <input type="submit" class="btn btn-primary btn-block">
-        </form>
-        <script src="/javascript/registerValidation.js"></script>
+
+    <div class="header"><h1>Please Register</h1></div>
+    <div class="container-form">
+
+        <div class="container">
+
+            <form action="/register" class="form-group loginform" id="user-form" method="POST">
+
+                    <label for="usrname">Username</label>
+                    <input type="text" id="usrname" name="usrname" required>
+                <br>
+
+
+                    <label for="email">Email</label>
+                    <input id="email" name="email" type="text">
+                <br>
+
+
+                    <label for="psw">Password</label>
+                    <input type="password" id="psw" name="psw"
+                           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                           title="Must contain at least one number
+                               and one uppercase and lowercase letter,
+                               and at least 8 or more characters" required>
+                <br>
+
+
+                    <label for="ConfirmPassword">Confirm Password</label>
+                    <input id="ConfirmPassword" name="confirm_password" class="form-control" type="password">
+                    <div id="reg-passerror"></div>
+
+
+                <input type="submit" class="btn btn-primary btn-block">
+            </form>
+        </div>
     </div>
 
+    <div id="message">
+        <h3>Password must contain the following:</h3>
+        <p id="letter" class="invalid">A <b>lowercase</b>letter</p>
+        <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+        <p id="number" class="invalid">A <b>number</b></p>
+        <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+    </div>
+
+    <div id="cmessage">
+        <p id="confirm" class="invalid"> <b>Passwords Do Not Match</b></p>
+    </div>
+
+    <script src="/javascript/registerValidation.js"></script>
 </body>
 </html>
