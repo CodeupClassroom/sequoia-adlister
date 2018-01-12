@@ -33,7 +33,7 @@
             <div class="carousel-inner" role="listbox">
 
                 <div class="item active">
-                    <img src="/images/cats.jpg" alt="Cats" width="460" height="345">
+                    <img src="/images/cats.jpg" alt="Cats" width="460" height="600">
                     <div class="carousel-caption">
                         <h3>Cats, dogs, horses and more</h3>
                         <p>Even farm animals!</p>
@@ -41,7 +41,7 @@
                 </div>
 
                 <div class="item">
-                    <img src="/images/toddler_clothes.jpg" alt="Clothes" width="460" height="345">
+                    <img src="/images/toddler_clothes.jpg" alt="Clothes" width="460" height="600">
                     <div class="carousel-caption">
                         <h3>Toddlers clothes</h3>
                         <p>Clothing new or used in good condition</p>
@@ -49,7 +49,7 @@
                 </div>
 
                 <div class="item">
-                    <img src="/images/books.jpg" alt="Xray" width="460" height="345">
+                    <img src="/images/books.jpg" alt="Xray" width="460" height="600">
                     <div class="carousel-caption">
                         <h3>Any kind of ads here!</h3>
                         <p>and more!</p>
@@ -57,7 +57,7 @@
                 </div>
 
                 <div class="item">
-                    <img src="/images/rose.jpeg" alt="Flower" width="460" height="345">
+                    <img src="/images/rose.jpeg" alt="Flower" width="460" height="600">
                     <div class="carousel-caption">
                         <h3>Flowers</h3>
                         <p>Beautiful flowers.</p>
@@ -78,5 +78,8 @@
         </div>
     </section>
 </div>
+
+<jsp:include page="/WEB-INF/partials/footer.jsp"/>
+
 </body>
 </html>

@@ -39,6 +39,7 @@
         </div>
     </c:if>
 </div>
+<jsp:include page="/WEB-INF/partials/footer.jsp"/>
 <script src="/js/hideErrorsInProfile.js"></script>
 </body>
 </html>
