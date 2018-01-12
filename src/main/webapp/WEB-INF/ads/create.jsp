@@ -32,7 +32,7 @@
 
                 <div class="form-group">
                     <c:forEach var="category" items="${categories}">
-                        <input type="checkbox" name="category" value="${category.id}"> ${category.category}<br>
+                        <input class="categories_text" type="checkbox" name="category" value="${category.id}"> ${category.category}<br>
                     </c:forEach>
                 </div>
                 <input type="submit" class="btn btn-block btn-primary">
