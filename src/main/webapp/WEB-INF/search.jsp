@@ -9,8 +9,8 @@
 <body>
 <jsp:include page="partials/navbar.jsp"/>
 
-<div class="container">
-    <div class="container">
+<div class="container nonFooter">
+    <div class="container content">
         <div class="row">
             <div class="col-lg-12 ads_result">
                 <h1 style="text-align: center">Search Results: </h1>
@@ -46,7 +46,7 @@
         </section>
     </div>
 </div>
-<jsp:include page="/WEB-INF/partials/footer.jsp"/>
+<%--<jsp:include page="/WEB-INF/partials/footer.jsp"/>--%>
 
 </body>
 </html>
