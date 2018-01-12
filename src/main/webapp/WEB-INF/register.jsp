@@ -18,25 +18,15 @@
     if (email == null) email = "";
 %>
 
-<<<<<<< HEAD
-    <div class="container">
+<div class="container nonFooter">
+    <div id="content">
         <div class="row">
             <div class="col-lg-12 login_header">
                 <h1 style="text-align: center">Please fill in your information.</h1>
-=======
-<div class="container nonFooter">
-    <div id="content">
-        <h1>Please fill in your information.</h1>
-        <form action="/register" method="post">
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input id="username" name="username" class="form-control" type="text" value="<%=username%>">
->>>>>>> master
             </div>
         </div>
         <br>
         <br>
-
         <%--<h1>Please fill in your information.</h1>--%>
         <div class="row">
             <div class="col-lg-12">
