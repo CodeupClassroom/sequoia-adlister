@@ -28,10 +28,16 @@
                     <div class="row">
                         <c:forEach var="ad" items="${ads}">
                             <div class="col-lg-6 ads_display_by_col">
-                                <h2><a href="/showAd?id=${ad.id}"><c:out value="${ad.title}"/></a></h2>
-                                <p><c:out value="${ad.description}"/></p>
+                                <h3><a href="/showAd?id=${ad.id}"><c:out value="${ad.title}"/></a></h3>
+                                <h5><c:out value="${ad.description}"/></h5>
+
+                                <small>Categories: </small>
+                                <c:forEach var="category" items="${ad.categories}">
+                                    <small><c:out value="${category.category}"/> / </small>
+                                </c:forEach>
+
                                 <div class="row">
-                                    <div class="col-lg-3">
+                                    <div class="col-lg-offset-1 col-lg-3">
                                         <button type="button" class="btn btn-default">
                                             <a href="/editAd?id=${ad.id}&title=${ad.title}&description=${ad.description}"><span
                                                     class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit Ad</a>
