@@ -7,18 +7,19 @@
     </jsp:include>
 </head>
 <body>
-    <jsp:include page="partials/navbar.jsp"/>
+<jsp:include page="partials/navbar.jsp"/>
 
 
-    <%--// obtaining inputs for text area--%>
-    <% String username = request.getParameter("username");
-        if (username == null) username = "";
+<%--// obtaining inputs for text area--%>
+<% String username = request.getParameter("username");
+    if (username == null) username = "";
 
-        String email = request.getParameter("email");
-        if (email == null) email = "";
-    %>
+    String email = request.getParameter("email");
+    if (email == null) email = "";
+%>
 
-    <div class="container">
+<div class="container nonFooter">
+    <div id="content">
         <h1>Please fill in your information.</h1>
         <form action="/register" method="post">
             <div class="form-group">
@@ -51,8 +52,10 @@
             </div>
         </c:if>
     </div>
-</body>
+</div>
+
 <jsp:include page="/WEB-INF/partials/footer.jsp"/>
+</body>
 
 <script src="/js/hideErrorsInProfile.js"></script>
 </html>
