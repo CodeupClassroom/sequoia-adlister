@@ -34,6 +34,16 @@ public class EditUserServlet extends HttpServlet {
             inputHasErrors = true;
         }
 
+        if (inputHasErrors) {
+            // Displays an error message based on user input.
+            request.getSession().setAttribute("listOfErrors", listOfErrors);
+            request.getRequestDispatcher("/WEB-INF/editUser.jsp").forward(request, response);
+        } else {
+            // Save the new user information
+            DaoFactory.getUsersDao().editEmail(email, user.getId());
+            response.sendRedirect("/login");
+        }
+
         if (password.isEmpty()) {
             String passwordIsEmpty = "You must enter a password.";
             listOfErrors.add(passwordIsEmpty);
@@ -52,7 +62,7 @@ public class EditUserServlet extends HttpServlet {
             request.getRequestDispatcher("/WEB-INF/editUser.jsp").forward(request, response);
         } else {
             // Save the new user information
-            DaoFactory.getUsersDao().editProfileInformation(email, password, user.getId());
+            DaoFactory.getUsersDao().editPassword(password, user.getId());
             response.sendRedirect("/login");
         }
     }
