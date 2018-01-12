@@ -26,34 +26,41 @@ public class EditUserServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String passwordConfirmation = request.getParameter("confirm_password");
-
-        editEmail(request, response, email);
-        editPassword(request, response, password, passwordConfirmation);
-    }
-
-    private void editEmail(HttpServletRequest request, HttpServletResponse response, String email)
-            throws ServletException, IOException {
-        User user = (User) request.getSession().getAttribute("user");
         boolean inputHasErrors = false;
-        ArrayList<String> listOfEditEmailErrors = new ArrayList<>();
+        ArrayList<String> listOfEditUserErrors = new ArrayList<>();
 
+        if (email.isEmpty() && password.isEmpty() && passwordConfirmation.isEmpty()) {
+            String editError = "You must submit an email/password.";
+            listOfEditUserErrors.add(editError);
+            inputHasErrors = true;
+        }
 
-        // Check if the email field is empty.
-        if (email.isEmpty()) {
-            String emailIsEmpty = "You must enter an email.";
-            listOfEditEmailErrors.add(emailIsEmpty);
+        if (password.isEmpty() && !passwordConfirmation.isEmpty()) {
+            String passwordRequired = "You must enter a password before it can be confirmed.";
+            listOfEditUserErrors.add(passwordRequired);
             inputHasErrors = true;
         }
 
         if (inputHasErrors) {
             // Displays an error message based on user input.
-            request.getSession().setAttribute("listOfErrors", listOfEditEmailErrors);
+            request.getSession().setAttribute("listOfErrors", listOfEditUserErrors);
             request.getRequestDispatcher("/WEB-INF/editUser.jsp").forward(request, response);
-        } else {
-            // Save the new email.
-            DaoFactory.getUsersDao().editEmail(email, user.getId());
-            response.sendRedirect("/login");
         }
+
+        if (!email.isEmpty()) {
+            editEmail(request, response, email);
+        }
+
+        if (!password.isEmpty()) {
+            editPassword(request, response, password, passwordConfirmation);
+        }
+    }
+
+    private void editEmail(HttpServletRequest request, HttpServletResponse response, String email)
+            throws ServletException, IOException {
+        User user = (User) request.getSession().getAttribute("user");
+        DaoFactory.getUsersDao().editEmail(email, user.getId());
+        response.sendRedirect("/profile");
     }
 
     private void editPassword(HttpServletRequest request, HttpServletResponse response, String password,
@@ -63,13 +70,6 @@ public class EditUserServlet extends HttpServlet {
         boolean inputHasErrors = false;
         ArrayList<String> listOfEditPasswordErrors = new ArrayList<>();
 
-        // Check if the password field is empty.
-        if (password.isEmpty()) {
-            String passwordIsEmpty = "You must enter a password.";
-            listOfEditPasswordErrors.add(passwordIsEmpty);
-            inputHasErrors = true;
-        }
-
         // Check if the passwords match.
         if (!passwordConfirmation.equals(password)) {
             String passwordsDoNotMatch = "Your passwords do not match.";
@@ -78,13 +78,12 @@ public class EditUserServlet extends HttpServlet {
         }
 
         if (inputHasErrors) {
-            // Displays an error message based on user input.
             request.getSession().setAttribute("listOfErrors", listOfEditPasswordErrors);
             request.getRequestDispatcher("/WEB-INF/editUser.jsp").forward(request, response);
         } else {
             // Save the new password.
             DaoFactory.getUsersDao().editPassword(password, user.getId());
-            response.sendRedirect("/login");
+            response.sendRedirect("/profile");
         }
     }
 }
