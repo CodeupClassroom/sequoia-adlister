@@ -35,32 +35,32 @@
                 <div class="item active">
                     <img src="/images/cats.jpg" alt="Cats" width="460" height="600">
                     <div class="carousel-caption">
-                        <h3>Cats, dogs, horses and more</h3>
-                        <p>Even farm animals!</p>
+                        <h3 class="carousel_text">Cats, dogs, horses and more</h3>
+                        <p class="carousel_text">Even farm animals!</p>
                     </div>
                 </div>
 
                 <div class="item">
                     <img src="/images/toddler_clothes.jpg" alt="Clothes" width="460" height="600">
                     <div class="carousel-caption">
-                        <h3>Toddlers clothes</h3>
-                        <p>Clothing new or used in good condition</p>
-                    </div>
-                </div>
-
-                <div class="item">
-                    <img src="/images/books.jpg" alt="Xray" width="460" height="600">
-                    <div class="carousel-caption">
-                        <h3>Any kind of ads here!</h3>
-                        <p>and more!</p>
+                        <h3 class="carousel_text">Toddlers clothes</h3>
+                        <p class="carousel_text">Clothing new or used in good condition</p>
                     </div>
                 </div>
 
                 <div class="item">
                     <img src="/images/rose.jpeg" alt="Flower" width="460" height="600">
                     <div class="carousel-caption">
-                        <h3>Flowers</h3>
-                        <p>Beautiful flowers.</p>
+                        <h3 class="carousel_text">Flowers</h3>
+                        <p class="carousel_text">Beautiful flowers.</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <img src="/images/books.jpg" alt="Xray" width="460" height="600">
+                    <div class="carousel-caption">
+                        <h3 class="carousel_text">Any kind of ads here!</h3>
+                        <p class="carousel_text">and more!</p>
                     </div>
                 </div>
 
