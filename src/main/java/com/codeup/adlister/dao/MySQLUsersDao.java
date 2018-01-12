@@ -64,16 +64,28 @@ public class MySQLUsersDao implements Users {
 //    }
 
     @Override
-    public void editProfileInformation(String email, String password, long id) {
-        String query = "UPDATE users SET email = ?, password = ? WHERE id = ?";
+    public void editEmail(String email, long id) {
+        String query = "UPDATE users SET email = ? WHERE id = ?";
         try {
             PreparedStatement stmt = connection.prepareStatement(query);
             stmt.setString(1, email);
-            stmt.setString(2, Password.hash(password));
-            stmt.setLong(3, id);
+            stmt.setLong(2, id);
             stmt.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException("Error editing profile information.", e);
+            throw new RuntimeException("Error editing email.", e);
+        }
+    }
+
+    @Override
+    public void editPassword(String password, long id) {
+        String query = "UPDATE users SET password = ? WHERE id = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setString(1, Password.hash(password));
+            stmt.setLong(2, id);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error editing password.", e);
         }
     }
 
