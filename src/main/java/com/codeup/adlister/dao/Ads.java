@@ -19,4 +19,5 @@ public interface Ads {
     void editAd(Ad ad);
     List<Ad> search(String searchAd);
 
+    List<Ad> showAds(long id);
 }
