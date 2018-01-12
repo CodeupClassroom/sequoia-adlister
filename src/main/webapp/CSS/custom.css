@@ -1,12 +1,36 @@
+html{
+    height:100%;
+}
 body {
     background: url("/images/Yellow.jpg") no-repeat;
     background-blend-mode: lighten;
     background-size: cover;
+    height:100%;
     font-family: 'Yantramanav', sans-serif;
 }
-.container {
-    height:100%;
+
+
+#nonFooter
+{
+    position: relative;
+    min-height: 100%;
 }
+* html #nonFooter
+{
+    height: 100%;
+}
+#content
+{
+    padding-bottom: 9em;
+}
+#footer
+{
+    position: relative;
+    margin-top: -.5em;
+    background-color: rgba(211, 211, 211, 0.75);
+    text-align: center;
+}
+
 
 .welcome, .ads_header, .ads_display_by_col, .ads_result, .login_header {
     border-radius: 25px;
@@ -49,14 +73,9 @@ h1, h2, h3, h4, h5, h6, a {
     position: relative;
     left: 50px;
 }
-#footer {
-    position:fixed;
-    bottom:0;
-    width:100%;
-    height:25px;   /* Height of the footer */
-    background-color: rgba(211, 211, 211, 0.75);
-    text-align: center;
-}
+
+
+
 
 .carousel_text, .categories_text {
     background-color: rgba(211, 211, 211, 0.75);

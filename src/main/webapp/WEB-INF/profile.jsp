@@ -9,8 +9,8 @@
 <body>
     <jsp:include page="/WEB-INF/partials/navbar.jsp"/>
 
-    <div class="container">
-        <div class="container">
+    <div class="container nonFooter">
+        <div id="content" class="container">
             <div class="row">
                 <div class="col-lg-3 welcome">
                     <h1 style="text-align: center">Welcome, ${sessionScope.user.username}!</h1>
