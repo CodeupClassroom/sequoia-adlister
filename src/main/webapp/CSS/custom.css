@@ -4,10 +4,10 @@ body {
     font-family: 'Yantramanav', sans-serif;
 }
 
-.welcome, .ads_header, .ads_display_by_col, .ads_result {
+.welcome, .ads_header, .ads_display_by_col, .ads_result, .login_header {
     border-radius: 25px;
     background-color: rgba(211, 211, 211, 0.75);
-    padding-bottom: 12px;
+    /*padding-bottom: 12px;*/
 }
 
 .ads_display_by_col {
@@ -23,5 +23,11 @@ h1, h2, h3, h4, h5, h6, a {
     width: 250px;
     height: 250px;
     border-radius: 50%;
+}
+
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+    width: 70%;
+    margin: auto;
 }
 
