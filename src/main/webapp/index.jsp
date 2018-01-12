@@ -56,13 +56,13 @@
                     </div>
                 </div>
 
-                <%--<div class="item">--%>
-                    <%--<img src="/images/rose.jpeg" alt="Flower" width="460" height="345">--%>
-                    <%--<div class="carousel-caption">--%>
-                        <%--<h3>Flowers</h3>--%>
-                        <%--<p>Beautiful flowers.</p>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
+                <div class="item">
+                    <img src="/images/rose.jpeg" alt="Flower" width="460" height="345">
+                    <div class="carousel-caption">
+                        <h3>Flowers</h3>
+                        <p>Beautiful flowers.</p>
+                    </div>
+                </div>
 
             </div>
 
