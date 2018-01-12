@@ -31,6 +31,7 @@
                 <li><a href="/ads/create">Create an Ad</a></li>
                 <li><a href="/profile">${user.username}'s Profile</a></li>
                 <li><a href="/logout">Logout</a></li>
+                <li><a href="/search_categories">Search by Category</a></li>
 
             </c:if>
         </ul>

@@ -12,8 +12,6 @@
         <jsp:param name="delete" value="Deleting Ad" />
     </jsp:include>
 </head>
-<body>
-
-</form>
-</body>
+    <body>
+    </body>
 </html>

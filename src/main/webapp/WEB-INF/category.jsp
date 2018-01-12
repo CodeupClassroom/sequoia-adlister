@@ -8,7 +8,21 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <jsp:include page="partials/head.jsp">
+        <jsp:param name="title" value="Register For Our Site!" />
+    </jsp:include>
+    <link rel="stylesheet" href="/css/category.css">
+    <style>
+        h1 {
+            text-align: center;
+            font-size: 65px;
+            text-shadow: 3px 3px 0 #cdcdcd;
+        }
 
+        form {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 <div class="container">
@@ -45,9 +59,12 @@
         <label for="Electronics" class="checkbox-inline">
             <input id="Electronics" type="checkbox" name="categories_id" value="8">Electronics
         </label>
-
-        <input type="submit" class="btn btn-block btn-primary">
+        <input type="submit" class="btn btn-block btn-danger">
     </form>
+
+    <img src="../imgs/waldo-wave2.jpg" alt="waldo_waving">
+
+</div>
 </div>
 </body>
 </html>

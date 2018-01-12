@@ -26,7 +26,7 @@
     <div class="container banner">
         <div class="header">
             <h1>AdLister</h1>
-            <p class="subtitle"><em>Find the <strong>perfect</strong> ad for all your needs. </em></p>
+            <p class="subtitle"><em>Find the <strong>perfect</strong> ad for all your needs... </em></p>
             <p>
                 <a class="btn btn-danger btn-lg display-font" href="/ads" role="button">View All Ads
                 </a>
