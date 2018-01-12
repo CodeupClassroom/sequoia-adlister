@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "controllers.RegisterServlet", urlPatterns = "/register")
+@WebServlet(name = "controllers.RegisterServlet", urlPatterns = "/user/register")
 public class RegisterServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("/WEB-INF/user/register.jsp").forward(request, response);
@@ -29,14 +29,15 @@ public class RegisterServlet extends HttpServlet {
             || (! password.equals(passwordConfirmation));
 
         if (inputHasErrors) {
-            response.sendRedirect("/register");
+            response.sendRedirect("/user/register");
             return;
         }
 
         // create and save a new user
         User user = new User(username, email, password);
-        DaoFactory.getUsersDao().insert(user);
+        Long newUserId = DaoFactory.getUsersDao().insert(user);
+        user.setId(newUserId);
         request.getSession().setAttribute("user", user);
-        response.sendRedirect("/profile");
+        response.sendRedirect("/user/profile");
     }
 }

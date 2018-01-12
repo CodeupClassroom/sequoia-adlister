@@ -3,6 +3,7 @@ package com.codeup.adlister.models;
 public class Ad {
     private long id;
     private long userId;
+    private String img_name;
     private String title;
     private String description;
     private int price;
@@ -14,9 +15,10 @@ public class Ad {
         this.price = price;
     }
 
-    public Ad(long id, long userId, String title, String description, int price) {
+    public Ad(long id, long userId, String img_name, String title, String description, int price) {
         this.id = id;
         this.userId = userId;
+        this.img_name = img_name;
         this.title = title;
         this.description = description;
         this.price = price;

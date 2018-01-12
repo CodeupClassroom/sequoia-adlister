@@ -18,6 +18,15 @@
                 </c:if>
             </div>
 
+            <%-------Upload Picture-------%>
+            <%--<div class="form-group">--%>
+                <%--<form action="/ads/create" method="post" enctype="multipart/form-data">--%>
+                    <%--<input type="file" name="file" size="50" />--%>
+                    <%--<br />--%>
+                    <%--<input type="submit" value="Upload File" />--%>
+                <%--</form>--%>
+            <%--</div>--%>
+
             <div class="form-group">
                 <label for="description">Description</label>
                 <textarea id="description" name="description" class="form-control" type="text"></textarea>

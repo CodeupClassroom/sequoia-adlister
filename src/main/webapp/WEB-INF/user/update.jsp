@@ -13,7 +13,7 @@
 
 <div class="row">
 
-    <form action="/profile/update" method="POST">
+    <form action="/user/profile/update" method="POST">
 
         <div class="col-xs-12 col-md-6">
 

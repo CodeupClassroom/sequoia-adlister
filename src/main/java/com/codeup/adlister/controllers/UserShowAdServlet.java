@@ -10,16 +10,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "controllers.ViewProfileServlet", urlPatterns = "/profile")
-public class ViewProfileServlet extends HttpServlet {
+@WebServlet(name = "UserShowAdServlet", urlPatterns = "/showAd")
+public class UserShowAdServlet extends HttpServlet {
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (request.getSession().getAttribute("user") == null) {
-            response.sendRedirect("/user/login");
+            response.sendRedirect("/login");
             return;
         }
 
         User user = (User) request.getSession().getAttribute("user");
 
-        request.getRequestDispatcher("/WEB-INF/user/profile.jsp").forward(request, response);
+
+
+        request.setAttribute("ads", DaoFactory.getAdsDao().showAds(user.getId()));
+
+        request.getRequestDispatcher("/WEB-INF/ads/showAd.jsp").forward(request, response);
     }
+
 }
