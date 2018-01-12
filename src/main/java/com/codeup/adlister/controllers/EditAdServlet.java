@@ -59,7 +59,6 @@ public class EditAdServlet extends HttpServlet {
             if (inputHasErrors) {
                 request.getSession().setAttribute("listOfErrors", listOfErrors);
                 request.getSession().setAttribute("adIdWithError", id);
-//                response.sendRedirect("/profile");
                 request.getRequestDispatcher("/WEB-INF/ads/editAd.jsp").forward(request, response);
 
             } else {
