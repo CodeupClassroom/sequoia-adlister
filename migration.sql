@@ -1,6 +1,7 @@
 USE treasure_db;
 
-
+DROP TABLE IF EXISTS ads_categories;
+DROP TABLE IF EXISTS categories;
 DROP TABLE IF EXISTS ads;
 DROP TABLE IF EXISTS users;
 
@@ -21,6 +22,7 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE TABLE IF NOT EXISTS ads (
     id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     user_id INT UNSIGNED NOT NULL,
+    img_name VARCHAR(225),
     title VARCHAR(255) NOT NULL,
     description TEXT NOT NULL,
     price INT NULL,

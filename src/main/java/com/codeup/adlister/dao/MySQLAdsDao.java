@@ -3,9 +3,6 @@ package com.codeup.adlister.dao;
 import com.codeup.adlister.models.Ad;
 import com.mysql.cj.jdbc.Driver;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +53,7 @@ public class MySQLAdsDao implements Ads {
         }
     }
 
-//    -----Method to View One Specific Ad----
+    //    -----Method to View One Specific Ad----
     @Override
     public Ad ViewAd(long id) {
         String query = "SELECT * FROM ads WHERE id = ?";
@@ -74,10 +71,11 @@ public class MySQLAdsDao implements Ads {
         }
     }
 
-//    ---------Method to Update Ad---------
+
+    //    ---------Method to Update Ad---------
     @Override
 //    public void editAd(String title, String description, Integer price, long id) {
-        public void editAd(Ad ad) {
+    public void editAd(Ad ad) {
         String query = "UPDATE ads SET title = ?, description = ?, price = ? WHERE id = ?";
         try {
             PreparedStatement stmt = connection.prepareStatement(query);
@@ -97,6 +95,7 @@ public class MySQLAdsDao implements Ads {
         return new Ad(
                 rs.getLong("id"),
                 rs.getLong("user_id"),
+                rs.getString("img_name"),
                 rs.getString("title"),
                 rs.getString("description"),
                 rs.getInt("price")
@@ -125,10 +124,11 @@ public class MySQLAdsDao implements Ads {
             while (rs.next()) {
                 Long id = rs.getLong("id");
                 Long user_id = rs.getLong("user_id");
+                String img_name = rs.getString("img_name");
                 String title = rs.getString("title");
                 String description = rs.getString("description");
                 int price = rs.getInt("price");
-                ads.add(new Ad(id, user_id, title, description, price));
+                ads.add(new Ad(id, user_id, img_name, title, description, price));
 
             }
             return ads;
@@ -137,6 +137,21 @@ public class MySQLAdsDao implements Ads {
             return null;
         }
     }
+
+    //    -----Show Users Ad-----
+    @Override
+    public List<Ad> showAds(long id) {
+        String query = "SELECT * FROM ads WHERE ads.user_id = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setLong(1, id);
+            ResultSet rs = stmt.executeQuery();
+            return createAdsFromResults(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error, unable to view user ad", e);
+        }
+    }
+
 }
 
 

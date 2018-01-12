@@ -29,7 +29,7 @@
         </div>
 
         <div class="list-group col-xs-12 col-sm-6">
-            <a href="/ads/users-ads?id=${sessionScope.user.id}" class="list-group-item">View ${sessionScope.user.username}'s listings</a>
+            <a href="/showAd?id=${sessionScope.user.id}" class="list-group-item">View ${sessionScope.user.username}'s listings</a>
             <a href="" class="list-group-item">View Saved Items</a>
         </div>
     </div>
