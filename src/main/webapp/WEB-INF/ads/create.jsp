@@ -8,7 +8,7 @@
 <body>
     <div class="container">
         <h1>Create a New Ad</h1>
-        <form action="/ads/create" method="post">
+        <form action="/ads/create" method="post" enctype="multipart/form-data">
             <div class="form-group">
 
                 <label for="title">Title</label>
@@ -19,13 +19,9 @@
             </div>
 
             <%-------Upload Picture-------%>
-            <%--<div class="form-group">--%>
-                <%--<form action="/ads/create" method="post" enctype="multipart/form-data">--%>
-                    <%--<input type="file" name="file" size="50" />--%>
-                    <%--<br />--%>
-                    <%--<input type="submit" value="Upload File" />--%>
-                <%--</form>--%>
-            <%--</div>--%>
+            <div class="form-group">
+                <input type="file" name="file" size="50"/>
+            </div>
 
             <div class="form-group">
                 <label for="description">Description</label>
