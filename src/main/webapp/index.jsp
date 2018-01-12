@@ -32,82 +32,44 @@
 
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner" role="listbox">
-
-<<<<<<< HEAD
-                <div class="item active">
-                    <img src="/images/cats.jpg" alt="Cats" width="460" height="600">
-                    <div class="carousel-caption">
-                        <h3 class="carousel_text">Cats, dogs, horses and more</h3>
-                        <p class="carousel_text">Even farm animals!</p>
-=======
                     <div class="item active">
                         <img src="/images/cats.jpg" alt="Cats" width="460" height="600">
                         <div class="carousel-caption">
-                            <h3>Cats, dogs, horses and more</h3>
-                            <p>Even farm animals!</p>
+                            <h3 class="carousel_text">Cats, dogs, horses and more</h3>
+                            <p class="carousel_text">Even farm animals!</p>
                         </div>
->>>>>>> master
                     </div>
-
-<<<<<<< HEAD
-                <div class="item">
-                    <img src="/images/toddler_clothes.jpg" alt="Clothes" width="460" height="600">
-                    <div class="carousel-caption">
-                        <h3 class="carousel_text">Toddlers clothes</h3>
-                        <p class="carousel_text">Clothing new or used in good condition</p>
-=======
                     <div class="item">
                         <img src="/images/toddler_clothes.jpg" alt="Clothes" width="460" height="600">
                         <div class="carousel-caption">
-                            <h3>Toddlers clothes</h3>
-                            <p>Clothing new or used in good condition</p>
+                            <h3 class="carousel_text">Toddlers clothes</h3>
+                            <p class="carousel_text">Clothing new or used in good condition</p>
                         </div>
->>>>>>> master
                     </div>
-
-<<<<<<< HEAD
-                <div class="item">
-                    <img src="/images/rose.jpeg" alt="Flower" width="460" height="600">
-                    <div class="carousel-caption">
-                        <h3 class="carousel_text">Flowers</h3>
-                        <p class="carousel_text">Beautiful flowers.</p>
-=======
-                    <div class="item">
-                        <img src="/images/books.jpg" alt="Xray" width="460" height="600">
-                        <div class="carousel-caption">
-                            <h3>Any kind of ads here!</h3>
-                            <p>and more!</p>
-                        </div>
->>>>>>> master
-                    </div>
-
-<<<<<<< HEAD
-                <div class="item">
-                    <img src="/images/books.jpg" alt="Xray" width="460" height="600">
-                    <div class="carousel-caption">
-                        <h3 class="carousel_text">Any kind of ads here!</h3>
-                        <p class="carousel_text">and more!</p>
-=======
                     <div class="item">
                         <img src="/images/rose.jpeg" alt="Flower" width="460" height="600">
                         <div class="carousel-caption">
-                            <h3>Flowers</h3>
-                            <p>Beautiful flowers.</p>
+                            <h3 class="carousel_text">Flowers</h3>
+                            <p class="carousel_text">Beautiful flowers.</p>
                         </div>
->>>>>>> master
                     </div>
-
+                    <div class="item">
+                        <img src="/images/books.jpg" alt="Xray" width="460" height="600">
+                        <div class="carousel-caption">
+                            <h3 class="carousel_text">Any kind of ads here!</h3>
+                            <p class="carousel_text">and more!</p>
+                        </div>
+                    </div>
+                    <!-- Left and right controls -->
+                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
                 </div>
-
-                <!-- Left and right controls -->
-                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
             </div>
         </section>
     </div>
