@@ -13,7 +13,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 ads_result">
-                <h1 style="text-align: center">Ad Results</h1>
+                <h1 style="text-align: center">Search Result: </h1>
             </div>
         </div>
         <section>
