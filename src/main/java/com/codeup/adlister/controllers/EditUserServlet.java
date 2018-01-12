@@ -13,50 +13,77 @@ import java.util.ArrayList;
 
 @WebServlet(name = "controllers.EditUserServlet", urlPatterns = "/editUser")
 public class EditUserServlet extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         if (request.getSession().getAttribute("user") == null) {
             response.sendRedirect("/login");
         }
         request.getRequestDispatcher("/WEB-INF/editUser.jsp").forward(request, response);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws IOException, ServletException {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String passwordConfirmation = request.getParameter("confirm_password");
-        User user = (User) request.getSession().getAttribute("user");
         boolean inputHasErrors = false;
         ArrayList<String> listOfEditUserErrors = new ArrayList<>();
 
-        if (email.isEmpty()) {
-            String emailIsEmpty = "You must enter an email.";
-            listOfEditUserErrors.add(emailIsEmpty);
+        if (email.isEmpty() && password.isEmpty() && passwordConfirmation.isEmpty()) {
+            String editError = "You must submit an email/password.";
+            listOfEditUserErrors.add(editError);
             inputHasErrors = true;
         }
 
-        if (password.isEmpty()) {
-            String passwordIsEmpty = "You must enter a password.";
-            listOfEditUserErrors.add(passwordIsEmpty);
-            inputHasErrors = true;
-        }
-
-        if (!passwordConfirmation.equals(password)) {
-            String passwordsDoNotMatch = "Your passwords do not match.";
-            listOfEditUserErrors.add(passwordsDoNotMatch);
+        if (password.isEmpty() && !passwordConfirmation.isEmpty()) {
+            String passwordRequired = "You must enter a password before it can be confirmed.";
+            listOfEditUserErrors.add(passwordRequired);
             inputHasErrors = true;
         }
 
         if (inputHasErrors) {
             // Displays an error message based on user input.
-            request.getSession().setAttribute("listOfEditUserErrors", listOfEditUserErrors);
+            request.getSession().setAttribute("listOfErrors", listOfEditUserErrors);
+            request.getRequestDispatcher("/WEB-INF/editUser.jsp").forward(request, response);
+        }
+
+        if (!email.isEmpty()) {
+            editEmail(request, response, email);
+        }
+
+        if (!password.isEmpty()) {
+            editPassword(request, response, password, passwordConfirmation);
+        }
+    }
+
+    private void editEmail(HttpServletRequest request, HttpServletResponse response, String email)
+            throws ServletException, IOException {
+        User user = (User) request.getSession().getAttribute("user");
+        DaoFactory.getUsersDao().editEmail(email, user.getId());
+        response.sendRedirect("/profile");
+    }
+
+    private void editPassword(HttpServletRequest request, HttpServletResponse response, String password,
+                              String passwordConfirmation)
+            throws ServletException, IOException {
+        User user = (User) request.getSession().getAttribute("user");
+        boolean inputHasErrors = false;
+        ArrayList<String> listOfEditPasswordErrors = new ArrayList<>();
+
+        // Check if the passwords match.
+        if (!passwordConfirmation.equals(password)) {
+            String passwordsDoNotMatch = "Your passwords do not match.";
+            listOfEditPasswordErrors.add(passwordsDoNotMatch);
+            inputHasErrors = true;
+        }
+
+        if (inputHasErrors) {
+            request.getSession().setAttribute("listOfErrors", listOfEditPasswordErrors);
             request.getRequestDispatcher("/WEB-INF/editUser.jsp").forward(request, response);
         } else {
-            // Save the new user information
-            DaoFactory.getUsersDao().editProfileInformation(email, password, user.getId());
-            User userUpdated = DaoFactory.getUsersDao().findByUsername(user.getUsername());
-            request.getSession().setAttribute("user", userUpdated);
-
-            response.sendRedirect("/login");
+            // Save the new password.
+            DaoFactory.getUsersDao().editPassword(password, user.getId());
+            response.sendRedirect("/profile");
         }
     }
 }
