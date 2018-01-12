@@ -31,8 +31,17 @@ h1, h2, h3, h4, h5, h6, a {
     margin: auto;
 }
 
-/*.panel-info>.panel-heading {*/
-    /*color: #31708f;*/
-    /*background-color: rgba(211, 211, 211, 0.75)!important;*/
-    /*border-color: #bce8f1;*/
-/*}*/
+.panel-info>.panel-heading {
+    color: #31708f;
+    background-color: rgba(211, 211, 211, 0.75)!important;
+    border-color: #bce8f1;
+}
+
+.no_display_btn {
+    display: inline;
+}
+
+#btn_move_to_the_right {
+    position: relative;
+    left: 50px;
+}
