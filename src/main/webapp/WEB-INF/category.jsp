@@ -62,7 +62,7 @@
         <input type="submit" class="btn btn-block btn-danger">
     </form>
 
-    <img src="../imgs/waldo-wave2.jpg" alt="waldo_waving">
+    <%--<img src="../imgs/waldo-wave2.jpg" alt="waldo_waving">--%>
 
 </div>
 </div>

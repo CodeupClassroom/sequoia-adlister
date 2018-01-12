@@ -144,7 +144,14 @@ public class MySQLAdsDao extends Dao implements Ads {
     @Override
     public void deleteAd(Long id) {
         try {
+            // Delete from ads_categories whre the ad_id = id
             PreparedStatement stmt = connection.prepareStatement(
+                    "DELETE FROM categories_ads WHERE ads_id = ?"
+            );
+            stmt.setLong(1, id);
+            stmt.executeUpdate();
+
+            stmt = connection.prepareStatement(
                     "DELETE FROM ads WHERE id = ?"
             );
             stmt.setLong(1, id);
