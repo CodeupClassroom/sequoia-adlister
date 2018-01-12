@@ -53,6 +53,6 @@
 </body>
 <script src="/js/hideErrorsInProfile.js"></script>
 </div>
-<jsp:include page="/WEB-INF/partials/footer.jsp"/>
+<%--<jsp:include page="/WEB-INF/partials/footer.jsp"/>--%>
 </body>
 </html>

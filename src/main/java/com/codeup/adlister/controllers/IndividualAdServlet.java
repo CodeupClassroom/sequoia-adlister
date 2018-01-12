@@ -2,6 +2,7 @@ package com.codeup.adlister.controllers;
 
 import com.codeup.adlister.dao.DaoFactory;
 import com.codeup.adlister.models.Ad;
+import com.codeup.adlister.models.Category;
 import com.codeup.adlister.models.User;
 
 import javax.servlet.ServletException;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 //<%--Ad show page--%>
 //
@@ -26,11 +28,19 @@ import java.io.IOException;
 
 public class IndividualAdServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         Long id = Long.parseLong(request.getParameter("id"));
 
         Ad ad = DaoFactory.getAdsDao().showOneAd(id);
         User user = DaoFactory.getUsersDao().showUserInformation(ad.getUserId());
-        System.out.println(user);
+
+        List<Ad> allAds = DaoFactory.getAdsDao().all();
+
+
+        List<Category> categoriesForThisAd = DaoFactory.getCategoriesDao().getCategoriesForAd(id);
+        ad.setCategories(categoriesForThisAd);
+
+//        System.out.println(user);
 
         request.setAttribute("ad", ad);
         request.setAttribute("user", user);
