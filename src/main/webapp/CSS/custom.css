@@ -7,7 +7,7 @@ body {
 .welcome, .ads_header, .ads_display_by_col, .ads_result, .login_header {
     border-radius: 25px;
     background-color: rgba(211, 211, 211, 0.75);
-    /*padding-bottom: 12px;*/
+    margin-bottom: 15px;
 }
 
 .ads_display_by_col {
@@ -31,3 +31,8 @@ h1, h2, h3, h4, h5, h6, a {
     margin: auto;
 }
 
+/*.panel-info>.panel-heading {*/
+    /*color: #31708f;*/
+    /*background-color: rgba(211, 211, 211, 0.75)!important;*/
+    /*border-color: #bce8f1;*/
+/*}*/
