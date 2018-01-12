@@ -13,55 +13,75 @@ import java.util.ArrayList;
 
 @WebServlet(name = "controllers.EditUserServlet", urlPatterns = "/editUser")
 public class EditUserServlet extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         if (request.getSession().getAttribute("user") == null) {
             response.sendRedirect("/login");
         }
         request.getRequestDispatcher("/WEB-INF/editUser.jsp").forward(request, response);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws IOException, ServletException {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String passwordConfirmation = request.getParameter("confirm_password");
+
+        editEmail(request, response, email);
+        editPassword(request, response, password, passwordConfirmation);
+    }
+
+    private void editEmail(HttpServletRequest request, HttpServletResponse response, String email)
+            throws ServletException, IOException {
         User user = (User) request.getSession().getAttribute("user");
         boolean inputHasErrors = false;
-        ArrayList<String> listOfErrors = new ArrayList<>();
+        ArrayList<String> listOfEditEmailErrors = new ArrayList<>();
 
+        // Check if the email field is empty.
         if (email.isEmpty()) {
             String emailIsEmpty = "You must enter an email.";
-            listOfErrors.add(emailIsEmpty);
+            listOfEditEmailErrors.add(emailIsEmpty);
             inputHasErrors = true;
         }
 
         if (inputHasErrors) {
             // Displays an error message based on user input.
-            request.getSession().setAttribute("listOfErrors", listOfErrors);
+            request.getSession().setAttribute("listOfErrors", listOfEditEmailErrors);
             request.getRequestDispatcher("/WEB-INF/editUser.jsp").forward(request, response);
         } else {
-            // Save the new user information
+            // Save the new email.
             DaoFactory.getUsersDao().editEmail(email, user.getId());
             response.sendRedirect("/login");
         }
+    }
 
+    private void editPassword(HttpServletRequest request, HttpServletResponse response, String password,
+                              String passwordConfirmation)
+            throws ServletException, IOException {
+        User user = (User) request.getSession().getAttribute("user");
+        boolean inputHasErrors = false;
+        ArrayList<String> listOfEditPasswordErrors = new ArrayList<>();
+
+        // Check if the password field is empty.
         if (password.isEmpty()) {
             String passwordIsEmpty = "You must enter a password.";
-            listOfErrors.add(passwordIsEmpty);
+            listOfEditPasswordErrors.add(passwordIsEmpty);
             inputHasErrors = true;
         }
 
+        // Check if the passwords match.
         if (!passwordConfirmation.equals(password)) {
             String passwordsDoNotMatch = "Your passwords do not match.";
-            listOfErrors.add(passwordsDoNotMatch);
+            listOfEditPasswordErrors.add(passwordsDoNotMatch);
             inputHasErrors = true;
         }
 
         if (inputHasErrors) {
             // Displays an error message based on user input.
-            request.getSession().setAttribute("listOfErrors", listOfErrors);
+            request.getSession().setAttribute("listOfErrors", listOfEditPasswordErrors);
             request.getRequestDispatcher("/WEB-INF/editUser.jsp").forward(request, response);
         } else {
-            // Save the new user information
+            // Save the new password.
             DaoFactory.getUsersDao().editPassword(password, user.getId());
             response.sendRedirect("/login");
         }
