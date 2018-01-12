@@ -15,7 +15,8 @@
             <h1 style="text-align: center">Create a new Ad</h1>
         </div>
     </div>
-
+    <br>
+    <br>
     <div class="row">
         <div class="col-xs-12">
             <form action="/ads/create" method="post">
