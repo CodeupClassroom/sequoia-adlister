@@ -27,14 +27,43 @@
                     <h1 style="text-align: center" class="ads_header">Items You Have For Sale:</h1>
                     <div class="row">
                         <c:forEach var="ad" items="${ads}">
-                            <div class="col-lg-6 ads_display_by_col">
-                                <h3><a href="/showAd?id=${ad.id}"><c:out value="${ad.title}"/></a></h3>
-                                <h5><c:out value="${ad.description}"/></h5>
 
-                                <small>Categories: </small>
-                                <c:forEach var="category" items="${ad.categories}">
-                                    <small><c:out value="${category.category}"/> / </small>
-                                </c:forEach>
+                            <div class="col-md-6">
+                                <div class="tab-content">
+                                    <div role="tabpanel" class="tab-pane active">
+                                        <div class="panel panel-info">
+                                            <div class="panel-heading">
+                                                <h3 class="panel-title"><a href="/showAd?id=${ad.id}"><c:out value="${ad.title}"/></a></h3>
+                                            </div>
+                                            <div class="panel-body">
+                                                <h5><c:out value="${ad.description}"/></h5>
+                                            </div>
+                                            <div class="panel-footer text-right">
+                                                <small>Categories: </small>
+                                                <c:forEach var="category" items="${ad.categories}">
+                                                    <small><c:out value="${category.category}"/> / </small>
+                                                </c:forEach>
+                                            </div>
+
+                                            <%--<div class="panel-footer text-right">--%>
+                                                <%--<small>Categories: </small>--%>
+                                                <%--<c:forEach var="category" items="${ad.categories}">--%>
+                                                    <%--<small><c:out value="${category.category}"/> / </small>--%>
+                                                <%--</c:forEach>--%>
+                                            <%--</div>--%>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <%--<div class="col-lg-6 ads_display_by_col">--%>
+                                <%--<h3><a href="/showAd?id=${ad.id}"><c:out value="${ad.title}"/></a></h3>--%>
+                                <%--<h5><c:out value="${ad.description}"/></h5>--%>
+
+                                <%--<small>Categories: </small>--%>
+                                <%--<c:forEach var="category" items="${ad.categories}">--%>
+                                    <%--<small><c:out value="${category.category}"/> / </small>--%>
+                                <%--</c:forEach>--%>
 
                                 <div class="row">
                                     <div class="col-lg-offset-1 col-lg-3">

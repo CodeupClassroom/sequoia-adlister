@@ -37,6 +37,7 @@ public class EditUserServlet extends HttpServlet {
         boolean inputHasErrors = false;
         ArrayList<String> listOfEditEmailErrors = new ArrayList<>();
 
+
         // Check if the email field is empty.
         if (email.isEmpty()) {
             String emailIsEmpty = "You must enter an email.";
