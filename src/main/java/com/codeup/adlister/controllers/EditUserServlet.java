@@ -26,33 +26,36 @@ public class EditUserServlet extends HttpServlet {
         String passwordConfirmation = request.getParameter("confirm_password");
         User user = (User) request.getSession().getAttribute("user");
         boolean inputHasErrors = false;
-        ArrayList<String> listOfErrors = new ArrayList<>();
+        ArrayList<String> listOfEditUserErrors = new ArrayList<>();
 
         if (email.isEmpty()) {
             String emailIsEmpty = "You must enter an email.";
-            listOfErrors.add(emailIsEmpty);
+            listOfEditUserErrors.add(emailIsEmpty);
             inputHasErrors = true;
         }
 
         if (password.isEmpty()) {
             String passwordIsEmpty = "You must enter a password.";
-            listOfErrors.add(passwordIsEmpty);
+            listOfEditUserErrors.add(passwordIsEmpty);
             inputHasErrors = true;
         }
 
         if (!passwordConfirmation.equals(password)) {
             String passwordsDoNotMatch = "Your passwords do not match.";
-            listOfErrors.add(passwordsDoNotMatch);
+            listOfEditUserErrors.add(passwordsDoNotMatch);
             inputHasErrors = true;
         }
 
         if (inputHasErrors) {
             // Displays an error message based on user input.
-            request.getSession().setAttribute("listOfErrors", listOfErrors);
+            request.getSession().setAttribute("listOfEditUserErrors", listOfEditUserErrors);
             request.getRequestDispatcher("/WEB-INF/editUser.jsp").forward(request, response);
         } else {
             // Save the new user information
             DaoFactory.getUsersDao().editProfileInformation(email, password, user.getId());
+            User userUpdated = DaoFactory.getUsersDao().findByUsername(user.getUsername());
+            request.getSession().setAttribute("user", userUpdated);
+
             response.sendRedirect("/login");
         }
     }
