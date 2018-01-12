@@ -41,8 +41,16 @@
             </div>
 
             <button id="update_button" class="edit">Update</button>
+
+
+        </form>
+
+        <form action="/deleteAd" method="post">
+            <input type="hidden" name="id" value="${ad.id}">
+            <button id="delete_button" class="edit">Delete</button>
         </form>
     </div>
+
 </body>
 
 </html>
