@@ -20,7 +20,6 @@ search.addEventListener("click", function (e) {
 
     } else  {
         var searchForm = document.getElementById("search-form");
-        console.log('Submitting searchForm...');
         searchForm.submit();
     }
 });
