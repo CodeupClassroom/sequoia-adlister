@@ -60,6 +60,10 @@ public class EditUserServlet extends HttpServlet {
             throws ServletException, IOException {
         User user = (User) request.getSession().getAttribute("user");
         DaoFactory.getUsersDao().editEmail(email, user.getId());
+
+        //update user for session
+        user = DaoFactory.getUsersDao().findByUsername(user.getUsername());
+        request.getSession().setAttribute("user", user);
         response.sendRedirect("/profile");
     }
 
