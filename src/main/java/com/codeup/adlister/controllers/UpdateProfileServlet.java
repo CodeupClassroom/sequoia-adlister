@@ -61,17 +61,26 @@ public class UpdateProfileServlet extends HttpServlet {
 
         if (!errors.isEmpty()) {
             request.setAttribute("errors", errors);
-            request.getRequestDispatcher("/WEB-INF/update-profile.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/user/update.jsp").forward(request, response);
         } else {
             if (passwordChanged) {
                 user.setPassword(Password.hash(newPassword));
             }
+
+            String bio = request.getParameter("bio");
+            String location = request.getParameter("location");
+
             user.setEmail(email);
+            user.setBio(bio);
+            user.setLocation(location);
+
             DaoFactory.getUsersDao().update(user);
+            request.getSession().setAttribute("user", user);
             response.sendRedirect("/profile");
         }
 
     }
+
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -83,10 +92,7 @@ public class UpdateProfileServlet extends HttpServlet {
         }
         // Passing to the view
         request.setAttribute("user", userDb);
-        request.getRequestDispatcher("/WEB-INF/profile/update.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/user/update.jsp").forward(request, response);
 
     }
-
-
-
 }

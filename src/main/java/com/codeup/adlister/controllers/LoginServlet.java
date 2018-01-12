@@ -18,19 +18,17 @@ public class LoginServlet extends HttpServlet {
             response.sendRedirect("/profile");
             return;
         }
-        request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/user/login.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         User user = DaoFactory.getUsersDao().findByUsername(username);
-        System.out.println("test");
-        if (user == null || !BCrypt.checkpw(password, user.getPassword())) {
-            System.out.println("inside if statment");
-            request.setAttribute("loginerror", true);
-            request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
 
+        if (user == null || !BCrypt.checkpw(password, user.getPassword())) {
+            request.setAttribute("loginerror", true);
+            request.getRequestDispatcher("/WEB-INF/user/login.jsp").forward(request, response);
         } else {
             request.getSession().setAttribute("user", user);
             response.sendRedirect("/profile");

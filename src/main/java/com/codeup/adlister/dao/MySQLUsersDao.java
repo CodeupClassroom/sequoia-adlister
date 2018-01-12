@@ -83,6 +83,7 @@ public class MySQLUsersDao implements Users {
         );
     }
 
+    @Override
     public void update(User user) {
         String updateUserProfile = "UPDATE users SET username = ?, email = ?, password = ?, bio = ?, location = ? WHERE id = ?";
         try {
@@ -92,6 +93,7 @@ public class MySQLUsersDao implements Users {
             stmt.setString(3, user.getPassword());
             stmt.setString(4, user.getBio());
             stmt.setString(5, user.getLocation());
+            stmt.setLong(6,user.getId());
             stmt.executeUpdate();
         } catch (SQLException e){
             throw new RuntimeException("Error - unable to update user profile", e);

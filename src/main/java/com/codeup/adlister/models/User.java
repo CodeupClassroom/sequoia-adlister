@@ -66,4 +66,12 @@ public class User {
     public String getLocation() {
         return location;
     }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
 }
