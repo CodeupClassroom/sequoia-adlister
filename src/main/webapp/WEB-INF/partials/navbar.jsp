@@ -20,6 +20,7 @@
                 <button type="submit" id="search" class="btn btn-default">Submit</button>
         </div>
     </form>
+    <script src="/javascript/navbarvalidation.js"></script>
 
 </nav>
 
