@@ -28,21 +28,63 @@ public class MySQLAdsDao implements Ads {
 
     @Override
     public List<Ad> all() {
-        Statement stmt = null;
+        PreparedStatement stmt = null;
         try {
-            stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM ads");
+            stmt = connection.prepareStatement("SELECT * FROM ads");
+            ResultSet rs = stmt.executeQuery();
             return createAdsFromResults(rs);
         } catch (SQLException e) {
             throw new RuntimeException("Error retrieving all ads.", e);
         }
     }
 
+    // adsByUserId will find all ads that belong to the user with some user ID
+    @Override
+    public List<Ad> adsByUserId(long userId) {
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement("SELECT * FROM ads WHERE user_id = "+userId);
+            ResultSet rs = stmt.executeQuery();
+            return createAdsFromResults(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving all user ads.", e);
+        }
+    }
+
+    // findAdById will make a SQL query based on an Ad id number
+    @Override
+    public Ad findAdByID(int adID) {
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement("SELECT * FROM adlister_db.ads WHERE id = ?");
+            stmt.setInt(1, adID);
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            Ad ad = new Ad(
+                    rs.getLong("id"),
+                    rs.getLong("user_id"),
+                    rs.getString("title"),
+                    rs.getString("description"),
+                    rs.getString("date_created"),
+                    rs.getString("ad_location")
+            );
+            return ad;
+//            return createAdsFromResults(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error loading single Ad.", e);
+        }
+    }
+
     @Override
     public Long insert(Ad ad) {
         try {
-            Statement stmt = connection.createStatement();
-            stmt.executeUpdate(createInsertQuery(ad), Statement.RETURN_GENERATED_KEYS);
+            String insertQuery = "INSERT INTO ads(user_id, title, description, ad_location, date_created) VALUES (?,?,?,?,now())";
+            PreparedStatement stmt = connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);
+            stmt.setLong(1, ad.getUserId());
+            stmt.setString(2, ad.getTitle());
+            stmt.setString(3, ad.getDescription());
+            stmt.setString(4, ad.getAdLocation());
+            stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
             rs.next();
             return rs.getLong(1);
@@ -51,11 +93,17 @@ public class MySQLAdsDao implements Ads {
         }
     }
 
-    private String createInsertQuery(Ad ad) {
-        return "INSERT INTO ads(user_id, title, description) VALUES "
-            + "(" + ad.getUserId() + ", "
-            + "'" + ad.getTitle() +"', "
-            + "'" + ad.getDescription() + "')";
+    public List<Ad> search(String input){
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement("SELECT * FROM ads WHERE title LIKE ? OR description LIKE ?");
+            stmt.setString(1, "%" + input + "%");
+            stmt.setString(2, "%" + input + "%");
+            ResultSet rs = stmt.executeQuery();
+            return createAdsFromResults(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving requested ads.", e);
+        }
     }
 
     private Ad extractAd(ResultSet rs) throws SQLException {
@@ -63,7 +111,11 @@ public class MySQLAdsDao implements Ads {
             rs.getLong("id"),
             rs.getLong("user_id"),
             rs.getString("title"),
-            rs.getString("description")
+            rs.getString("description"),
+            rs.getString("date_created"),
+            rs.getString("date_modified"),
+            rs.getString("ad_location"),
+            DaoFactory.getAdsCategoriesDao().getCategoriesByAdID(rs.getLong("id"))
         );
     }
 

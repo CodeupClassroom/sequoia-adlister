@@ -1,5 +1,9 @@
 package com.codeup.adlister.controllers;
 
+import com.codeup.adlister.dao.DaoFactory;
+import com.codeup.adlister.models.User;
+import org.mindrot.jbcrypt.BCrypt;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,21 +21,19 @@ public class LoginServlet extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+        User user = DaoFactory.getUsersDao().findByUsername(username);
 
-        // TODO: find a record in your database that matches the submitted password
-        // TODO: make sure we find a user with that username
-        // TODO: check the submitted password against what you have in your database
-        boolean validAttempt = false;
-
-        if (validAttempt) {
-            // TODO: store the logged in user object in the session, instead of just the username
-            request.getSession().setAttribute("user", username);
-            response.sendRedirect("/profile");
+        //if (user == null || !BCrypt.checkpw(password, user.getPassword())) {
+        if (user == null || !password.equals(user.getPassword())) {
+            request.setAttribute("loginError",true);
+            request.setAttribute("username", username);
+            request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request,response);
         } else {
-            response.sendRedirect("/login");
+            request.getSession().setAttribute("user", user);
+            response.sendRedirect("/profile");
         }
     }
 }
