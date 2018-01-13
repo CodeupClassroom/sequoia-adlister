@@ -1,0 +1,91 @@
+/*body {*/
+    /*background-image: url("../imgs/spiration-light.png");*/
+/*}*/
+
+ h1 {
+     text-align: center;
+ }
+
+div.container.banner {
+    text-align: center;
+    width: 100%;
+    z-index: +100;
+    padding: 0;
+}
+
+div.header {
+    background-color: rgba(36, 39, 41, 0.6);
+    color: white;
+    height: 417px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-bottom: 50px;
+}
+
+.header h1 {
+    color:floralwhite; !important;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Lobster', cursive;
+    font-size: x-large;
+    margin-bottom: 9px;
+}
+
+
+.jumbotron p.subtitle{
+    margin-top: 20px;
+    margin-bottom: 27px;
+    text-align: center;
+}
+
+.heading {
+    margin-left: 10px;
+    font-size: 35px;
+}
+
+.btn-group-lg>.btn, .btn-lg {
+    font-size: 14px;
+}
+
+a.btn.btn-primary {
+    background-color: #239288 !important;
+    background-image: none;
+}
+
+.display-font {
+    font-family: 'News Cycle', sans-serif;
+}
+
+.jumbotron {
+    background:
+            url("/imgs/soborno-ig.jpg");
+            /*url("/imgs/colorr.png") top right,*/
+            /*url("/imgs/colorr.png") top left;*/
+    background-size: 100%;
+    width: 100%;
+    background-repeat: no-repeat;
+    padding: 0;
+    margin-bottom: 16px;
+}
+
+.recent-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+h4.recent-ads {
+    margin-left: 10px;
+    margin-bottom: 5px;
+}
+
+
+@media screen and (min-width: 768px) {
+
+    .jumbotron .h1, .jumbotron h1 {
+        font-size: 100px;
+    }
+}

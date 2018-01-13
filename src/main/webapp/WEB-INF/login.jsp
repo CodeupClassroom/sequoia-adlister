@@ -4,6 +4,7 @@
     <jsp:include page="/WEB-INF/partials/head.jsp">
         <jsp:param name="title" value="Please Log In" />
     </jsp:include>
+    <link rel="stylesheet" href="/css/login.css">
 </head>
 <body>
     <jsp:include page="/WEB-INF/partials/navbar.jsp" />
@@ -18,7 +19,7 @@
                 <label for="password">Password</label>
                 <input id="password" name="password" class="form-control" type="password">
             </div>
-            <input type="submit" class="btn btn-primary btn-block" value="Log In">
+            <input type="submit" class="btn btn-danger btn-block" value="Log In">
         </form>
     </div>
 </body>
