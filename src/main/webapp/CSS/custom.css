@@ -1,0 +1,85 @@
+html{
+    height:100%;
+}
+body {
+    background: url("/images/Yellow.jpg") no-repeat;
+    background-blend-mode: lighten;
+    background-size: cover;
+    height:100%;
+    font-family: 'Yantramanav', sans-serif;
+}
+
+
+#nonFooter
+{
+    position: relative;
+    min-height: 100%;
+}
+* html #nonFooter
+{
+    height: 100%;
+}
+#content
+{
+    padding-bottom: 9em;
+}
+#footer
+{
+    position: relative;
+    margin-top: -.5em;
+    background-color: rgba(211, 211, 211, 0.75);
+    text-align: center;
+}
+
+
+.welcome, .ads_header, .ads_display_by_col, .ads_result, .login_header {
+    border-radius: 25px;
+    background-color: rgba(211, 211, 211, 0.75);
+    margin-bottom: 15px;
+}
+
+.ads_display_by_col {
+    margin-top: 20px;
+    /*margin-right: 10px;*/
+}
+
+h1, h2, h3, h4, h5, h6, a {
+    color: black;
+}
+
+#profile_pic {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+}
+
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+    width: 70%;
+    margin: auto;
+}
+
+.panel-info>.panel-heading {
+    color: #31708f;
+    background-color: rgba(211, 211, 211, 0.75)!important;
+    border-color: #bce8f1;
+}
+
+.no_display_btn {
+    display: inline;
+}
+
+#btn_move_to_the_right {
+    position: relative;
+    left: 50px;
+}
+
+
+
+
+.carousel_text, .categories_text {
+    background-color: rgba(211, 211, 211, 0.75);
+    font-family: 'Yantramanav', sans-serif;
+    color: black;
+    text-shadow: none;
+}
