@@ -9,4 +9,17 @@ public interface Ads {
     List<Ad> all();
     // insert a new ad and return the new ad's id
     Long insert(Ad ad);
+
+//    -----View One Specific Ad-----
+    Ad ViewAd (long id);
+
+
+    //    ---------Method to Update Ad---------
+//    void editAd(String title, String description, Integer price, long id);
+    void editAd(Ad ad);
+    List<Ad> search(String searchAd);
+
+    List<Ad> showAds(long id);
+
+    void deleteAd(Long id);
 }
